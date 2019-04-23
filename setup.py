@@ -9,14 +9,18 @@ with open('README.md') as f:
     long_description = f.read()
 
 # minimum requirement list
-requirements = []
+requirements = [
+    "PyYAML>=5.1",
+    "toml>=0.10.0",
+    "configparser>=3.7.4"
+]
 
 setup(name='parse_this',
       author=__author__,
       author_email=__author_email__,
       version=__version__,
-      description="A python library for parsing multiple types of config files, envvars &amp; command line argumants "
-                  "that takes the headache out of setting app configurations.",
+      description="A python library for parsing multiple types of config files, envvars and command line arguments "
+                  "which takes the headache out of setting app configurations.",
       long_description=long_description,
       long_description_content_type='text/markdown',
       packages=find_packages(exclude=['contrib', 'docs', 'tests']),
