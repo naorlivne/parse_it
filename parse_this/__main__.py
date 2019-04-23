@@ -23,7 +23,7 @@ class ParseThis:
 
     def __init__(self, config_type_priority=None, global_default_value=None, type_estimate=False,
                  force_envvars_uppercase=True, config_folder_location=None, envvar_prefix=None):
-        """configures the object which is used to query all types of configuration inputs avilable and prioirtize them
+        """configures the object which is used to query all types of configuration inputs available and prioritize them
                 based on your needs
 
                     Arguments:
