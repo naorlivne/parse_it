@@ -1,5 +1,15 @@
-# TODO - read envvars
+import os
 
-# TODO - have option to auto uppercase envvars that's true by default
 
-# TODO - have option to have prefix for all envvars
+def read_envvar(envvar, force_uppercase=True):
+    """Read an environment variable .
+
+            Arguments:
+                envvar -- name of the envvar to get the value of
+                force_uppercase -- if the envvar key will be forced to be all in UPPERCASE, defaults to True
+            Returns:
+                the value of the envvar, None if doesn't exist
+    """
+    if force_uppercase is True:
+        envvar = envvar.upper()
+    return os.getenv(envvar)

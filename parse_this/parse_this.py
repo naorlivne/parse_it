@@ -2,6 +2,7 @@ class parse_this:
 
     def __init__(self):
         # TODO - init the list order with default order of cli_args>envvars>json>yaml>yml>toml>tml>cfg>ini>default_value>global_default_value
+        # TODO - have the order list be editable
         # TODO - have a editable global_default_value of None
         # TODO - have trigger to auto upper case envvars that's true by default
         # TODO - have a trigger to guesstimate the envvars, ini files & cli args types
