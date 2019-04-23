@@ -98,28 +98,32 @@ class ParseThis:
                     break
             elif config_type == "json":
                 for config_file in self.config_files_dict["json"]:
-                    config_value = parse_json_file(self.config_folder_location + config_file)
+                    file_dict = parse_json_file(self.config_folder_location + config_file)
+                    config_value = file_dict[config_name]
                     if config_value is not None:
                         break
                 if config_value is not None:
                     break
             elif config_type == "yaml" or config_type == "yml":
                 for config_file in self.config_files_dict[config_type]:
-                    config_value = parse_yaml_file(self.config_folder_location + config_file)
+                    file_dict = parse_yaml_file(self.config_folder_location + config_file)
+                    config_value = file_dict[config_name]
                     if config_value is not None:
                         break
                 if config_value is not None:
                     break
             elif config_type == "toml" or config_type == "tml":
                 for config_file in self.config_files_dict[config_type]:
-                    config_value = parse_toml_file(self.config_folder_location + config_file)
+                    file_dict = parse_toml_file(self.config_folder_location + config_file)
+                    config_value = file_dict[config_name]
                     if config_value is not None:
                         break
                 if config_value is not None:
                     break
             elif config_type == "conf" or config_type == "cfg" or config_type == "ini":
                 for config_file in self.config_files_dict[config_type]:
-                    config_value = parse_ini_file(self.config_folder_location + config_file)
+                    file_dict = parse_ini_file(self.config_folder_location + config_file)
+                    config_value = file_dict[config_name]
                     if config_value is not None:
                         break
                 if config_value is not None:
