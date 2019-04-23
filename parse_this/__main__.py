@@ -8,15 +8,15 @@ from parse_this.type_estimate.type_estimate import *
 from parse_this.file.file_reader import *
 
 VALID_FILE_TYPE_EXTENSIONS = [
-        "json",
-        "yaml",
-        "yml",
-        "toml",
-        "tml",
-        "conf",
-        "cfg",
-        "ini",
-    ]
+    "json",
+    "yaml",
+    "yml",
+    "toml",
+    "tml",
+    "conf",
+    "cfg",
+    "ini",
+]
 
 
 class ParseThis:
