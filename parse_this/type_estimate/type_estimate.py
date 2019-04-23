@@ -2,7 +2,7 @@ import ast
 
 
 def estimate_type(string_to_type_estimate):
-    """takes a string and return what type it estimates it to be based on ast.literal_eval & internal logic.
+    """takes a string and return it's value in a type it estimates it to be based on ast.literal_eval & internal logic.
 
             Arguments:
                 string_to_type_estimate -- the string a type estimation is needed for
