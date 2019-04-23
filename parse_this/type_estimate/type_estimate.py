@@ -1,0 +1,1 @@
+# TODO - guesstimate the type of a string
