@@ -7,6 +7,7 @@ services:
 install:
   - pip install -r requirements.txt
 script:
+  - echo $TRAVIS_BUILD_DIR
   - ls -la $TRAVIS_BUILD_DIR/test/test_files
   - python -m unittest discover
 env:
