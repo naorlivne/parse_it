@@ -86,6 +86,7 @@ class ParseThis:
                         config_value -- the value of the configuration requested
             """
         config_value = None
+        config_key_found = False
         for config_type in self.config_type_priority:
             if config_type == "cli_args":
                 config_value = read_command_line_arg(config_name)
@@ -148,4 +149,3 @@ class ParseThis:
             config_value = None
             config_found = False
         return config_found, config_value
-
