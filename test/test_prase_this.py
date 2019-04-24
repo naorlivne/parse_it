@@ -8,6 +8,7 @@ from parse_this.file.json import *
 from parse_this.file.ini import *
 from parse_this.file.file_reader import *
 from parse_this.type_estimate.type_estimate import *
+import os
 
 VALID_FILE_TYPE_EXTENSIONS = [
     "json",
@@ -92,6 +93,7 @@ class BaseTests(TestCase):
         reply = parse_ini_file("test_files/test.ini")
         expected_reply = {
             'DEFAULT': {
+                'file_type': "ini",
                 'test_string': 'testing',
                 'test_bool_true': 'true',
                 'test_bool_false': 'false',
@@ -110,6 +112,7 @@ class BaseTests(TestCase):
     def test_json(self):
         reply = parse_json_file("test_files/test.json")
         expected_reply = {
+            'file_type': "json",
             'test_string': 'testing',
             'test_bool_true': True,
             'test_bool_false': False,
@@ -126,10 +129,10 @@ class BaseTests(TestCase):
         }
         self.assertEqual(reply, expected_reply)
 
-
     def test_toml(self):
         reply = parse_toml_file("test_files/test.toml")
         expected_reply = {
+            'file_type': "toml",
             'test_string': 'testing',
             'test_bool_true': True,
             'test_bool_false': False,
@@ -149,6 +152,7 @@ class BaseTests(TestCase):
     def test_yaml(self):
         reply = parse_yaml_file("test_files/test.yaml")
         expected_reply = {
+            'file_type': "yaml",
             'test_string': 'testing',
             'test_bool_true': True,
             'test_bool_false': False,
@@ -165,11 +169,95 @@ class BaseTests(TestCase):
         }
         self.assertEqual(reply, expected_reply)
 
-    def test_type_estimate(self):
-        pass
+    def test_type_estimate_string(self):
+        reply = estimate_type("this_is_a_string")
+        self.assertEqual(reply, "this_is_a_string")
+
+    def test_type_estimate_false(self):
+        reply_lowercase = estimate_type("false")
+        reply_uppercase = estimate_type("FALSE")
+        reply_mixed = estimate_type("False")
+        self.assertEqual(reply_lowercase, False)
+        self.assertEqual(reply_uppercase, False)
+        self.assertEqual(reply_mixed, False)
+
+    def test_type_estimate_true(self):
+        reply_lowercase = estimate_type("true")
+        reply_uppercase = estimate_type("TRUE")
+        reply_mixed = estimate_type("True")
+        self.assertEqual(reply_lowercase, True)
+        self.assertEqual(reply_uppercase, True)
+        self.assertEqual(reply_mixed, True)
+
+    def test_type_estimate_int(self):
+        reply = estimate_type("123")
+        self.assertEqual(reply, 123)
+
+    def test_type_estimate_float(self):
+        reply = estimate_type("123.123")
+        self.assertEqual(reply, 123.123)
+
+    def test_type_estimate_list(self):
+        reply = estimate_type("['test1', 'test2']")
+        self.assertEqual(reply, ['test1', 'test2'])
+
+    def test_type_estimate_dict(self):
+        reply = estimate_type("{'test_key': 'test_value'}")
+        self.assertEqual(reply, {'test_key': 'test_value'})
+
+    def test_type_estimate_none(self):
+        reply_empty = estimate_type("")
+        reply_lowercase = estimate_type("none")
+        reply_null = estimate_type("null")
+        reply_uppercase = estimate_type("NONE")
+        reply_mixed = estimate_type("None")
+        self.assertEqual(reply_empty, None)
+        self.assertEqual(reply_lowercase, None)
+        self.assertEqual(reply_null, None)
+        self.assertEqual(reply_uppercase, None)
+        self.assertEqual(reply_mixed, None)
 
     def test_parser_init(self):
-        pass
+        expected_config_files_dict = {'json': ['test.json'], 'yaml': ['test.yaml'], 'yml': [], 'toml': ['test.toml'],
+                                      'tml': [], 'conf': [], 'cfg': [], 'ini': ['test.ini']}
+        expected_config_type_priority = ['cli_args', 'envvars', 'json', 'yaml', 'yml', 'toml', 'tml', 'conf', 'cfg',
+                                         'ini']
+        parser = ParseThis(config_type_priority=None, global_default_value=None, type_estimate=True,
+                           force_envvars_uppercase=True, config_folder_location=None, envvar_prefix=None)
+        self.assertEqual(parser.config_files_dict, expected_config_files_dict)
+        self.assertEqual(parser.config_folder_location, os.getcwd())
+        self.assertEqual(parser.config_type_priority, expected_config_type_priority)
+        self.assertEqual(parser.envvar_prefix, '')
+        self.assertTrue(parser.force_envvars_uppercase)
+        self.assertIsNone(parser.global_default_value)
+        self.assertTrue(parser.type_estimate)
 
     def test_parser_read_configuration_variable(self):
-        pass
+        parser = ParseThis()
+
+    def test_parser_read_configuration_variable_default_value(self):
+        parser = ParseThis()
+
+    def test_parser_read_configuration_variable_global_default_value(self):
+        parser = ParseThis()
+
+    def test_parser_read_configuration_variable_config_type_priority(self):
+        parser = ParseThis()
+
+    def test_parser_read_configuration_variable_type_estimate_false(self):
+        parser = ParseThis()
+
+    def test_parser_read_configuration_variable_type_estimate_true(self):
+        parser = ParseThis()
+
+    def test_parser_read_configuration_variable_force_envvars_uppercase_true(self):
+        parser = ParseThis()
+
+    def test_parser_read_configuration_variable_force_envvars_uppercase_false(self):
+        parser = ParseThis()
+
+    def test_parser_read_configuration_variable_config_folder_location(self):
+        parser = ParseThis()
+
+    def test_parser_read_configuration_variable_envvar_prefix(self):
+        parser = ParseThis()

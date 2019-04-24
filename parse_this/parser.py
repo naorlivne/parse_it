@@ -21,7 +21,7 @@ VALID_FILE_TYPE_EXTENSIONS = [
 
 class ParseThis:
 
-    def __init__(self, config_type_priority=None, global_default_value=None, type_estimate=False,
+    def __init__(self, config_type_priority=None, global_default_value=None, type_estimate=True,
                  force_envvars_uppercase=True, config_folder_location=None, envvar_prefix=None):
         """configures the object which is used to query all types of configuration inputs available and prioritize them
                 based on your needs
@@ -35,7 +35,7 @@ class ParseThis:
                             if no value is returned then the default_value declared at the read_configuration_variable
                                 will be used and if that is not configured then the global_default_value will be used
                         global_default_value -- defaults to None, see config_type_priority for it's use
-                        type_estimate -- if set to True (False by default) will try to automatically figure out the type
+                        type_estimate -- if set to True (True by default) will try to automatically figure out the type
                             of the returned value on it's own, useful for envvars & ini type files which always return a
                             string otherwise
                         force_envvars_uppercase -- if set to True (which is the default) will force all envvars keys to

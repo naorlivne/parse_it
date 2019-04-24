@@ -1,4 +1,5 @@
 {
+  "file_type": "json",
   "test_string": "testing",
   "test_bool_true": true,
   "test_bool_false": false,

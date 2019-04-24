@@ -10,4 +10,4 @@ def parse_yaml_file(path_to_yaml_file):
             Returns:
                 config_file_dict -- dict of the file
     """
-    return yaml.load(read_file(path_to_yaml_file))
+    return yaml.load(read_file(path_to_yaml_file), Loader=yaml.FullLoader)
