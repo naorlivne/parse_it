@@ -10,7 +10,7 @@ script:
   - python -m unittest discover
 env:
   global:
-    - TEST_FILES_LOCATION=test/test_files
+    - TEST_FILES_LOCATION=$TRAVIS_BUILD_DIR/test/test_files
 deploy:
   provider: pypi
   user: naorlivne
