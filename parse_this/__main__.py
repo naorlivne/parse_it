@@ -29,7 +29,7 @@ class ParseThis:
                     Arguments:
                         config_type_priority -- a list of file types extensions your willing to accept, list order
                             dictates priority of said file types, default list order is as follow:
-                                cli_args>envvars>json>yaml>yml>toml>tml>conf>cfg>ini
+                                ["cli_args", "envvars", "json", "yaml", "yml", "toml", "tml", "conf", "cfg", "ini"]
                             in the case of multiple files of same type they are all read and the first one that has the
                                 needed key is the one used.
                             if no value is returned then the default_value declared at the read_configuration_variable
