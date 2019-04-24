@@ -41,7 +41,7 @@ class ParseThis:
                         force_envvars_uppercase -- if set to True (which is the default) will force all envvars keys to
                             be UPPERCASE
                         envvar_prefix -- will add a prefix for all envvars if set
-            """
+        """
 
         if envvar_prefix is None:
             self.envvar_prefix = ""
@@ -84,7 +84,7 @@ class ParseThis:
                         default_value -- defaults to None, see config_type_priority in class init for it's use
                     Returns:
                         config_value -- the value of the configuration requested
-            """
+        """
         config_value = None
         config_key_found = False
         for config_type in self.config_type_priority:
@@ -142,6 +142,16 @@ class ParseThis:
 
     @staticmethod
     def _check_config_in_dict(config_key, config_dict):
+        """internal function which checks if the key is in a given dict
+
+                            Arguments:
+                                config_key -- the configuration key name you want to check if it exists in the dict
+                                config_dict -- the dict you want to check if the is included in
+                            Returns:
+                                config_found -- True if the key is in the dict, false otherwise
+                                config_value -- the value of the configuration requested, returns None if the key is not
+                                    part of the the dict
+        """
         if config_key in config_dict:
             config_value = config_dict[config_key]
             config_found = True
