@@ -89,16 +89,81 @@ class BaseTests(TestCase):
         self.assertEqual(reply, expected_reply)
 
     def test_ini(self):
-        pass
+        reply = parse_ini_file("test_files/test.ini")
+        expected_reply = {
+            'DEFAULT': {
+                'test_string': 'testing',
+                'test_bool_true': 'true',
+                'test_bool_false': 'false',
+                'test_int': '123.0',
+                'test_float': '123.123',
+                'test_list': [
+                    '["test1', 'test2', 'test3"]'
+                ]
+            },
+            'test_ini': {
+                'test_ini_key': 'test_ini_value'
+            }
+        }
+        self.assertEqual(reply, expected_reply)
 
     def test_json(self):
-        pass
+        reply = parse_json_file("test_files/test.json")
+        expected_reply = {
+            'test_string': 'testing',
+            'test_bool_true': True,
+            'test_bool_false': False,
+            'test_int': 123,
+            'test_float': 123.123,
+            'test_list': [
+                'test1',
+                'test2',
+                'test3'
+            ],
+            'test_json': {
+                'test_json_key': 'test_json_value'
+            }
+        }
+        self.assertEqual(reply, expected_reply)
+
 
     def test_toml(self):
-        pass
+        reply = parse_toml_file("test_files/test.toml")
+        expected_reply = {
+            'test_string': 'testing',
+            'test_bool_true': True,
+            'test_bool_false': False,
+            'test_int': 123,
+            'test_float': 123.123,
+            'test_list': [
+                'test1',
+                'test2',
+                'test3'
+            ],
+            'test_toml': {
+                'test_toml_key': 'test_toml_value'
+            }
+        }
+        self.assertEqual(reply, expected_reply)
 
     def test_yaml(self):
-        pass
+        reply = parse_yaml_file("test_files/test.yaml")
+        expected_reply = {
+            'test_string': 'testing',
+            'test_bool_true': True,
+            'test_bool_false': False,
+            'test_int': 123,
+            'test_float': 123.123,
+            'test_list': [
+                'test1',
+                'test2',
+                'test3'
+            ],
+            'test_yaml': {
+                'test_yaml_key': 'test_yaml_value'
+            }
+        }
+        self.assertEqual(reply, expected_reply)
 
     def test_type_estimate(self):
         pass

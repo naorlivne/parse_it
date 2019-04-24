@@ -10,4 +10,4 @@ def parse_json_file(path_to_json_file):
             Returns:
                 config_file_dict -- dict of the file
     """
-    return json.load(read_file(path_to_json_file))
+    return json.loads(read_file(path_to_json_file))

@@ -10,4 +10,4 @@ def parse_toml_file(path_to_toml_file):
             Returns:
                 config_file_dict -- dict of the file
     """
-    return toml.load(read_file(path_to_toml_file))
+    return toml.loads(read_file(path_to_toml_file))
