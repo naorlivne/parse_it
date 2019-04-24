@@ -12,4 +12,7 @@ def read_envvar(envvar, force_uppercase=True):
     """
     if force_uppercase is True:
         envvar = envvar.upper()
-    return os.getenv(envvar)
+    envvar_value = os.getenv(envvar)
+    if isinstance(envvar_value, str) is True:
+        envvar_value = envvar_value.encode('latin1').decode('unicode_escape')
+    return envvar_value
