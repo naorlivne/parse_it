@@ -10,9 +10,9 @@ with open('README.md') as f:
 
 # minimum requirement list
 requirements = [
-    "PyYAML>=5.1",
-    "toml>=0.10.0",
-    "configparser>=3.7.4"
+    "PyYAML",
+    "toml",
+    "configobj"
 ]
 
 setup(name='parse_this',
