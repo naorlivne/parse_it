@@ -7,11 +7,10 @@ services:
 install:
   - pip install -r requirements.txt
 script:
-  - cd test
   - python -m unittest
 env:
   global:
-    - TEST_FILES_LOCATION=test_files
+    - TEST_FILES_LOCATION=test/test_files
 deploy:
   provider: pypi
   user: naorlivne
