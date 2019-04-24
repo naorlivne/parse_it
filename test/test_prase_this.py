@@ -308,7 +308,6 @@ class BaseTests(TestCase):
         self.assertNotEqual(reply, "{'string': 'string', 'int': 1}")
         self.assertEqual(reply, {'string': 'string', 'int': 1})
 
-
     def test_parser_read_configuration_variable_force_envvars_uppercase_true(self):
         parser = ParseThis(force_envvars_uppercase=True, config_folder_location="test_files")
         os.environ["TEST_ENVVAR_ESTIMATE_TRUE_INT"] = "123"
@@ -318,7 +317,7 @@ class BaseTests(TestCase):
         self.assertNotEqual(reply, 456)
 
     def test_parser_read_configuration_variable_force_envvars_uppercase_false(self):
-        parser = ParseThis(force_envvars_uppercase=False ,config_folder_location="test_files")
+        parser = ParseThis(force_envvars_uppercase=False, config_folder_location="test_files")
         os.environ["TEST_ENVVAR_ESTIMATE_TRUE_INT"] = "123"
         os.environ["test_envvar_estimate_true_int"] = "456"
         reply = parser.read_configuration_variable("test_envvar_estimate_true_int")
