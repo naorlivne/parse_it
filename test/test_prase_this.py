@@ -311,12 +311,29 @@ class BaseTests(TestCase):
 
     def test_parser_read_configuration_variable_force_envvars_uppercase_true(self):
         parser = ParseThis(force_envvars_uppercase=True, config_folder_location="test_files")
+        os.environ["TEST_ENVVAR_ESTIMATE_TRUE_INT"] = "123"
+        os.environ["test_envvar_estimate_true_int"] = "456"
+        reply = parser.read_configuration_variable("test_envvar_estimate_true_int")
+        self.assertEqual(reply, 123)
+        self.assertNotEqual(reply, 456)
 
     def test_parser_read_configuration_variable_force_envvars_uppercase_false(self):
         parser = ParseThis(force_envvars_uppercase=False ,config_folder_location="test_files")
+        os.environ["TEST_ENVVAR_ESTIMATE_TRUE_INT"] = "123"
+        os.environ["test_envvar_estimate_true_int"] = "456"
+        reply = parser.read_configuration_variable("test_envvar_estimate_true_int")
+        self.assertNotEqual(reply, 123)
+        self.assertEqual(reply, 456)
 
     def test_parser_read_configuration_variable_config_folder_location(self):
         parser = ParseThis(config_folder_location="test_files")
+        reply_json = parser.read_configuration_variable("file_type")
+        self.assertEqual(reply_json, "json")
+        reply_yaml = parser.read_configuration_variable("test_yaml")
+        self.assertEqual(reply_yaml, {'test_yaml_key': 'test_yaml_value'})
 
     def test_parser_read_configuration_variable_envvar_prefix(self):
         parser = ParseThis(envvar_prefix="prefix_test_", config_folder_location="test_files")
+        os.environ["PREFIX_TEST_TEST_ENVVAR_ESTIMATE_TRUE_INT"] = "123"
+        reply = parser.read_configuration_variable("test_envvar_estimate_true_int")
+        self.assertEqual(reply, 123)
