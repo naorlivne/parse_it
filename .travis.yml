@@ -8,11 +8,10 @@ install:
   - pip install -r requirements.txt
 script:
   - echo $TRAVIS_BUILD_DIR
-  - ls -la $TRAVIS_BUILD_DIR/test/test_files
   - python -m unittest discover
 env:
   global:
-    - TEST_FILES_LOCATION=test/test_files
+    - TEST_FILES_LOCATION=/home/travis/build/naorlivne/parse_this/test/test_files
 deploy:
   provider: pypi
   user: naorlivne
