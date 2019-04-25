@@ -338,3 +338,7 @@ class BaseTests(TestCase):
         os.environ["PREFIX_TEST_TEST_ENVVAR_ESTIMATE_TRUE_INT"] = "123"
         reply = parser.read_configuration_variable("test_envvar_estimate_true_int")
         self.assertEqual(reply, 123)
+
+
+if __name__ == '__main__':
+    unittest.main()
