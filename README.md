@@ -1,9 +1,9 @@
 # parse_it
 
-A python library for parsing multiple types of config files, envvars &amp; command line argumants that takes the headache out of setting app configurations.
+A python library for parsing multiple types of config files, envvars and command line arguments that takes the headache out of setting app configurations.
 
-Travis CI unit tests & auto PyPi push status: [![Build Status](https://travis-ci.org/nebula-orchestrator/nebula-python-sdk.svg?branch=master)](https://travis-ci.org/nebula-orchestrator/nebula-python-sdk)
-
+Travis CI unit tests & auto PyPi push status: [![Build Status](https://travis-ci.org/naorlivne/parse_it.svg?branch=master)](https://travis-ci.org/naorlivne/parse_it)
+Code coverage
 
 # Install
 
@@ -34,7 +34,6 @@ By default all configuration files will be assumed to be in the workdir but that
 ```python
 # Load parse_it
 from parse_it import ParseIt
-import os
 
 # cat /etc/my_config_folder/my_config.json >>>
 #
@@ -65,6 +64,8 @@ By default parse_it will look for the configuration options in the following ord
 * ini - - INI formatted files, any file ending with a .ini extension in the configuration folder is assumed to be this
 * configuration default value - every configuration value can also optionally be set with a default value
 * global default value - - the parser object also has a global default value which can be set
+
+if multiple files of the same type exists in the same folder parse_it will look in all of them before going to the next type, 
 
 You can decide on using your own custom order of any subset of the following options:
 
@@ -160,7 +161,6 @@ You can also set a default value on a per configuration key basis:
 ```python
 # Load parse_it
 from parse_it import ParseIt
-import os
 
 # add a prefix to all envvars used
 parser = ParseIt()
