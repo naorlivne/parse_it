@@ -227,7 +227,7 @@ class BaseTests(TestCase):
         parser = ParseThis(config_type_priority=None, global_default_value=None, type_estimate=True,
                            force_envvars_uppercase=True, config_folder_location=test_files_location, envvar_prefix=None)
         self.assertEqual(parser.config_files_dict, expected_config_files_dict)
-        self.assertEqual(parser.config_folder_location, os.getcwd())
+        self.assertEqual(parser.config_folder_location, test_files_location)
         self.assertEqual(parser.config_type_priority, expected_config_type_priority)
         self.assertEqual(parser.envvar_prefix, '')
         self.assertTrue(parser.force_envvars_uppercase)
