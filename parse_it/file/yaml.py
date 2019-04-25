@@ -1,4 +1,4 @@
-from parse_this.file.file_reader import *
+from parse_it.file.file_reader import *
 import yaml
 
 

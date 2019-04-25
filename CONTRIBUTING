@@ -13,7 +13,7 @@ can help
 * Create a pull request
 
 ## Design philosophy
-parse_this is designed with the following philosophy in mind, any feature\pull requests will be judged against the following:
+parse_it is designed with the following philosophy in mind, any feature\pull requests will be judged against the following:
 
 * Follow Linux philosophy and have each component do one thing & one thing only.
 * Each component needs to be possible to be scaled out to extremely large sizes.
@@ -22,12 +22,12 @@ parse_this is designed with the following philosophy in mind, any feature\pull r
 
 ### Documentation
 
-parse_this docs are hosted at the repo docs/ folder, reading them is highly recommended
+parse_it docs are hosted at the repo docs/ folder, reading them is highly recommended
 prior to making any pull requests
 
 ## What you can help with
 
-* Documentation - everyone hates them but without them would you be able to figure out how to use parse_this?
+* Documentation - everyone hates them but without them would you be able to figure out how to use parse_it?
 * Bug fixes / feature requests - anything off github issues lists
 * Submitting tickets - even if you don't have the time\knowledge to fix a bug just opening a github issue about it will greatly help
 * Suggesting improvements

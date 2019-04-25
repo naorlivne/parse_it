@@ -15,7 +15,7 @@ requirements = [
     "configobj"
 ]
 
-setup(name='parse_this',
+setup(name='parse_it',
       author=__author__,
       author_email=__author_email__,
       version=__version__,
@@ -26,8 +26,8 @@ setup(name='parse_this',
       packages=find_packages(exclude=['contrib', 'docs', 'tests']),
       scripts=['setup.py'],
       license="GPLv3",
-      keywords="parse_this parsing parse config configuration",
-      url="https://github.com/naorlivne/parse_this",
+      keywords="parse_it parsing parse config configuration",
+      url="https://github.com/naorlivne/parse_it",
       install_requires=requirements,
       classifiers=["Development Status :: 5 - Production/Stable",
                    "Environment :: Other Environment",

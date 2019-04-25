@@ -1,11 +1,11 @@
-from parse_this.command_line_args.command_line_args import *
-from parse_this.envvars.envvars import *
-from parse_this.file.yaml import *
-from parse_this.file.ini import *
-from parse_this.file.json import *
-from parse_this.file.toml import *
-from parse_this.type_estimate.type_estimate import *
-from parse_this.file.file_reader import *
+from parse_it.command_line_args.command_line_args import *
+from parse_it.envvars.envvars import *
+from parse_it.file.yaml import *
+from parse_it.file.ini import *
+from parse_it.file.json import *
+from parse_it.file.toml import *
+from parse_it.type_estimate.type_estimate import *
+from parse_it.file.file_reader import *
 
 VALID_FILE_TYPE_EXTENSIONS = [
     "json",
@@ -19,7 +19,7 @@ VALID_FILE_TYPE_EXTENSIONS = [
 ]
 
 
-class ParseThis:
+class ParseIt:
 
     def __init__(self, config_type_priority=None, global_default_value=None, type_estimate=True,
                  force_envvars_uppercase=True, config_folder_location=None, envvar_prefix=None):

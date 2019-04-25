@@ -1,13 +1,13 @@
 from unittest import TestCase
-from parse_this import ParseThis
-from parse_this.command_line_args.command_line_args import *
-from parse_this.envvars.envvars import *
-from parse_this.file.toml import *
-from parse_this.file.yaml import *
-from parse_this.file.json import *
-from parse_this.file.ini import *
-from parse_this.file.file_reader import *
-from parse_this.type_estimate.type_estimate import *
+from parse_it import ParseIt
+from parse_it.command_line_args.command_line_args import *
+from parse_it.envvars.envvars import *
+from parse_it.file.toml import *
+from parse_it.file.yaml import *
+from parse_it.file.json import *
+from parse_it.file.ini import *
+from parse_it.file.file_reader import *
+from parse_it.type_estimate.type_estimate import *
 import os
 
 VALID_FILE_TYPE_EXTENSIONS = [
@@ -224,7 +224,7 @@ class BaseTests(TestCase):
                                       'tml': [], 'conf': [], 'cfg': [], 'ini': ['test.ini']}
         expected_config_type_priority = ['cli_args', 'envvars', 'json', 'yaml', 'yml', 'toml', 'tml', 'conf', 'cfg',
                                          'ini']
-        parser = ParseThis(config_type_priority=None, global_default_value=None, type_estimate=True,
+        parser = ParseIt(config_type_priority=None, global_default_value=None, type_estimate=True,
                            force_envvars_uppercase=True, config_folder_location=test_files_location, envvar_prefix=None)
         self.assertEqual(parser.config_files_dict, expected_config_files_dict)
         self.assertEqual(parser.config_folder_location, test_files_location)
@@ -235,31 +235,31 @@ class BaseTests(TestCase):
         self.assertTrue(parser.type_estimate)
 
     def test_parser_read_configuration_variable(self):
-        parser = ParseThis(config_folder_location=test_files_location)
+        parser = ParseIt(config_folder_location=test_files_location)
         reply_json = parser.read_configuration_variable("file_type")
         self.assertEqual(reply_json, "json")
         reply_yaml = parser.read_configuration_variable("test_yaml")
         self.assertEqual(reply_yaml, {'test_yaml_key': 'test_yaml_value'})
 
     def test_parser_read_configuration_variable_default_value(self):
-        parser = ParseThis(config_folder_location=test_files_location)
+        parser = ParseIt(config_folder_location=test_files_location)
         reply = parser.read_configuration_variable("file_type123", default_value="test123")
         self.assertEqual(reply, "test123")
 
     def test_parser_read_configuration_variable_global_default_value(self):
-        parser = ParseThis(global_default_value="my_last_resort", config_folder_location=test_files_location)
+        parser = ParseIt(global_default_value="my_last_resort", config_folder_location=test_files_location)
         reply = parser.read_configuration_variable("this_does_not_exist")
         self.assertEqual(reply, "my_last_resort")
 
     def test_parser_read_configuration_variable_config_type_priority(self):
-        parser = ParseThis(config_type_priority=["yaml", "json"], config_folder_location=test_files_location)
+        parser = ParseIt(config_type_priority=["yaml", "json"], config_folder_location=test_files_location)
         reply = parser.read_configuration_variable("file_type")
         self.assertEqual(reply, "yaml")
         reply = parser.read_configuration_variable("test_json")
         self.assertEqual(reply, {'test_json_key': 'test_json_value'})
 
     def test_parser_read_configuration_variable_type_estimate_false(self):
-        parser = ParseThis(type_estimate=False, config_folder_location=test_files_location)
+        parser = ParseIt(type_estimate=False, config_folder_location=test_files_location)
         os.environ["TEST_ENVVAR_ESTIMATE_FALSE_INT"] = "123"
         os.environ["TEST_ENVVAR_ESTIMATE_FALSE_STRING"] = "test"
         os.environ["TEST_ENVVAR_ESTIMATE_FALSE_BOOL_TRUE"] = "true"
@@ -285,7 +285,7 @@ class BaseTests(TestCase):
         self.assertNotEqual(reply, {'string': 'string', 'int': 1})
 
     def test_parser_read_configuration_variable_type_estimate_true(self):
-        parser = ParseThis(type_estimate=True, config_folder_location=test_files_location)
+        parser = ParseIt(type_estimate=True, config_folder_location=test_files_location)
         os.environ["TEST_ENVVAR_ESTIMATE_TRUE_INT"] = "123"
         os.environ["TEST_ENVVAR_ESTIMATE_TRUE_STRING"] = "test"
         os.environ["TEST_ENVVAR_ESTIMATE_TRUE_BOOL_TRUE"] = "true"
@@ -311,7 +311,7 @@ class BaseTests(TestCase):
         self.assertEqual(reply, {'string': 'string', 'int': 1})
 
     def test_parser_read_configuration_variable_force_envvars_uppercase_true(self):
-        parser = ParseThis(force_envvars_uppercase=True, config_folder_location=test_files_location)
+        parser = ParseIt(force_envvars_uppercase=True, config_folder_location=test_files_location)
         os.environ["TEST_ENVVAR_ESTIMATE_TRUE_INT"] = "123"
         os.environ["test_envvar_estimate_true_int"] = "456"
         reply = parser.read_configuration_variable("test_envvar_estimate_true_int")
@@ -319,7 +319,7 @@ class BaseTests(TestCase):
         self.assertNotEqual(reply, 456)
 
     def test_parser_read_configuration_variable_force_envvars_uppercase_false(self):
-        parser = ParseThis(force_envvars_uppercase=False, config_folder_location=test_files_location)
+        parser = ParseIt(force_envvars_uppercase=False, config_folder_location=test_files_location)
         os.environ["TEST_ENVVAR_ESTIMATE_TRUE_INT"] = "123"
         os.environ["test_envvar_estimate_true_int"] = "456"
         reply = parser.read_configuration_variable("test_envvar_estimate_true_int")
@@ -327,14 +327,14 @@ class BaseTests(TestCase):
         self.assertEqual(reply, 456)
 
     def test_parser_read_configuration_variable_config_folder_location(self):
-        parser = ParseThis(config_folder_location=test_files_location)
+        parser = ParseIt(config_folder_location=test_files_location)
         reply_json = parser.read_configuration_variable("file_type")
         self.assertEqual(reply_json, "json")
         reply_yaml = parser.read_configuration_variable("test_yaml")
         self.assertEqual(reply_yaml, {'test_yaml_key': 'test_yaml_value'})
 
     def test_parser_read_configuration_variable_envvar_prefix(self):
-        parser = ParseThis(envvar_prefix="prefix_test_", config_folder_location=test_files_location)
+        parser = ParseIt(envvar_prefix="prefix_test_", config_folder_location=test_files_location)
         os.environ["PREFIX_TEST_TEST_ENVVAR_ESTIMATE_TRUE_INT"] = "123"
         reply = parser.read_configuration_variable("test_envvar_estimate_true_int")
         self.assertEqual(reply, 123)
