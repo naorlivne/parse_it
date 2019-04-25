@@ -339,6 +339,3 @@ class BaseTests(TestCase):
         reply = parser.read_configuration_variable("test_envvar_estimate_true_int")
         self.assertEqual(reply, 123)
 
-
-if __name__ == '__main__':
-    unittest.main()
