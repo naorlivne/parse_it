@@ -50,7 +50,7 @@ class BaseTests(TestCase):
         self.assertEqual(reply, "test_envvvar_lowercase_value")
 
     def test_file_reader_read_file(self):
-        reply = read_file("test_files/test_read_file")
+        reply = read_file(test_files_location + "/test_read_file")
         self.assertEqual(reply, "it_reads!")
 
     def test_file_reader_folder_exists(self):
@@ -62,7 +62,7 @@ class BaseTests(TestCase):
         self.assertFalse(reply)
 
     def test_file_reader_strip_trailing_slash(self):
-        reply = strip_trailing_slash("test_files/")
+        reply = strip_trailing_slash(test_files_location + "/")
         self.assertEqual(reply, test_files_location)
 
     def test_file_reader_strip_trailing_slash_no_strip_needed(self):
@@ -92,7 +92,7 @@ class BaseTests(TestCase):
         self.assertEqual(reply, expected_reply)
 
     def test_ini(self):
-        reply = parse_ini_file("test_files/test.ini")
+        reply = parse_ini_file(test_files_location + "/test.ini")
         expected_reply = {
             'DEFAULT': {
                 'file_type': "ini",
@@ -112,7 +112,7 @@ class BaseTests(TestCase):
         self.assertEqual(reply, expected_reply)
 
     def test_json(self):
-        reply = parse_json_file("test_files/test.json")
+        reply = parse_json_file(test_files_location + "/test.json")
         expected_reply = {
             'file_type': "json",
             'test_string': 'testing',
@@ -132,7 +132,7 @@ class BaseTests(TestCase):
         self.assertEqual(reply, expected_reply)
 
     def test_toml(self):
-        reply = parse_toml_file("test_files/test.toml")
+        reply = parse_toml_file(test_files_location + "/test.toml")
         expected_reply = {
             'file_type': "toml",
             'test_string': 'testing',
@@ -152,7 +152,7 @@ class BaseTests(TestCase):
         self.assertEqual(reply, expected_reply)
 
     def test_yaml(self):
-        reply = parse_yaml_file("test_files/test.yaml")
+        reply = parse_yaml_file(test_files_location + "/test.yaml")
         expected_reply = {
             'file_type': "yaml",
             'test_string': 'testing',
