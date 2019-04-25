@@ -23,6 +23,7 @@ VALID_FILE_TYPE_EXTENSIONS = [
 
 test_files_location = os.getenv("TEST_FILES_LOCATION", "test_files")
 
+
 class BaseTests(TestCase):
 
     def test_command_line_args_empty(self):

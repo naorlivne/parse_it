@@ -3,6 +3,7 @@
 A python library for parsing multiple types of config files, envvars and command line arguments that takes the headache out of setting app configurations.
 
 Travis CI unit tests & auto PyPi push status: [![Build Status](https://travis-ci.org/naorlivne/parse_it.svg?branch=master)](https://travis-ci.org/naorlivne/parse_it)
+
 Code coverage: [![codecov](https://codecov.io/gh/naorlivne/parse_it/branch/master/graph/badge.svg)](https://codecov.io/gh/naorlivne/parse_it)
 
 
