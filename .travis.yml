@@ -1,20 +1,20 @@
 language: python
 dist: xenial
 python:
-  - '3.7'
+- '3.7'
 services:
-  - docker
+- docker
 install:
-  - pip install -r requirements.txt
+- pip install -r requirements.txt
 script:
-  - python -m unittest
+- python -m unittest
 env:
   global:
-    - TEST_FILES_LOCATION=test/test_files
+  - TEST_FILES_LOCATION=test/test_files
 deploy:
   provider: pypi
   user: naorlivne
   password:
-    secure: rhA0/8wfzm3RAP8QGQLChln2pySpaRm4b/TmwXLfpBbS03+GLDn1I22AOGnIl5ai9Lv0r1uyhcZU2cli4Q6XJ6GM2tNHQEUwehfuxQvlqTnrcAvrhPSXOikyTy2ACCaNMrt/1lzXQGuAVev3BowYG+zrkbu2qw1x65IenNzp3XbarQi7Xwq/fMyT8ZaNExeqQWvOQby+U2lKaEoAyMZz7cVi2wIWsJsbfC/9s13isqN+Y4WhgcjSj6XpNksAYPNTQmhrwVBapO1Tq3maKkxmlYdo62IeBFHgTQFzjHIWJolfVWEdL/xAffki1YG5gZyVFrgJ6n86v+Eq4vlkkOXj7wVQp/3b51lE1O577j0ZwYly99+/FPItgA4hZqMBY12HR8NlfamjaN4rzH1CQV1u0az2j4/7abMFP97+Ud7bacIzYQQsW2pgGH00clQDHBg2qjs0MJrumeYW63+++GaM00fjM4DkkkOFtH0tlsW19eMvVvrF5Vcb2Y/0J9em/IFy82FisvFO4VXJDiueKJ1iVxHuQuWkIs3LHZjo4KJW1nWFWbJuhJLHwuI1WS6G1TfZN+/41tQ9yO9g3kj4tyyjhwjdjY0Evp7031g44m/pBzZi4TXiD56Y5be7mwEZli4mQLtuK8LVAzR8oqGqM3P5r000tffBX3UMuSUC/TTcMjo=
+    secure: U5DeiOR6jai3MwZzcfHmMHtkep8xaiqYABTuBgDizcqxchnrLuUDQny1tnRhPqWE3VT1oRfbifgaccXUpVKa0GaGKQN0jvh4eY6A3A4EwbhWmRXO8pAyzM8oJ3Ri/9ozVBEBji/BSzG70wRk8gBtpIdTlfyXsX0oGG66ypTGYJCdwYohqMqtU9kM6MitRfesErQ5PibkiULzRUy04ayGO12e4Jd1YRPMcbBkwsYO3pJs7yzBjxKpvSqdFPBBwmzSHItFKj+FRcW5Ou7/a5qi0cKgRyr7Hri5/3odRk36C4WPCvZuPpDv/ou3FqGlYsEBs//DrIDmF1ARM3E5yAKYdOXIcgO5MvZV0Y8hsqaigHnILZmslL4JEBM5j9toDxGTNXr4D0XyvWv70q3Pa/SHhhH9ODDijOGzyGxtXLYE+8/X9VpCSekrZdpUvo3W/2LrwLQSdtzj6jz1FKukWd0CQscEgKUlET8KAQ1mEQ1W45g3h+yGN4wAQL3ynOylPeujMc1AXOarl4egdGxcd7E5gZnxa5Di8ZeohXADqBYOIO/pMLziMbAzvTyFBeCyWuMFL28PZvamcM0sIjUBITrtsdc9wdnrd+Um0fQMFWTFu5/aCSUmP52hTayYIpQmVFHp6vc0KxtUK3WJK2DlyE6C3RApJIeqzqLjXzoU2s6nZK0=
   distributions: sdist bdist_wheel
   skip_existing: true
