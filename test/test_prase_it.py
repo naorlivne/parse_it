@@ -23,7 +23,6 @@ VALID_FILE_TYPE_EXTENSIONS = [
 
 test_files_location = os.getenv("TEST_FILES_LOCATION", "test_files")
 
-
 class BaseTests(TestCase):
 
     def test_command_line_args_empty(self):
@@ -338,4 +337,3 @@ class BaseTests(TestCase):
         os.environ["PREFIX_TEST_TEST_ENVVAR_ESTIMATE_TRUE_INT"] = "123"
         reply = parser.read_configuration_variable("test_envvar_estimate_true_int")
         self.assertEqual(reply, 123)
-
