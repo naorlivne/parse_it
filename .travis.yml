@@ -6,6 +6,7 @@ services:
 - docker
 install:
 - pip install -r requirements.txt
+- pip install --user codecov
 script:
 - python -m unittest
 env:
@@ -18,3 +19,5 @@ deploy:
     secure: YSCB0Tbh/02MiPZNcUK/DTdjqTqwrOoXpr5VoPF7SVHm0H1+5B50TJGwFVebk2q+sdwN31JfUwPJ6ZpmVU7pooHoWYd2fkxq6xWoN0pZeC/UtJ0dHDNpR23CLvTte2lTz5vil90Vf63UxBEovq5YY9xl1wn3AAVTZX5VuraBroETZh7BFayN4S7aWKelytPQi4btL1ooNdZTq++DZ6TCWYnbQf2vvysSarOI/w2ZpVIEAWNEd40Ocp2GoXQN6LB1KrEw/eww1816sLjpiSU/4u/UyQWcHORIE42WdBM/Ze2We1jf2uZsQLWTPO1E5xE4l7jomiNp1EBTmpeUYRjUEOgS7vPEl8UvVNasEDqRZMBhGCTQKHnR+jmjFxCRVukZ/p/R2DpkbSwqVWhOpishVPS0/wSBYEoOMKOxBAwpJM7KNCgHmnG+M5lW8y7G0BDixqQa8l4rXKjskTgvin4kY2h7zWMbWjRKSdnVsGTkVWWquYSLWuZkfsSxf2Kz1qdDOiKgrzpLaLz07OgPsgaGpSVX4BO1aGik7w0iKG/jmRkYwlMuaIMfITYzWUqnZcXOaQnGFypuVsLOnEcFORz66DiCM4gMavg0WfmW+SHgYG2mk6ASQ0BLdkddu0le6DYjxIgMc5Iscir72GxjWCMWQo1ESFVh0vvrsQtXYF5bKzg=
   distributions: sdist bdist_wheel
   skip_existing: true
+after_success:
+  - codecov
