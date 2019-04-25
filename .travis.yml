@@ -6,7 +6,7 @@ services:
 - docker
 install:
 - pip install -r requirements.txt
-- pip install --user codecov
+- pip install codecov
 script:
 - python -m unittest
 env:
