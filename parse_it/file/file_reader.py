@@ -27,12 +27,13 @@ def folder_exists(folder_path):
 
 
 def strip_trailing_slash(folder_path):
-    """if a folder_path ends in a slash strip it & return the path, otherwise just return the path.
+    """if a folder_path ends in a slash strip it & return the path, otherwise just return the path, only edge case is
+        the root folder (/) which is kept the same.
 
      Arguments:
     folder_path -- the path of the folder to be checked
     """
-    if folder_path[-1] == "/" or folder_path[-1] == "\\":
+    if len(folder_path) > 1 and folder_path[-1] == "/" or folder_path[-1] == "\\":
         folder_path = folder_path[:-1]
     return folder_path
 

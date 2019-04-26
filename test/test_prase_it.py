@@ -65,6 +65,10 @@ class BaseTests(TestCase):
         reply = strip_trailing_slash(test_files_location + "/")
         self.assertEqual(reply, test_files_location)
 
+    def test_file_reader_strip_trailing_slash_root_folder(self):
+        reply = strip_trailing_slash("/")
+        self.assertEqual(reply, "/")
+
     def test_file_reader_strip_trailing_slash_no_strip_needed(self):
         reply = strip_trailing_slash(test_files_location)
         self.assertEqual(reply, test_files_location)
