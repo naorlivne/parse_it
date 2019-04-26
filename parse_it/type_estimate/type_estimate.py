@@ -2,6 +2,7 @@ import ast
 from typing import Any
 from contextlib import suppress
 
+
 def estimate_type(node: str) -> Any:
     """ Takes a string and return it's value in a type it estimates it to be based on ast.literal_eval & internal logic.
     if the result is a list or a dict will recurse to run all internal values as well
