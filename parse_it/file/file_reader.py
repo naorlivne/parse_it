@@ -33,7 +33,7 @@ def strip_trailing_slash(folder_path):
      Arguments:
     folder_path -- the path of the folder to be checked
     """
-    if len(folder_path) > 1 and (folder_path[-1] == "/" or folder_path[-1] == "\\"):
+    if len(folder_path) > 1 and folder_path.endswith(("/", "\\")):
         folder_path = folder_path[:-1]
     return folder_path
 
