@@ -30,6 +30,10 @@ class BaseTests(TestCase):
         reply = read_command_line_arg("empty_variable")
         self.assertIsNone(reply)
 
+    def test_command_line_arg_defined_false(self):
+        reply = command_line_arg_defined("empty_variable")
+        self.assertFalse(reply)
+
     def test_envvars_empty(self):
         reply = read_envvar("empty_variable")
         self.assertIsNone(reply)
@@ -263,10 +267,16 @@ class BaseTests(TestCase):
         with self.assertRaises(ValueError):
             parser.read_configuration_variable("file_type123", required=True)
 
-    def test_parser_read_configuration_variable_required_true_value_given(self):
+    def test_parser_read_configuration_variable_required_true_value_given_file(self):
         parser = ParseIt(config_folder_location=test_files_location)
         reply_json = parser.read_configuration_variable("file_type", required=True)
         self.assertEqual(reply_json, "json")
+
+    def test_parser_read_configuration_variable_required_true_value_given_envvar(self):
+        os.environ["TEST_ENVVAR_ESTIMATE_TRUE_INT"] = "123"
+        parser = ParseIt(config_folder_location=test_files_location)
+        reply_json = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_TRUE_INT", required=True)
+        self.assertEqual(reply_json, 123)
 
     def test_parser_read_configuration_variable_global_default_value(self):
         parser = ParseIt(global_default_value="my_last_resort", config_folder_location=test_files_location)
@@ -365,3 +375,22 @@ class BaseTests(TestCase):
         os.environ["PREFIX_TEST_TEST_ENVVAR_ESTIMATE_TRUE_INT"] = "123"
         reply = parser.read_configuration_variable("test_envvar_estimate_true_int")
         self.assertEqual(reply, 123)
+
+    def test_envvar_defined_true(self):
+        os.environ["TEST_ENV"] = "123"
+        reply = envvar_defined("TEST_ENV")
+        self.assertTrue(reply)
+
+    def test_envvar_defined_false(self):
+        reply = envvar_defined("TEST_ENV")
+        self.assertFalse(reply)
+
+    def test_envvar_defined_true_upper_case(self):
+        os.environ["TEST_ENV"] = "123"
+        reply = envvar_defined("test_env", force_uppercase=True)
+        self.assertTrue(reply)
+
+    def test_envvar_defined_false_upper_case(self):
+        os.environ["TEST_ENV"] = "123"
+        reply = envvar_defined("test_env", force_uppercase=False)
+        self.assertFalse(reply)

@@ -88,17 +88,25 @@ class ParseIt:
                     Returns:
                         config_value -- the value of the configuration requested
         """
+
+        # we start with both key not found and the value being None
         config_value = None
         config_key_found = False
+
+        # we now loop over all the premited types of where the config key might be and break on the first one found
+        # after setting config_key_found to True and config_value to the value found
         for config_type in self.config_type_priority:
             if config_type == "cli_args":
+                config_key_found = command_line_arg_defined(config_name)
                 config_value = read_command_line_arg(config_name)
-                if config_value is not None:
+                if config_key_found is True:
                     break
             elif config_type == "envvars":
+                config_key_found = envvar_defined(self.envvar_prefix + config_name,
+                                                  force_uppercase=self.force_envvars_uppercase)
                 config_value = read_envvar(self.envvar_prefix + config_name,
                                            force_uppercase=self.force_envvars_uppercase)
-                if config_value is not None:
+                if config_key_found is True:
                     break
             elif config_type == "json":
                 for config_file in self.config_files_dict["json"]:
@@ -133,15 +141,19 @@ class ParseIt:
                 if config_key_found is True:
                     break
 
+        # raise error if the key is required and not found in any of the config files, envvar or cli args
         if config_key_found is False and required is True:
             raise ValueError
 
-        if config_value is None:
+        # if key is not required but still wasn't found take it from the key default value or failing that from the
+        # global default value
+        if config_key_found is False:
             if default_value is not None:
                 config_value = default_value
             else:
                 config_value = self.global_default_value
 
+        # if type estimation is True try to guess the type of the value
         if self.type_estimate is True:
             config_value = estimate_type(config_value)
         return config_value
