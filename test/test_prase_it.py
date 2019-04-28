@@ -264,7 +264,8 @@ class BaseTests(TestCase):
         self.assertEqual(reply, "my_last_resort")
 
     def test_parser_read_configuration_variable_config_type_priority(self):
-        parser = ParseIt(config_type_priority=["yaml", "toml", "ini", "json"], config_folder_location=test_files_location)
+        parser = ParseIt(config_type_priority=["yaml", "toml", "ini", "json"],
+                         config_folder_location=test_files_location)
         reply = parser.read_configuration_variable("file_type")
         self.assertEqual(reply, "yaml")
         reply = parser.read_configuration_variable("test_toml")
