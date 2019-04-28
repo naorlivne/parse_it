@@ -25,7 +25,7 @@ def command_line_arg_defined(argument):
                 True if argument is declared, False otherwise
     """
 
-    if argument in sys.argv:
+    if "--" + argument in sys.argv:
         return True
     else:
         return False
