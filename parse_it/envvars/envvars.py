@@ -15,5 +15,6 @@ def read_envvar(envvar, force_uppercase=True):
     envvar_value = os.getenv(envvar)
 
     if isinstance(envvar_value, str) is True:
+        # this weird encode and decode is to avoid some cases where envvar get special characters escaped
         envvar_value = envvar_value.encode('latin1').decode('unicode_escape')
     return envvar_value
