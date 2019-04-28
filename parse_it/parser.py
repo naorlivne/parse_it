@@ -93,7 +93,7 @@ class ParseIt:
         config_value = None
         config_key_found = False
 
-        # we now loop over all the premited types of where the config key might be and break on the first one found
+        # we now loop over all the permitted types of where the config key might be and break on the first one found
         # after setting config_key_found to True and config_value to the value found
         for config_type in self.config_type_priority:
             if config_type == "cli_args":
