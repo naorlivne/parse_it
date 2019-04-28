@@ -45,7 +45,6 @@ from parse_it import ParseIt
 # }
 # 
 
-
 # Create API object
 parser = ParseIt(config_folder_location="/etc/my_config_folder")
 my_config_key = parser.read_configuration_variable("my_int")
