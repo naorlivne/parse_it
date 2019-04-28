@@ -98,8 +98,8 @@ class ParseIt:
         for config_type in self.config_type_priority:
             if config_type == "cli_args":
                 config_key_found = command_line_arg_defined(config_name)
-                config_value = read_command_line_arg(config_name)
                 if config_key_found is True:
+                    config_value = read_command_line_arg(config_name)
                     break
             elif config_type == "envvars":
                 config_key_found = envvar_defined(self.envvar_prefix + config_name,
