@@ -155,7 +155,7 @@ os.environ["PREFIX_MY_INT"] = "123"
 # add a prefix to all envvars used
 parser = ParseIt(envvar_prefix="prefix_")
 my_config_key = parser.read_configuration_variable("my_int")
-# my_config_key will now be a in of 123
+# my_config_key will now be a int of 123
 
 ```
 
