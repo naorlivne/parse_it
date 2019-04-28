@@ -162,13 +162,13 @@ class ParseIt:
     def _check_config_in_dict(config_key, config_dict):
         """internal function which checks if the key is in a given dict
 
-                            Arguments:
-                                config_key -- the configuration key name you want to check if it exists in the dict
-                                config_dict -- the dict you want to check if the is included in
-                            Returns:
-                                config_found -- True if the key is in the dict, false otherwise
-                                config_value -- the value of the configuration requested, returns None if the key is not
-                                    part of the the dict
+            Arguments:
+                config_key -- the configuration key name you want to check if it exists in the dict
+                config_dict -- the dict you want to check if the is included in
+            Returns:
+                config_found -- True if the key is in the dict, false otherwise
+                config_value -- the value of the configuration requested, returns None if the key is not part of the
+                    the dict
         """
         if config_key in config_dict:
             config_value = config_dict[config_key]
