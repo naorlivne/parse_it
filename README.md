@@ -70,7 +70,7 @@ By default parse_it will look for the configuration options in the following ord
 
 if multiple files of the same type exists in the same folder parse_it will look in all of them before going to the next type, 
 
-You can decide on using your own custom order of any subset of the following options:
+You can decide on using your own custom order of any subset of the following options (default values excluded, they will be last):
 
 ```python
 # Load parse_it
