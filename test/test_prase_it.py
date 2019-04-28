@@ -196,8 +196,8 @@ class BaseTests(TestCase):
         self.assertEqual(reply, "kafka:8082")
 
     def test_type_estimate_string_very_complex(self):
-        reply = estimate_type("test//seg34\\^#%#^&@@GGH\nE#TGddvs.36230.54164:8082")
-        self.assertEqual(reply, "test//seg34\\^#%#^&@@GGH\nE#TGddvs.36230.54164:8082")
+        reply = estimate_type("https://test//seg34\\^#%#^&@@GGH\nE#TGddvs.36230.54164:8082")
+        self.assertEqual(reply, "https://test//seg34\\^#%#^&@@GGH\nE#TGddvs.36230.54164:8082")
 
     def test_type_estimate_false(self):
         reply_lowercase = estimate_type("false")
