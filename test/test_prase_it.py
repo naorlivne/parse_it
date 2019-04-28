@@ -191,6 +191,10 @@ class BaseTests(TestCase):
         reply = estimate_type("this_is_a_string")
         self.assertEqual(reply, "this_is_a_string")
 
+    def test_type_estimate_string_complex(self):
+        reply = estimate_type("kafka:8082")
+        self.assertEqual(reply, "kafka:8082")
+
     def test_type_estimate_false(self):
         reply_lowercase = estimate_type("false")
         reply_uppercase = estimate_type("FALSE")
