@@ -258,6 +258,16 @@ class BaseTests(TestCase):
         reply = parser.read_configuration_variable("file_type123", default_value="test123")
         self.assertEqual(reply, "test123")
 
+    def test_parser_read_configuration_variable_required_true_value_not_given(self):
+        parser = ParseIt(config_folder_location=test_files_location)
+        with self.assertRaises(ValueError):
+            parser.read_configuration_variable("file_type123", required=True)
+
+    def test_parser_read_configuration_variable_required_true_value_given(self):
+        parser = ParseIt(config_folder_location=test_files_location)
+        reply_json = parser.read_configuration_variable("file_type", required=True)
+        self.assertEqual(reply_json, "json")
+
     def test_parser_read_configuration_variable_global_default_value(self):
         parser = ParseIt(global_default_value="my_last_resort", config_folder_location=test_files_location)
         reply = parser.read_configuration_variable("this_does_not_exist")

@@ -165,9 +165,21 @@ You can also set a default value on a per configuration key basis:
 # Load parse_it
 from parse_it import ParseIt
 
-# add a prefix to all envvars used
+# get a default value of the key
 parser = ParseIt()
 my_config_key = parser.read_configuration_variable("my_undeclared_key", default_value="my_value")
 # my_config_key will now be a string of "my_value"
+
+```
+
+You can also declare a key to be required (disabled by default) so it will raise a ValueError if not declared by the user anywhere:
+```python
+# Load parse_it
+from parse_it import ParseIt
+
+# will raise an error as the key is not declared anywhere and required is set to True
+parser = ParseIt()
+my_config_key = parser.read_configuration_variable("my_undeclared_key", required=True)
+# Will raise ValueError
 
 ```

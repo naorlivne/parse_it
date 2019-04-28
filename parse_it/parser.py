@@ -75,13 +75,16 @@ class ParseIt:
                 file_types_in_folder_list.append(config_type)
         self.config_files_dict = file_types_in_folder(self.config_folder_location, file_types_in_folder_list)
 
-    def read_configuration_variable(self, config_name, default_value=None):
+    def read_configuration_variable(self, config_name, default_value=None, required=False):
         """reads a single key of the configuration and returns the first value of it found based on the priority of each
                 config file option given in the __init__ of the class
 
                     Arguments:
                         config_name -- the configuration key name you want to get the value of
                         default_value -- defaults to None, see config_type_priority in class init for it's use
+                        required -- defaults to False, if set to True will ignore default_value & global_default_value
+                            and will raise an ValueError if the configuration is not configured in any of the config
+                            files/envvars/cli args
                     Returns:
                         config_value -- the value of the configuration requested
         """
@@ -129,6 +132,9 @@ class ParseIt:
                         break
                 if config_key_found is True:
                     break
+
+        if config_key_found is False and required is True:
+            raise ValueError
 
         if config_value is None:
             if default_value is not None:
