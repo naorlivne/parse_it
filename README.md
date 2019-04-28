@@ -160,6 +160,7 @@ my_config_key = parser.read_configuration_variable("my_int")
 ```
 
 You can also set a default value on a per configuration key basis:
+
 ```python
 # Load parse_it
 from parse_it import ParseIt
@@ -172,6 +173,7 @@ my_config_key = parser.read_configuration_variable("my_undeclared_key", default_
 ```
 
 You can also declare a key to be required (disabled by default) so it will raise a ValueError if not declared by the user anywhere:
+
 ```python
 # Load parse_it
 from parse_it import ParseIt
