@@ -56,7 +56,8 @@ my_config_key = parser.read_configuration_variable("my_int")
 By default parse_it will look for the configuration options in the following order & will return the first one found:
 
 * cli_args - command line arguments that are passed in the following format ``--key value``
-* envvars - environment variables
+* env_vars - environment variables
+* envvars - alias for env_vars
 * json - JSON formatted files, any file ending with a .json extension in the configuration folder is assumed to be this
 * yaml - YAML formatted files, any file ending with a .yaml extension in the configuration folder is assumed to be this
 * yml - YAML formatted files, any file ending with a .yml extension in the configuration folder is assumed to be this

@@ -53,7 +53,7 @@ class ParseIt:
         if config_type_priority is None:
             self.config_type_priority = [
                 "cli_args",
-                "envvars",
+                "env_vars",
                 "json",
                 "yaml",
                 "yml",
@@ -101,7 +101,7 @@ class ParseIt:
                 if config_key_found is True:
                     config_value = read_command_line_arg(config_name)
                     break
-            elif config_type == "envvars":
+            elif config_type == "envvars" or config_type == "env_vars":
                 config_key_found = envvar_defined(self.envvar_prefix + config_name,
                                                   force_uppercase=self.force_envvars_uppercase)
                 config_value = read_envvar(self.envvar_prefix + config_name,
