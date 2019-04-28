@@ -328,7 +328,7 @@ class BaseTests(TestCase):
         self.assertEqual(reply, {'string': 'string', 'int': 1})
 
     def test_parser_read_configuration_variable_force_envvars_uppercase_true(self):
-        parser = ParseIt(force_envvars_uppercase=True, config_folder_location=test_files_location)
+        parser = ParseIt(force_envvars_uppercase=True)
         os.environ["TEST_ENVVAR_ESTIMATE_TRUE_INT"] = "123"
         os.environ["test_envvar_estimate_true_int"] = "456"
         reply = parser.read_configuration_variable("test_envvar_estimate_true_int")
