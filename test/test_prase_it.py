@@ -53,6 +53,10 @@ class BaseTests(TestCase):
         reply = read_file(test_files_location + "/test_read_file")
         self.assertEqual(reply, "it_reads!")
 
+    def test_file_reader_read_file_does_not_exist(self):
+        reply = read_file(test_files_location + "/totally_bogus_file")
+        self.assertIsNone(reply)
+
     def test_file_reader_folder_exists(self):
         reply = folder_exists(test_files_location)
         self.assertTrue(reply)
@@ -72,6 +76,10 @@ class BaseTests(TestCase):
     def test_file_reader_strip_trailing_slash_no_strip_needed(self):
         reply = strip_trailing_slash(test_files_location)
         self.assertEqual(reply, test_files_location)
+
+    def test_file_reader_file_types_in_folder_folder_does_not_exist(self):
+        with self.assertRaises(FileNotFoundError):
+            file_types_in_folder("totally_bogus_folder_location", VALID_FILE_TYPE_EXTENSIONS)
 
     def test_file_reader_file_types_in_folder(self):
         reply = file_types_in_folder(test_files_location, VALID_FILE_TYPE_EXTENSIONS)
