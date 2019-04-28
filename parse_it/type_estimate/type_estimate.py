@@ -20,14 +20,8 @@ def estimate_type(node: str) -> Any:
         elif node.lower() in {"", "null", "none"}:
             node = "None"
 
-        with suppress(ValueError):
-            try:
-                node = ast.literal_eval(node)
-            # some strings (for example kafka:8082) break ast.literal_eval so worse case don't estimate type and just
-            # return the same type as it started with
-            except SyntaxError:
-                pass
-
+        with suppress(ValueError, SyntaxError):
+            node = ast.literal_eval(node)
             if isinstance(node, list):
                 node = [estimate_type(item) for item in node]
             if isinstance(node, dict):
