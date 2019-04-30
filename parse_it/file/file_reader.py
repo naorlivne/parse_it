@@ -60,9 +60,9 @@ def file_types_in_folder(folder_path, file_types_endings, recurse=True):
                     for file in files:
                         if file.endswith(file_type_ending):
                             if "/" in root:
-                                if root[1] != "/":
+                                if root[0] != "/":
                                     root = root.split("/", 1)[1]
-                                config_files_dict[file_type_ending].append(root + "/" + file)
+                                config_files_dict[file_type_ending].append(os.path.join(root,file))
                             else:
                                 config_files_dict[file_type_ending].append(file)
             else:
