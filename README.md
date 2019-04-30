@@ -45,7 +45,7 @@ from parse_it import ParseIt
 # }
 # 
 
-# Create API object
+# Create API object that will look for the config files in the "/etc/my_config_folder" without looking in any subfolder
 parser = ParseIt(config_folder_location="/etc/my_config_folder", recurse=False)
 my_config_key = parser.read_configuration_variable("my_int")
 # my_config_key will now be an int of 123
