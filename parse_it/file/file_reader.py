@@ -56,7 +56,7 @@ def file_types_in_folder(folder_path, file_types_endings, recurse=True):
         for file_type_ending in file_types_endings:
             config_files_dict[file_type_ending] = []
             if recurse is True:
-                for root, subFolders, files in os.walk(folder_path):
+                for root, subFolders, files in os.walk(folder_path, topdown=True):
                     for file in files:
                         if file.endswith("." + file_type_ending):
                             if folder_path + "/" in root:
