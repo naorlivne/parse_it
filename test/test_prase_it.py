@@ -89,9 +89,11 @@ class BaseTests(TestCase):
         reply = file_types_in_folder(test_files_location, VALID_FILE_TYPE_EXTENSIONS)
         expected_reply = {
             'json': [
-                'test.json', 'test_subfolder_1/test_subfolder_1.json',
+                'test.json',
                 'test_subfolder_1/test_sub_subfolder_2/test_subfolder_2.json',
-                'test_subfolder_1/test_sub_subfolder_3/test_subfolder_3.json'],
+                'test_subfolder_1/test_sub_subfolder_3/test_subfolder_3.json',
+                'test_subfolder_1/test_subfolder_1.json'
+            ],
             'yaml': [
                 'test.yaml'
             ],
@@ -245,11 +247,12 @@ class BaseTests(TestCase):
         self.assertEqual(reply_mixed, None)
 
     def test_parser_init(self):
-        expected_config_files_dict = {'json': ['test.json', 'test_subfolder_1/test_subfolder_1.json',
+        expected_config_files_dict = {'json': ['test.json',
                                                'test_subfolder_1/test_sub_subfolder_2/test_subfolder_2.json',
-                                               'test_subfolder_1/test_sub_subfolder_3/test_subfolder_3.json'],
-                                      'yaml': ['test.yaml'], 'yml': [], 'toml': ['test.toml'], 'tml': [], 'conf': [],
-                                      'cfg': [], 'ini': ['test.ini']}
+                                               'test_subfolder_1/test_sub_subfolder_3/test_subfolder_3.json',
+                                               'test_subfolder_1/test_subfolder_1.json'], 'yaml': ['test.yaml'],
+                                      'yml': [], 'toml': ['test.toml'], 'tml': [], 'conf': [], 'cfg': [],
+                                      'ini': ['test.ini']}
         expected_config_type_priority = ['cli_args', 'env_vars', 'json', 'yaml', 'yml', 'toml', 'tml', 'conf', 'cfg',
                                          'ini']
         parser = ParseIt(config_type_priority=None, global_default_value=None, type_estimate=True,

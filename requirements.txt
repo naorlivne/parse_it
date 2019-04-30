@@ -1,5 +1,11 @@
+certifi==2019.3.9
+chardet==3.0.4
+codecov==2.0.15
 configobj==5.0.6
 coverage==4.5.3
+idna==2.8
 PyYAML==5.1
+requests==2.21.0
 six==1.12.0
 toml==0.10.0
+urllib3==1.24.2

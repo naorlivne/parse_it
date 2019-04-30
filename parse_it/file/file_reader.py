@@ -69,4 +69,5 @@ def file_types_in_folder(folder_path, file_types_endings, recurse=True):
                 for file in os.listdir(folder_path):
                     if os.path.isfile(os.path.join(folder_path, file)) and file.endswith(file_type_ending):
                         config_files_dict[file_type_ending].append(file)
+            config_files_dict[file_type_ending].sort()
         return config_files_dict
