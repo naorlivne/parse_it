@@ -374,23 +374,23 @@ class BaseTests(TestCase):
         os.environ["TEST_ENVVAR_ESTIMATE_TRUE_STRING"] = "test"
         os.environ["TEST_ENVVAR_ESTIMATE_TRUE_BOOL_TRUE"] = "true"
         os.environ["TEST_ENVVAR_ESTIMATE_TRUE_BOOL_FALSE"] = "false"
-        os.environ["TEST_ENVVAR_ESTIMATE_TRUE_LIST"] = "[test, False, 3]"
+        os.environ["TEST_ENVVAR_ESTIMATE_TRUE_LIST"] = "['test', False, 3]"
         os.environ["TEST_ENVVAR_ESTIMATE_TRUE_DICT"] = "{'string': 'string', 'int': 1}"
         reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_TRUE_INT")
         self.assertNotEqual(reply, "123")
         self.assertEqual(reply, 123)
-        reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_FALSE_STRING")
+        reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_TRUE_STRING")
         self.assertEqual(reply, "test")
-        reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_FALSE_BOOL_TRUE")
+        reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_TRUE_BOOL_TRUE")
         self.assertNotEqual(reply, "true")
         self.assertEqual(reply, True)
-        reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_FALSE_BOOL_FALSE")
+        reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_TRUE_BOOL_FALSE")
         self.assertNotEqual(reply, "false")
         self.assertEqual(reply, False)
-        reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_FALSE_LIST")
+        reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_TRUE_LIST")
         self.assertNotEqual(reply, "['test', False, 3]")
         self.assertEqual(reply, ['test', False, 3])
-        reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_FALSE_DICT")
+        reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_TRUE_DICT")
         self.assertNotEqual(reply, "{'string': 'string', 'int': 1}")
         self.assertEqual(reply, {'string': 'string', 'int': 1})
 
