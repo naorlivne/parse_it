@@ -1,0 +1,17 @@
+{
+  "file_type": "json",
+  "test_string": "testing",
+  "test_bool_true": true,
+  "test_bool_false": false,
+  "test_int": 789,
+  "test_float": 789.123,
+  "test_list": [
+    "test7",
+    "test8",
+    "test9"
+  ],
+  "test_json": {
+    "test_json_key": "test_json_value"
+  },
+  "test_json_subfolder": true
+}

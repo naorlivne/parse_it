@@ -1,0 +1,16 @@
+{
+  "file_type": "json",
+  "test_string": "testing",
+  "test_bool_true": true,
+  "test_bool_false": false,
+  "test_int": 666,
+  "test_float": 666.123,
+  "test_list": [
+    "test40",
+    "test50",
+    "test60"
+  ],
+  "test_json": {
+    "test_json_key": "test_json_value"
+  }
+}

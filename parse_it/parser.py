@@ -21,7 +21,7 @@ VALID_FILE_TYPE_EXTENSIONS = [
 
 class ParseIt:
 
-    def __init__(self, config_type_priority=None, global_default_value=None, type_estimate=True,
+    def __init__(self, config_type_priority=None, global_default_value=None, type_estimate=True, recurse=True,
                  force_envvars_uppercase=True, config_folder_location=None, envvar_prefix=None):
         """configures the object which is used to query all types of configuration inputs available and prioritize them
                 based on your needs
@@ -38,6 +38,7 @@ class ParseIt:
                         type_estimate -- if set to True (True by default) will try to automatically figure out the type
                             of the returned value on it's own, useful for envvars & ini type files which always return a
                             string otherwise
+                        recurse -- True by default, if set to True will also look in all subfolders
                         force_envvars_uppercase -- if set to True (which is the default) will force all envvars keys to
                             be UPPERCASE
                         envvar_prefix -- will add a prefix for all envvars if set
@@ -73,7 +74,8 @@ class ParseIt:
         for config_type in self.config_type_priority:
             if config_type in VALID_FILE_TYPE_EXTENSIONS:
                 file_types_in_folder_list.append(config_type)
-        self.config_files_dict = file_types_in_folder(self.config_folder_location, file_types_in_folder_list)
+        self.config_files_dict = file_types_in_folder(self.config_folder_location, file_types_in_folder_list,
+                                                      recurse=recurse)
 
     def read_configuration_variable(self, config_name, default_value=None, required=False):
         """reads a single key of the configuration and returns the first value of it found based on the priority of each

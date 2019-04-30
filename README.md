@@ -32,7 +32,7 @@ my_config_key = parser.read_configuration_variable("my_config_key")
 
 ```
 
-By default all configuration files will be assumed to be in the workdir but that too can be easily changed:
+By default all configuration files will be assumed to be in the workdir or any (recursive) subfolder but that too can be easily changed:
 
 ```python
 # Load parse_it
@@ -46,7 +46,7 @@ from parse_it import ParseIt
 # 
 
 # Create API object
-parser = ParseIt(config_folder_location="/etc/my_config_folder")
+parser = ParseIt(config_folder_location="/etc/my_config_folder", recurse=False)
 my_config_key = parser.read_configuration_variable("my_int")
 # my_config_key will now be an int of 123
 

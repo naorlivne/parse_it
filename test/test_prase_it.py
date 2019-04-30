@@ -89,8 +89,9 @@ class BaseTests(TestCase):
         reply = file_types_in_folder(test_files_location, VALID_FILE_TYPE_EXTENSIONS)
         expected_reply = {
             'json': [
-                'test.json'
-            ],
+                'test.json', 'test_subfolder_1/test_subfolder_1.json',
+                'test_subfolder_1/test_sub_subfolder_2/test_subfolder_2.json',
+                'test_subfolder_1/test_sub_subfolder_3/test_subfolder_3.json'],
             'yaml': [
                 'test.yaml'
             ],
@@ -244,8 +245,11 @@ class BaseTests(TestCase):
         self.assertEqual(reply_mixed, None)
 
     def test_parser_init(self):
-        expected_config_files_dict = {'json': ['test.json'], 'yaml': ['test.yaml'], 'yml': [], 'toml': ['test.toml'],
-                                      'tml': [], 'conf': [], 'cfg': [], 'ini': ['test.ini']}
+        expected_config_files_dict = {'json': ['test.json', 'test_subfolder_1/test_subfolder_1.json',
+                                               'test_subfolder_1/test_sub_subfolder_2/test_subfolder_2.json',
+                                               'test_subfolder_1/test_sub_subfolder_3/test_subfolder_3.json'],
+                                      'yaml': ['test.yaml'], 'yml': [], 'toml': ['test.toml'], 'tml': [], 'conf': [],
+                                      'cfg': [], 'ini': ['test.ini']}
         expected_config_type_priority = ['cli_args', 'env_vars', 'json', 'yaml', 'yml', 'toml', 'tml', 'conf', 'cfg',
                                          'ini']
         parser = ParseIt(config_type_priority=None, global_default_value=None, type_estimate=True,
@@ -264,6 +268,35 @@ class BaseTests(TestCase):
         self.assertEqual(reply_json, "json")
         reply_yaml = parser.read_configuration_variable("test_yaml")
         self.assertEqual(reply_yaml, {'test_yaml_key': 'test_yaml_value'})
+
+    def test_parser_read_configuration_subfolder(self):
+        parser = ParseIt(config_folder_location=test_files_location)
+        reply_yaml = parser.read_configuration_variable("test_json_subfolder")
+        self.assertTrue(reply_yaml)
+
+    def test_parser_read_configuration_recurse_false(self):
+        parser = ParseIt(config_folder_location=test_files_location, recurse=False)
+        reply_yaml = parser.read_configuration_variable("test_json_subfolder")
+        expected_config_files_dict = {
+            'json': [
+                'test.json'
+            ],
+            'yaml': [
+                'test.yaml'
+            ],
+            'yml': [],
+            'toml': [
+                'test.toml'
+            ],
+            'tml': [],
+            'conf': [],
+            'cfg': [],
+            'ini': [
+                'test.ini'
+            ]
+        }
+        self.assertEqual(parser.config_files_dict, expected_config_files_dict)
+        self.assertIsNone(reply_yaml)
 
     def test_parser_read_configuration_variable_default_value(self):
         parser = ParseIt(config_folder_location=test_files_location)

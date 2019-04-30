@@ -38,12 +38,13 @@ def strip_trailing_slash(folder_path):
     return folder_path
 
 
-def file_types_in_folder(folder_path, file_types_endings):
+def file_types_in_folder(folder_path, file_types_endings, recurse=True):
     """list all the config file types found inside the given folder based on the filename extension
 
         Arguments:
             folder_path -- the path of the folder to be checked
             file_types_endings -- list of file types to look for
+            recurse -- True by default, if set to True will also look in all subfolders
         Returns:
             config_files_dict -- dict of {file_type: [list_of_file_names_of_said_type]}
     """
@@ -54,8 +55,17 @@ def file_types_in_folder(folder_path, file_types_endings):
         config_files_dict = {}
         for file_type_ending in file_types_endings:
             config_files_dict[file_type_ending] = []
-            for root, subFolders, files in os.walk(folder_path):
-                for file in files:
-                    if file.endswith(file_type_ending):
+            if recurse is True:
+                for root, subFolders, files in os.walk(folder_path):
+                    for file in files:
+                        if file.endswith(file_type_ending):
+                            if "/" in root:
+                                root = root.split("/", 1)[1]
+                                config_files_dict[file_type_ending].append(root + "/" + file)
+                            else:
+                                config_files_dict[file_type_ending].append(file)
+            else:
+                for file in os.listdir(folder_path):
+                    if os.path.isfile(os.path.join(folder_path, file)) and file.endswith(file_type_ending):
                         config_files_dict[file_type_ending].append(file)
         return config_files_dict
