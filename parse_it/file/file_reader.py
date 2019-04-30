@@ -58,11 +58,11 @@ def file_types_in_folder(folder_path, file_types_endings, recurse=True):
             if recurse is True:
                 for root, subFolders, files in os.walk(folder_path):
                     for file in files:
-                        if file.endswith(file_type_ending):
-                            if "/" in root:
+                        if file.endswith("." + file_type_ending):
+                            if folder_path + "/" in root:
                                 if root[0] != "/":
-                                    root = root.split("/", 1)[1]
-                                config_files_dict[file_type_ending].append(os.path.join(root,file))
+                                    root = root.split(folder_path + "/", 1)[1]
+                                config_files_dict[file_type_ending].append(os.path.join(root, file))
                             else:
                                 config_files_dict[file_type_ending].append(file)
             else:
