@@ -274,12 +274,12 @@ class BaseTests(TestCase):
 
     def test_parser_read_configuration_subfolder(self):
         parser = ParseIt(config_folder_location=test_files_location)
-        reply_yaml = parser.read_configuration_variable("test_json_subfolder")
-        self.assertTrue(reply_yaml)
+        reply = parser.read_configuration_variable("test_json_subfolder")
+        self.assertTrue(reply)
 
     def test_parser_read_configuration_recurse_false(self):
         parser = ParseIt(config_folder_location=test_files_location, recurse=False)
-        reply_yaml = parser.read_configuration_variable("test_json_subfolder")
+        reply = parser.read_configuration_variable("test_json_subfolder")
         expected_config_files_dict = {
             'json': [
                 'test.json'
@@ -299,7 +299,7 @@ class BaseTests(TestCase):
             ]
         }
         self.assertEqual(parser.config_files_dict, expected_config_files_dict)
-        self.assertIsNone(reply_yaml)
+        self.assertIsNone(reply)
 
     def test_parser_read_configuration_variable_default_value(self):
         parser = ParseIt(config_folder_location=test_files_location)
