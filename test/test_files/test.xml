@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+   <file_type>xml</file_type>
+   <test_bool_false>false</test_bool_false>
+   <test_bool_true>true</test_bool_true>
+   <test_float>123.123</test_float>
+   <test_int>123</test_int>
+   <test_xml>
+      <test_xml_key>test_xml_value</test_xml_key>
+   </test_xml>
+   <test_list>
+      <element>test1</element>
+      <element>test2</element>
+      <element>test3</element>
+   </test_list>
+   <test_string>testing</test_string>
+</root>

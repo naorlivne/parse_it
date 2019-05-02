@@ -6,9 +6,11 @@ from parse_it.file.toml import *
 from parse_it.file.yaml import *
 from parse_it.file.json import *
 from parse_it.file.ini import *
+from parse_it.file.xml import *
 from parse_it.file.file_reader import *
 from parse_it.type_estimate.type_estimate import *
 import os
+from collections import OrderedDict
 
 VALID_FILE_TYPE_EXTENSIONS = [
     "json",
@@ -150,6 +152,20 @@ class BaseTests(TestCase):
         }
         self.assertEqual(reply, expected_reply)
 
+    def test_xml(self):
+        reply = parse_xml_file(test_files_location + "/test.xml")
+        expected_reply = OrderedDict(
+            [
+                ('root', OrderedDict([
+                    ('file_type', 'xml'), ('test_bool_false', 'false'), ('test_bool_true', 'true'),
+                    ('test_float', '123.123'), ('test_int', '123'),
+                    ('test_xml', OrderedDict([('test_xml_key', 'test_xml_value')])),
+                    ('test_list', OrderedDict([('element', ['test1', 'test2', 'test3'])])), ('test_string', 'testing')
+                ]))
+            ]
+        )
+        self.assertEqual(reply, expected_reply)
+
     def test_toml(self):
         reply = parse_toml_file(test_files_location + "/test.toml")
         expected_reply = {
@@ -247,14 +263,30 @@ class BaseTests(TestCase):
         self.assertEqual(reply_mixed, None)
 
     def test_parser_init(self):
-        expected_config_files_dict = {'json': ['test.json',
-                                               'test_subfolder_1/test_sub_subfolder_2/test_subfolder_2.json',
-                                               'test_subfolder_1/test_sub_subfolder_3/test_subfolder_3.json',
-                                               'test_subfolder_1/test_subfolder_1.json'], 'yaml': ['test.yaml'],
-                                      'yml': [], 'toml': ['test.toml'], 'tml': [], 'conf': [], 'cfg': [],
-                                      'ini': ['test.ini']}
+        expected_config_files_dict = {
+            'json': [
+                'test.json',
+                'test_subfolder_1/test_sub_subfolder_2/test_subfolder_2.json',
+                'test_subfolder_1/test_sub_subfolder_3/test_subfolder_3.json',
+                'test_subfolder_1/test_subfolder_1.json'
+            ],
+            'yaml': [
+                'test.yaml'
+            ],
+            'yml': [],
+            'toml': ['test.toml'],
+            'tml': [],
+            'conf': [],
+            'cfg': [],
+            'ini': [
+                'test.ini'
+            ],
+            'xml': [
+                'test.xml'
+            ]
+        }
         expected_config_type_priority = ['cli_args', 'env_vars', 'json', 'yaml', 'yml', 'toml', 'tml', 'conf', 'cfg',
-                                         'ini']
+                                         'ini', 'xml']
         parser = ParseIt(config_type_priority=None, global_default_value=None, type_estimate=True,
                          force_envvars_uppercase=True, config_folder_location=test_files_location, envvar_prefix=None)
         self.assertEqual(parser.config_files_dict, expected_config_files_dict)
@@ -296,6 +328,9 @@ class BaseTests(TestCase):
             'cfg': [],
             'ini': [
                 'test.ini'
+            ],
+            'xml': [
+                'test.xml'
             ]
         }
         self.assertEqual(parser.config_files_dict, expected_config_files_dict)

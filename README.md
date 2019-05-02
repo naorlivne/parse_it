@@ -64,6 +64,7 @@ By default parse_it will look for the configuration options in the following ord
 * `conf` - INI formatted files, any file ending with a .conf extension in the configuration folder is assumed to be this
 * `cfg` - INI formatted files, any file ending with a .cfg extension in the configuration folder is assumed to be this
 * `ini` - INI formatted files, any file ending with a .ini extension in the configuration folder is assumed to be this
+* `xml` - XML formatted files, any file ending with a .xml extension in the configuration folder is assumed to be this
 * configuration default value - every configuration value can also optionally be set with a default value
 * global default value - - the parser object also has a global default value which can be set
 

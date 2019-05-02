@@ -4,6 +4,7 @@ from parse_it.file.yaml import *
 from parse_it.file.ini import *
 from parse_it.file.json import *
 from parse_it.file.toml import *
+from parse_it.file.xml import *
 from parse_it.type_estimate.type_estimate import *
 from parse_it.file.file_reader import *
 
@@ -16,6 +17,7 @@ VALID_FILE_TYPE_EXTENSIONS = [
     "conf",
     "cfg",
     "ini",
+    "xml"
 ]
 
 
@@ -29,7 +31,8 @@ class ParseIt:
                     Arguments:
                         config_type_priority -- a list of file types extensions your willing to accept, list order
                             dictates priority of said file types, default list order is as follow:
-                                ["cli_args", "envvars", "json", "yaml", "yml", "toml", "tml", "conf", "cfg", "ini"]
+                                [ "cli_args", "envvars", "json", "yaml", "yml", "toml", "tml", "conf", "cfg", "ini",
+                                "xml" ]
                             in the case of multiple files of same type they are all read and the first one that has the
                                 needed key is the one used.
                             if no value is returned then the default_value declared at the read_configuration_variable
@@ -62,7 +65,8 @@ class ParseIt:
                 "tml",
                 "conf",
                 "cfg",
-                "ini"
+                "ini",
+                "xml"
             ]
         else:
             self.config_type_priority = config_type_priority
@@ -137,6 +141,14 @@ class ParseIt:
             elif config_type == "conf" or config_type == "cfg" or config_type == "ini":
                 for config_file in self.config_files_dict[config_type]:
                     file_dict = parse_ini_file(self.config_folder_location + "/" + config_file)
+                    config_key_found, config_value = self._check_config_in_dict(config_name, file_dict)
+                    if config_key_found is True:
+                        break
+                if config_key_found is True:
+                    break
+            elif config_type == "xml":
+                for config_file in self.config_files_dict["xml"]:
+                    file_dict = parse_xml_file(self.config_folder_location + "/" + config_file)
                     config_key_found, config_value = self._check_config_in_dict(config_name, file_dict)
                     if config_key_found is True:
                         break
