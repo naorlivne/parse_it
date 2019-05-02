@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root>
+<xml_root>
    <file_type>xml</file_type>
    <test_bool_false>false</test_bool_false>
    <test_bool_true>true</test_bool_true>
@@ -14,4 +14,4 @@
       <element>test3</element>
    </test_list>
    <test_string>testing</test_string>
-</root>
+</xml_root>

@@ -10,7 +10,7 @@ from parse_it.file.xml import *
 from parse_it.file.file_reader import *
 from parse_it.type_estimate.type_estimate import *
 import os
-from collections import OrderedDict
+
 
 VALID_FILE_TYPE_EXTENSIONS = [
     "json",
@@ -154,16 +154,26 @@ class BaseTests(TestCase):
 
     def test_xml(self):
         reply = parse_xml_file(test_files_location + "/test.xml")
-        expected_reply = OrderedDict(
-            [
-                ('root', OrderedDict([
-                    ('file_type', 'xml'), ('test_bool_false', 'false'), ('test_bool_true', 'true'),
-                    ('test_float', '123.123'), ('test_int', '123'),
-                    ('test_xml', OrderedDict([('test_xml_key', 'test_xml_value')])),
-                    ('test_list', OrderedDict([('element', ['test1', 'test2', 'test3'])])), ('test_string', 'testing')
-                ]))
-            ]
-        )
+        expected_reply = {
+            "xml_root": {
+                'file_type': 'xml',
+                'test_bool_false': 'false',
+                'test_bool_true': 'true',
+                'test_float': '123.123',
+                'test_int': '123',
+                'test_xml': {
+                    'test_xml_key': 'test_xml_value'
+                },
+                'test_list': {
+                    'element': [
+                        'test1',
+                        'test2',
+                        'test3'
+                    ]
+                },
+                'test_string': 'testing'
+            }
+        }
         self.assertEqual(reply, expected_reply)
 
     def test_toml(self):
@@ -449,8 +459,30 @@ class BaseTests(TestCase):
         parser = ParseIt(config_folder_location=test_files_location)
         reply_json = parser.read_configuration_variable("file_type")
         self.assertEqual(reply_json, "json")
+        reply_json = parser.read_configuration_variable("test_float")
+        self.assertEqual(reply_json, 123.123)
         reply_yaml = parser.read_configuration_variable("test_yaml")
         self.assertEqual(reply_yaml, {'test_yaml_key': 'test_yaml_value'})
+        reply_xml = parser.read_configuration_variable("xml_root")
+        expected_reply_xml = {
+            'file_type': 'xml',
+            'test_bool_false': False,
+            'test_bool_true': True,
+            'test_float': 123.123,
+            'test_int': 123,
+            'test_xml': {
+                'test_xml_key': 'test_xml_value'
+            },
+            'test_list': {
+                'element': [
+                    'test1',
+                    'test2',
+                    'test3'
+                ]
+            },
+            'test_string': 'testing'
+        }
+        self.assertEqual(reply_xml, expected_reply_xml)
 
     def test_parser_read_configuration_variable_envvar_prefix(self):
         parser = ParseIt(envvar_prefix="prefix_test_", config_folder_location=test_files_location)

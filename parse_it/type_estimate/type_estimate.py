@@ -14,6 +14,11 @@ def estimate_type(node: str) -> Any:
                 node -- the value of the string in the estimated type
 
     """
+
+    # this is to support XML type estimation as it returns a dict of all strings
+    if isinstance(node, dict):
+        node = str(node)
+
     if isinstance(node, str):
         if node.lower() in {"true", "false"}:
             node = node.title()
