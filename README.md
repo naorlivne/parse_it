@@ -9,11 +9,18 @@ Code coverage: [![codecov](https://codecov.io/gh/naorlivne/parse_it/branch/maste
 
 # Install
 
-First install parse_it:
+First install parse_it, for Python 3.5 & higher this is simply done using pip:
 
 ```bash
-# Install from PyPi
+# Install from PyPi for Python version 3.5 & higher
 pip install parse_it
+```
+
+If your using a Python 3.4 or older you will require the `typing` backported package as well, this is done with the following optional install:
+
+```bash
+# Install from PyPi for Python version 3.4 & lower
+pip install parse_it[typing]
 ```
 
 # How to use
