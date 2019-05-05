@@ -137,17 +137,18 @@ from parse_it import ParseIt
 import os
 
 # This is just for the example
-os.environ["MY_INT"] = "123"
+os.environ["MY_STRING"] = "UPPER"
+os.environ["my_string"] = "lower"
 
 # Create API object
 parser = ParseIt()
-my_config_key = parser.read_configuration_variable("my_int")
-# my_config_key will now be an int of 123
+my_config_key = parser.read_configuration_variable("my_string")
+# my_config_key will now be an string of "UPPER"
 
 # disabling force envvar uppercase
 parser = ParseIt(force_envvars_uppercase=False)
-my_config_key = parser.read_configuration_variable("my_int")
-# my_config_key will now be a None
+my_config_key = parser.read_configuration_variable("my_string")
+# my_config_key will now be an string of "lower"
 
 ```
 
