@@ -12,3 +12,9 @@
 
 ## Specifications
 
+Python version: 
+(3.5 & higher required, lower versions may work but will not be tested against)
+
+parse_it version:
+
+OS type & version:
