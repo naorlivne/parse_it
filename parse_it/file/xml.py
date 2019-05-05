@@ -11,4 +11,5 @@ def parse_xml_file(path_to_xml_file):
             Returns:
                 config_file_dict -- dict of the file
     """
+    # the dump & load to/from JSON is to change it from ordered dict to a normal dict
     return json.loads(json.dumps(xmltodict.parse(read_file(path_to_xml_file))))
