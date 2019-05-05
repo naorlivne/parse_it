@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 __author__ = 'Naor Livne'
 __author_email__ = 'naorlivne@gmail.com'
-__version__ = '0.4.1'
+__version__ = '0.5.0'
 
 # read the README.md file for the long description of the package
 with open('README.md') as f:
@@ -13,7 +13,8 @@ requirements = [
     "PyYAML",
     "toml",
     "configobj",
-    "xmltodict"
+    "xmltodict",
+    "pyhcl"
 ]
 
 setup(name='parse_it',

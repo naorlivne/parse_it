@@ -4,6 +4,8 @@ codecov==2.0.15
 configobj==5.0.6
 coverage==4.5.3
 idna==2.8
+ply==3.11
+pyhcl==0.3.12
 PyYAML==5.1
 requests==2.21.0
 six==1.12.0

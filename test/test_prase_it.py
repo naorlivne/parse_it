@@ -3,6 +3,7 @@ from parse_it import ParseIt
 from parse_it.command_line_args.command_line_args import *
 from parse_it.envvars.envvars import *
 from parse_it.file.toml import *
+from parse_it.file.hcl import *
 from parse_it.file.yaml import *
 from parse_it.file.json import *
 from parse_it.file.ini import *
@@ -152,6 +153,28 @@ class BaseTests(TestCase):
         }
         self.assertEqual(reply, expected_reply)
 
+    def test_hcl(self):
+        reply = parse_hcl_file(test_files_location + "/test.hcl")
+        expected_reply = {
+            'file_type': "hcl",
+            'test_string': 'testing',
+            'test_bool_true': True,
+            'test_bool_false': False,
+            'test_int': 123,
+            'test_float': 123.123,
+            'test_list': [
+                'test1',
+                'test2',
+                'test3'
+            ],
+            'test_hcl': {
+                'test_hcl_name': {
+                    'test_hcl_key': 'the AMI test_hcl_value use'
+                }
+            }
+        }
+        self.assertEqual(reply, expected_reply)
+
     def test_xml(self):
         reply = parse_xml_file(test_files_location + "/test.xml")
         expected_reply = {
@@ -286,6 +309,7 @@ class BaseTests(TestCase):
             'yml': [],
             'toml': ['test.toml'],
             'tml': [],
+            'hcl': ['test.hcl'],
             'conf': [],
             'cfg': [],
             'ini': [
@@ -295,8 +319,8 @@ class BaseTests(TestCase):
                 'test.xml'
             ]
         }
-        expected_config_type_priority = ['cli_args', 'env_vars', 'json', 'yaml', 'yml', 'toml', 'tml', 'conf', 'cfg',
-                                         'ini', 'xml']
+        expected_config_type_priority = ['cli_args', 'env_vars', 'json', 'yaml', 'yml', 'toml', 'tml', 'hcl', 'conf',
+                                         'cfg', 'ini', 'xml']
         parser = ParseIt(config_type_priority=None, global_default_value=None, type_estimate=True,
                          force_envvars_uppercase=True, config_folder_location=test_files_location, envvar_prefix=None)
         self.assertEqual(parser.config_files_dict, expected_config_files_dict)
@@ -335,6 +359,7 @@ class BaseTests(TestCase):
             ],
             'tml': [],
             'conf': [],
+            'hcl': ['test.hcl'],
             'cfg': [],
             'ini': [
                 'test.ini'
@@ -483,6 +508,13 @@ class BaseTests(TestCase):
             'test_string': 'testing'
         }
         self.assertEqual(reply_xml, expected_reply_xml)
+        reply_hcl = parser.read_configuration_variable("test_hcl")
+        expected_reply_hcl = {
+            'test_hcl_name': {
+                'test_hcl_key': 'the AMI test_hcl_value use'
+            }
+        }
+        self.assertEqual(reply_hcl, expected_reply_hcl)
 
     def test_parser_read_configuration_variable_envvar_prefix(self):
         parser = ParseIt(envvar_prefix="prefix_test_", config_folder_location=test_files_location)

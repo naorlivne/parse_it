@@ -61,6 +61,7 @@ By default parse_it will look for the configuration options in the following ord
 * `yml` - YAML formatted files, any file ending with a .yml extension in the configuration folder is assumed to be this
 * `toml` - TOML formatted files, any file ending with a .toml extension in the configuration folder is assumed to be this
 * `tml` - TOML formatted files, any file ending with a .tml extension in the configuration folder is assumed to be this
+* `hcl` - HCL formatted files, any file ending with a .hcl extension in the configuration folder is assumed to be this
 * `conf` - INI formatted files, any file ending with a .conf extension in the configuration folder is assumed to be this
 * `cfg` - INI formatted files, any file ending with a .cfg extension in the configuration folder is assumed to be this
 * `ini` - INI formatted files, any file ending with a .ini extension in the configuration folder is assumed to be this
