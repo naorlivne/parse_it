@@ -129,7 +129,7 @@ my_config_key = parser.read_configuration_variable("MY_INT")
 
 ```
 
-As envvars recommended syntax is to have all keys be UPPERCASE which is diffrent then all the rest of the configuration files parse_it will automatically change any needed config value to be in ALL CAPS when looking at envvars for the matching value but if needeed you can of course disable that feature: 
+As envvars recommended syntax is to have all keys be UPPERCASE which is diffrent then all the rest of the configuration files parse_it will automatically change any needed config value to be in ALL CAPS when looking at envvars for the matching value but if needed you can of course disable that feature: 
 
 ```python
 # Load parse_it
