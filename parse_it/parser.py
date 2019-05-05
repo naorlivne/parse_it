@@ -118,7 +118,7 @@ class ParseIt:
                 if config_key_found is True:
                     break
             elif config_type == "json":
-                for config_file in self.config_files_dict["json"]:
+                for config_file in self.config_files_dict[config_type]:
                     file_dict = parse_json_file(self.config_folder_location + "/" + config_file)
                     config_key_found, config_value = self._check_config_in_dict(config_name, file_dict)
                     if config_key_found is True:
@@ -150,7 +150,7 @@ class ParseIt:
                 if config_key_found is True:
                     break
             elif config_type == "xml":
-                for config_file in self.config_files_dict["xml"]:
+                for config_file in self.config_files_dict[config_type]:
                     file_dict = parse_xml_file(self.config_folder_location + "/" + config_file)
                     config_key_found, config_value = self._check_config_in_dict(config_name, file_dict)
                     if config_key_found is True:
@@ -158,13 +158,15 @@ class ParseIt:
                 if config_key_found is True:
                     break
             elif config_type == "hcl":
-                for config_file in self.config_files_dict["hcl"]:
+                for config_file in self.config_files_dict[config_type]:
                     file_dict = parse_hcl_file(self.config_folder_location + "/" + config_file)
                     config_key_found, config_value = self._check_config_in_dict(config_name, file_dict)
                     if config_key_found is True:
                         break
                 if config_key_found is True:
                     break
+            else:
+                raise ValueError
 
         # raise error if the key is required and not found in any of the config files, envvar or cli args
         if config_key_found is False and required is True:

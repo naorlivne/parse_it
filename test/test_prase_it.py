@@ -381,6 +381,11 @@ class BaseTests(TestCase):
         with self.assertRaises(ValueError):
             parser.read_configuration_variable("file_type123", required=True)
 
+    def test_parser_config_type_priority_wrong_type_given(self):
+        with self.assertRaises(ValueError):
+            parser = ParseIt(config_type_priority=['non_existing_type', 'json'])
+            parser.read_configuration_variable("file_type123", required=True)
+
     def test_parser_read_configuration_variable_required_true_value_given_file(self):
         parser = ParseIt(config_folder_location=test_files_location)
         reply_json = parser.read_configuration_variable("file_type", required=True)
