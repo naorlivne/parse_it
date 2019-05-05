@@ -23,3 +23,6 @@ deploy:
   skip_existing: true
 after_success:
   - codecov
+  on:
+    all_branches: true
+    python: '3.7'
