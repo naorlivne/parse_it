@@ -16,6 +16,7 @@ VALID_FILE_TYPE_EXTENSIONS = [
     "toml",
     "tml",
     "hcl",
+    "tf",
     "conf",
     "cfg",
     "ini",
@@ -33,8 +34,8 @@ class ParseIt:
                     Arguments:
                         config_type_priority -- a list of file types extensions your willing to accept, list order
                             dictates priority of said file types, default list order is as follow:
-                                [ "cli_args", "envvars", "json", "yaml", "yml", "toml", "tml", "hcl", "conf", "cfg",
-                                "ini", "xml" ]
+                                [ "cli_args", "envvars", "json", "yaml", "yml", "toml", "tml", "hcl", "tf", "conf",
+                                "cfg", "ini", "xml" ]
                             in the case of multiple files of same type they are all read and the first one that has the
                                 needed key is the one used.
                             if no value is returned then the default_value declared at the read_configuration_variable
@@ -66,6 +67,7 @@ class ParseIt:
                 "toml",
                 "tml",
                 "hcl",
+                "tf",
                 "conf",
                 "cfg",
                 "ini",
@@ -157,7 +159,7 @@ class ParseIt:
                         break
                 if config_key_found is True:
                     break
-            elif config_type == "hcl":
+            elif config_type == "hcl" or config_type == "tf":
                 for config_file in self.config_files_dict[config_type]:
                     file_dict = parse_hcl_file(self.config_folder_location + "/" + config_file)
                     config_key_found, config_value = self._check_config_in_dict(config_name, file_dict)

@@ -60,18 +60,19 @@ my_config_key = parser.read_configuration_variable("my_int")
 
 By default parse_it will look for the configuration options in the following order & will return the first one found:
 
-* `cli_args` - command line arguments that are passed in the following format ``--key value``
-* `env_vars` - environment variables, you can also use `envvars` as an alias for it
-* `json` - JSON formatted files, any file ending with a .json extension in the configuration folder is assumed to be this
-* `yaml` - YAML formatted files, any file ending with a .yaml extension in the configuration folder is assumed to be this
-* `yml` - YAML formatted files, any file ending with a .yml extension in the configuration folder is assumed to be this
-* `toml` - TOML formatted files, any file ending with a .toml extension in the configuration folder is assumed to be this
-* `tml` - TOML formatted files, any file ending with a .tml extension in the configuration folder is assumed to be this
-* `hcl` - HCL formatted files, any file ending with a .hcl extension in the configuration folder is assumed to be this
-* `conf` - INI formatted files, any file ending with a .conf extension in the configuration folder is assumed to be this
-* `cfg` - INI formatted files, any file ending with a .cfg extension in the configuration folder is assumed to be this
-* `ini` - INI formatted files, any file ending with a .ini extension in the configuration folder is assumed to be this
-* `xml` - XML formatted files, any file ending with a .xml extension in the configuration folder is assumed to be this
+* `cli_args` - [command line arguments](https://en.wikipedia.org/wiki/Command-line_interface#Arguments) that are passed in the following format ``--key value``
+* `env_vars` - [environment variables](https://en.wikipedia.org/wiki/Environment_variable), you can also use `envvars` as an alias for it
+* `json` - [JSON](https://en.wikipedia.org/wiki/JSON) formatted files, any file ending with a .json extension in the configuration folder is assumed to be this
+* `yaml` - [YAML](https://en.wikipedia.org/wiki/YAML) formatted files, any file ending with a .yaml extension in the configuration folder is assumed to be this
+* `yml` - [YAML](https://en.wikipedia.org/wiki/YAML) formatted files, any file ending with a .yml extension in the configuration folder is assumed to be this
+* `toml` - [TOML](https://en.wikipedia.org/wiki/TOML) formatted files, any file ending with a .toml extension in the configuration folder is assumed to be this
+* `tml` - [TOML](https://en.wikipedia.org/wiki/TOML) formatted files, any file ending with a .tml extension in the configuration folder is assumed to be this
+* `hcl` - [HCL](https://github.com/hashicorp/hcl) formatted files, any file ending with a .hcl extension in the configuration folder is assumed to be this
+* `tf` - [HCL](https://github.com/hashicorp/hcl) formatted files, any file ending with a .tf extension in the configuration folder is assumed to be this
+* `conf` - [INI](https://en.wikipedia.org/wiki/INI_file) formatted files, any file ending with a .conf extension in the configuration folder is assumed to be this
+* `cfg` - [INI](https://en.wikipedia.org/wiki/INI_file) formatted files, any file ending with a .cfg extension in the configuration folder is assumed to be this
+* `ini` - [INI](https://en.wikipedia.org/wiki/INI_file) formatted files, any file ending with a .ini extension in the configuration folder is assumed to be this
+* `xml` - [XML](https://en.wikipedia.org/wiki/XML) formatted files, any file ending with a .xml extension in the configuration folder is assumed to be this
 * configuration default value - every configuration value can also optionally be set with a default value
 * global default value - - the parser object also has a global default value which can be set
 

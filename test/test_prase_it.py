@@ -310,6 +310,7 @@ class BaseTests(TestCase):
             'toml': ['test.toml'],
             'tml': [],
             'hcl': ['test.hcl'],
+            'tf': [],
             'conf': [],
             'cfg': [],
             'ini': [
@@ -319,8 +320,8 @@ class BaseTests(TestCase):
                 'test.xml'
             ]
         }
-        expected_config_type_priority = ['cli_args', 'env_vars', 'json', 'yaml', 'yml', 'toml', 'tml', 'hcl', 'conf',
-                                         'cfg', 'ini', 'xml']
+        expected_config_type_priority = ['cli_args', 'env_vars', 'json', 'yaml', 'yml', 'toml', 'tml', 'hcl', 'tf',
+                                         'conf', 'cfg', 'ini', 'xml']
         parser = ParseIt(config_type_priority=None, global_default_value=None, type_estimate=True,
                          force_envvars_uppercase=True, config_folder_location=test_files_location, envvar_prefix=None)
         self.assertEqual(parser.config_files_dict, expected_config_files_dict)
@@ -360,6 +361,7 @@ class BaseTests(TestCase):
             'tml': [],
             'conf': [],
             'hcl': ['test.hcl'],
+            'tf': [],
             'cfg': [],
             'ini': [
                 'test.ini'
