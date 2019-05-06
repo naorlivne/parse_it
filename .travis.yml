@@ -22,8 +22,6 @@ deploy:
   distributions: sdist bdist_wheel
   skip_existing: true
   on:
-    branch: master
     python: '3.7'
-    tags: true
 after_success:
   - codecov

@@ -11,7 +11,7 @@ can help
 * Fix the issue you \ add a feature
 * Make sure the unittests pass & that code coverage didn't drop (you add it, you write the unit test for it)
 * Create a pull request
-* Once merged the next tagged release will have your changes in it, the builds only occur on tagged release (which by extension happens on github releases) on the master branch
+* Once merged the next version release will have your changes in it
 
 ## Design philosophy
 parse_it is designed with the following philosophy in mind, any feature\pull requests will be judged against the following:
