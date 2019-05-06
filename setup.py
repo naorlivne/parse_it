@@ -1,5 +1,5 @@
 from setuptools import setup, find_packages
-import os
+
 
 __author__ = 'Naor Livne'
 __author_email__ = 'naorlivne@gmail.com'
