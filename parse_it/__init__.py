@@ -1,1 +1,1 @@
-from .parser import ParseIt
+from .parser import *
