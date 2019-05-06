@@ -1,8 +1,9 @@
 from setuptools import setup, find_packages
+import os
 
 __author__ = 'Naor Livne'
 __author_email__ = 'naorlivne@gmail.com'
-__version__ = '0.5.5'
+__version__ = os.environ("TRAVIS_TAG")
 
 # read the README.md file for the long description of the package
 with open('README.md') as f:
