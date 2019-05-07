@@ -188,10 +188,10 @@ class ParseIt:
             file_dict = parse_toml_file(config_file_location)
         elif config_file_type == "conf" or config_file_type == "cfg" or config_file_type == "ini":
             file_dict = parse_ini_file(config_file_location)
-        elif config_file_type == "xml":
-            file_dict = parse_xml_file(config_file_location)
         elif config_file_type == "hcl" or config_file_type == "tf":
             file_dict = parse_hcl_file(config_file_location)
+        elif config_file_type == "xml":
+            file_dict = parse_xml_file(config_file_location)
         else:
             raise ValueError
         return file_dict
