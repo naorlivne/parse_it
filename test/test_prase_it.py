@@ -123,9 +123,7 @@ class BaseTests(TestCase):
                 'test_bool_false': 'false',
                 'test_int': '123.0',
                 'test_float': '123.123',
-                'test_list': [
-                    '["test1', 'test2', 'test3"]'
-                ]
+                'test_list': '["test1", "test2", "test3"]'
             },
             'test_ini': {
                 'test_ini_key': 'test_ini_value'
@@ -278,6 +276,10 @@ class BaseTests(TestCase):
     def test_type_estimate_list(self):
         reply = estimate_type("['test1', 123, True]")
         self.assertEqual(reply, ['test1', 123, True])
+        reply = estimate_type('["test1", "test2", "test3"]')
+        self.assertEqual(reply, ["test1", "test2", "test3"])
+        reply = estimate_type('["test1", {"test_key": "test_value"}, "test3", None]')
+        self.assertEqual(reply, ["test1", {"test_key": "test_value"}, "test3", None])
 
     def test_type_estimate_dict(self):
         reply = estimate_type("{'test_key': ['test1', 123, {'key': 'value'}]}")
@@ -668,9 +670,7 @@ class BaseTests(TestCase):
                 'test_bool_false': 'false',
                 'test_int': '123.0',
                 'test_float': '123.123',
-                'test_list': [
-                    '["test1', 'test2', 'test3"]'
-                ]
+                'test_list': '["test1", "test2", "test3"]'
             },
             'test_ini': {
                 'test_ini_key': 'test_ini_value'
