@@ -547,3 +547,20 @@ class BaseTests(TestCase):
         os.environ["TEST_ENV"] = "123"
         reply = envvar_defined("test_env", force_uppercase=False)
         self.assertFalse(reply)
+
+    def test_parser_config_found_in_key(self):
+        parser = ParseIt(config_folder_location=test_files_location)
+        config_found_reply, config_value_reply = parser._check_config_in_dict("test_key", {"test_key": "test_value"})
+        self.assertTrue(config_found_reply)
+        self.assertEqual(config_value_reply, "test_value")
+
+    def test_parser_config_found_in_key_false(self):
+        parser = ParseIt(config_folder_location=test_files_location)
+        config_found_reply, config_value_reply = parser._check_config_in_dict("wrong_key", {"test_key": "test_value"})
+        self.assertFalse(config_found_reply)
+        self.assertEqual(config_value_reply, None)
+
+    def test_parser__parse_file_per_type_wrong_type(self):
+        parser = ParseIt(config_folder_location=test_files_location)
+        with self.assertRaises(ValueError):
+            parser._parse_file_per_type("non_existing_type", test_files_location + "/test.json")
