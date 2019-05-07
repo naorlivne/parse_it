@@ -169,7 +169,7 @@ class BaseTests(TestCase):
             ],
             'test_hcl': {
                 'test_hcl_name': {
-                    'test_hcl_key': 'the AMI test_hcl_value use'
+                    'test_hcl_key': 'test_hcl_value'
                 }
             }
         }
@@ -518,7 +518,7 @@ class BaseTests(TestCase):
         reply_hcl = parser.read_configuration_variable("test_hcl")
         expected_reply_hcl = {
             'test_hcl_name': {
-                'test_hcl_key': 'the AMI test_hcl_value use'
+                'test_hcl_key': 'test_hcl_value'
             }
         }
         self.assertEqual(reply_hcl, expected_reply_hcl)
@@ -564,3 +564,145 @@ class BaseTests(TestCase):
         parser = ParseIt(config_folder_location=test_files_location)
         with self.assertRaises(ValueError):
             parser._parse_file_per_type("non_existing_type", test_files_location + "/test.json")
+
+    def test_parser__parse_file_per_type_json(self):
+        parser = ParseIt(config_folder_location=test_files_location)
+        reply = parser._parse_file_per_type("json", test_files_location + "/test.json")
+        expected_reply = {
+            'file_type': 'json',
+            'test_string': 'testing',
+            'test_bool_true': True,
+            'test_bool_false': False,
+            'test_int': 123,
+            'test_float': 123.123,
+            'test_list': [
+                'test1',
+                'test2',
+                'test3'
+            ],
+            'test_json': {
+                'test_json_key': 'test_json_value'
+            }
+        }
+        self.assertEqual(reply, expected_reply)
+
+    def test_parser__parse_file_per_type_yaml(self):
+        parser = ParseIt(config_folder_location=test_files_location)
+        reply = parser._parse_file_per_type("yaml", test_files_location + "/test.yaml")
+        expected_reply = {
+            'file_type': 'yaml',
+            'test_string': 'testing',
+            'test_bool_true': True,
+            'test_bool_false': False,
+            'test_int': 123,
+            'test_float': 123.123,
+            'test_list': [
+                'test1',
+                'test2',
+                'test3'
+            ],
+            'test_yaml': {
+                'test_yaml_key': 'test_yaml_value'
+            }
+        }
+        self.assertEqual(reply, expected_reply)
+        reply = parser._parse_file_per_type("yml", test_files_location + "/test.yaml")
+        self.assertEqual(reply, expected_reply)
+
+    def test_parser__parse_file_per_type_toml(self):
+        parser = ParseIt(config_folder_location=test_files_location)
+        reply = parser._parse_file_per_type("toml", test_files_location + "/test.toml")
+        expected_reply = {
+            'file_type': 'toml',
+            'test_string': 'testing',
+            'test_bool_true': True,
+            'test_bool_false': False,
+            'test_int': 123,
+            'test_float': 123.123,
+            'test_list': [
+                'test1',
+                'test2',
+                'test3'
+            ],
+            'test_toml': {
+                'test_toml_key': 'test_toml_value'
+            }
+        }
+        self.assertEqual(reply, expected_reply)
+        reply = parser._parse_file_per_type("tml", test_files_location + "/test.toml")
+        self.assertEqual(reply, expected_reply)
+
+    def test_parser__parse_file_per_type_hcl(self):
+        parser = ParseIt(config_folder_location=test_files_location)
+        reply = parser._parse_file_per_type("hcl", test_files_location + "/test.hcl")
+        expected_reply = {
+            'file_type': 'hcl',
+            'test_string': 'testing',
+            'test_bool_true': True,
+            'test_bool_false': False,
+            'test_int': 123,
+            'test_float': 123.123,
+            'test_list': [
+                'test1',
+                'test2',
+                'test3'
+            ],
+            'test_hcl': {
+                "test_hcl_name": {
+                    'test_hcl_key': 'test_hcl_value'
+                }
+            }
+        }
+        self.assertEqual(reply, expected_reply)
+        reply = parser._parse_file_per_type("tf", test_files_location + "/test.hcl")
+        self.assertEqual(reply, expected_reply)
+
+    def test_parser__parse_file_per_type_ini(self):
+        parser = ParseIt(config_folder_location=test_files_location)
+        reply = parser._parse_file_per_type("ini", test_files_location + "/test.ini")
+        expected_reply = {
+            'DEFAULT': {
+                'file_type': 'ini',
+                'test_string': 'testing',
+                'test_bool_true': 'true',
+                'test_bool_false': 'false',
+                'test_int': '123.0',
+                'test_float': '123.123',
+                'test_list': [
+                    '["test1', 'test2', 'test3"]'
+                ]
+            },
+            'test_ini': {
+                'test_ini_key': 'test_ini_value'
+            }
+        }
+        self.assertEqual(reply, expected_reply)
+        reply = parser._parse_file_per_type("conf", test_files_location + "/test.ini")
+        self.assertEqual(reply, expected_reply)
+        reply = parser._parse_file_per_type("cfg", test_files_location + "/test.ini")
+        self.assertEqual(reply, expected_reply)
+
+    def test_parser__parse_file_per_type_xml(self):
+        parser = ParseIt(config_folder_location=test_files_location)
+        reply = parser._parse_file_per_type("xml", test_files_location + "/test.xml")
+        expected_reply = {
+            'xml_root': {
+                'file_type': 'xml',
+                'test_bool_false': 'false',
+                'test_bool_true': 'true',
+                'test_float': '123.123',
+                'test_int': '123',
+                'test_xml': {
+                    'test_xml_key': 'test_xml_value'
+                },
+                'test_list': {
+                    'element': [
+                        'test1',
+                        'test2',
+                        'test3'
+                    ]
+                },
+                'test_string': 'testing'
+            }
+        }
+        self.assertEqual(reply, expected_reply)
