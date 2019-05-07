@@ -123,7 +123,8 @@ class ParseIt:
             # found will break outside of both loops
             elif config_type in VALID_FILE_TYPE_EXTENSIONS:
                 for config_file in self.config_files_dict[config_type]:
-                    file_dict = self._parse_file_per_type(config_type, self.config_folder_location + "/" + config_file)
+                    file_dict = self._parse_file_per_type(config_type, os.path.join(self.config_folder_location,
+                                                                                    config_file))
                     config_key_found, config_value = self._check_config_in_dict(config_name, file_dict)
                     if config_key_found is True:
                         break
