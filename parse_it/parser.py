@@ -119,49 +119,11 @@ class ParseIt:
                                            force_uppercase=self.force_envvars_uppercase)
                 if config_key_found is True:
                     break
-            elif config_type == "json":
+            # will loop over all files of each type until all files of all types are searched, first time the key is
+            # found will break outside of both loops
+            elif config_type in VALID_FILE_TYPE_EXTENSIONS:
                 for config_file in self.config_files_dict[config_type]:
-                    file_dict = parse_json_file(self.config_folder_location + "/" + config_file)
-                    config_key_found, config_value = self._check_config_in_dict(config_name, file_dict)
-                    if config_key_found is True:
-                        break
-                if config_key_found is True:
-                    break
-            elif config_type == "yaml" or config_type == "yml":
-                for config_file in self.config_files_dict[config_type]:
-                    file_dict = parse_yaml_file(self.config_folder_location + "/" + config_file)
-                    config_key_found, config_value = self._check_config_in_dict(config_name, file_dict)
-                    if config_key_found is True:
-                        break
-                if config_key_found is True:
-                    break
-            elif config_type == "toml" or config_type == "tml":
-                for config_file in self.config_files_dict[config_type]:
-                    file_dict = parse_toml_file(self.config_folder_location + "/" + config_file)
-                    config_key_found, config_value = self._check_config_in_dict(config_name, file_dict)
-                    if config_key_found is True:
-                        break
-                if config_key_found is True:
-                    break
-            elif config_type == "conf" or config_type == "cfg" or config_type == "ini":
-                for config_file in self.config_files_dict[config_type]:
-                    file_dict = parse_ini_file(self.config_folder_location + "/" + config_file)
-                    config_key_found, config_value = self._check_config_in_dict(config_name, file_dict)
-                    if config_key_found is True:
-                        break
-                if config_key_found is True:
-                    break
-            elif config_type == "xml":
-                for config_file in self.config_files_dict[config_type]:
-                    file_dict = parse_xml_file(self.config_folder_location + "/" + config_file)
-                    config_key_found, config_value = self._check_config_in_dict(config_name, file_dict)
-                    if config_key_found is True:
-                        break
-                if config_key_found is True:
-                    break
-            elif config_type == "hcl" or config_type == "tf":
-                for config_file in self.config_files_dict[config_type]:
-                    file_dict = parse_hcl_file(self.config_folder_location + "/" + config_file)
+                    file_dict = self._parse_file_per_type(config_type, self.config_folder_location + "/" + config_file)
                     config_key_found, config_value = self._check_config_in_dict(config_name, file_dict)
                     if config_key_found is True:
                         break
@@ -206,3 +168,29 @@ class ParseIt:
             config_value = None
             config_found = False
         return config_found, config_value
+
+    @staticmethod
+    def _parse_file_per_type(config_file_type, config_file_location):
+        """internal function which parses a file to a dict when given the file format type and it's location
+
+            Arguments:
+                config_file_type -- the type of the config file
+                config_file_location -- the location of the config file
+            Returns:
+                file_dict -- a parsed dict of the config file data
+        """
+        if config_file_type == "json":
+            file_dict = parse_json_file(config_file_location)
+        elif config_file_type == "yaml" or config_file_type == "yml":
+            file_dict = parse_yaml_file(config_file_location)
+        elif config_file_type == "toml" or config_file_type == "tml":
+            file_dict = parse_toml_file(config_file_location)
+        elif config_file_type == "conf" or config_file_type == "cfg" or config_file_type == "ini":
+            file_dict = parse_ini_file(config_file_location)
+        elif config_file_type == "xml":
+            file_dict = parse_xml_file(config_file_location)
+        elif config_file_type == "hcl" or config_file_type == "tf":
+            file_dict = parse_hcl_file(config_file_location)
+        else:
+            raise ValueError
+        return file_dict
