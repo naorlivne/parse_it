@@ -26,7 +26,7 @@ deploy:
 after_deploy:
   - git config --local user.name "naorlivne"
   - git config --local user.email "naorlivne@gmail.com"
-  - git commit -m '[skip travis] build $TRAVIS_BUILD_NUMBER pushed - nebulactl.py run and pushed'
+  - git commit -m '[skip travis] build $TRAVIS_BUILD_NUMBER pushed - new parse_it version released'
   - git tag $(python setup.py --version)
 after_success:
   - codecov
