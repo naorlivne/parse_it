@@ -38,6 +38,6 @@ after_deploy:
 - docker run -e GITHUB_USER=${GITHUB_USER} -e GITHUB_PROJECT=${GITHUB_PROJECT} -e CHANGELOG_GITHUB_TOKEN=${GH_TOKEN} -v `pwd`:/output naorlivne/github-changelog-generator-dockerized
 - git add CHANGELOG.md
 - git commit -m '[skip travis] build ${TRAVIS_BUILD_NUMBER} pushed - new version changelog'
-- git push origin master
+- git push
 after_success:
 - codecov
