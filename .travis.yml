@@ -37,7 +37,7 @@ after_deploy:
 - git push origin $(python setup.py --version)
 - docker run -e GITHUB_USER=${GITHUB_USER} -e GITHUB_PROJECT=${GITHUB_PROJECT} -e CHANGELOG_GITHUB_TOKEN=${GH_TOKEN} -v `pwd`:/output naorlivne/github-changelog-generator-dockerized
 - git push --delete origin $(python setup.py --version)
-  git tag -d $(python setup.py --version)
+- git tag -d $(python setup.py --version)
 - git add CHANGELOG.md
 - git tag $(python setup.py --version)
 - git commit -m '[skip travis] build ${TRAVIS_BUILD_NUMBER} pushed - new parse_it version released with changelog'
