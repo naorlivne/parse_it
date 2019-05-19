@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 __author__ = 'Naor Livne'
 __author_email__ = 'naorlivne@gmail.com'
-__version__ = "0.6.0"
+__version__ = "0.6.1"
 
 # read the README.md file for the long description of the package
 with open('README.md') as f:
@@ -35,14 +35,14 @@ setup(
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
     extras_require=extra_requirements,
     scripts=['setup.py'],
-    license="GPLv3",
+    license="LGPLv3",
     keywords="parse_it parsing parse config configuration",
     url="https://github.com/naorlivne/parse_it",
     install_requires=requirements,
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Other Environment",
-        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
         "Operating System :: OS Independent",
         "Intended Audience :: Developers",
         "Intended Audience :: System Administrators",
