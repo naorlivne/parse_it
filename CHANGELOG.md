@@ -1,5 +1,14 @@
 # Change Log
 
+## [Unreleased](https://github.com/naorlivne/parse_it/tree/HEAD)
+
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/0.5.11...HEAD)
+
+**Implemented enhancements:**
+
+- Add a changelog [\#12](https://github.com/naorlivne/parse_it/issues/12)
+- Bump requests from 2.21.0 to 2.22.0 [\#13](https://github.com/naorlivne/parse_it/pull/13) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [0.5.11](https://github.com/naorlivne/parse_it/tree/0.5.11) (2019-05-14)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/0.5.10...0.5.11)
 
