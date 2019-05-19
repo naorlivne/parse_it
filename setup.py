@@ -36,7 +36,8 @@ setup(
     extras_require=extra_requirements,
     scripts=['setup.py'],
     license="LGPLv3",
-    keywords="parse_it parsing parse config configuration",
+    keywords="parse_it parsing parse parser yaml json xml toml ini cfg hcl envvar environment_variable config "
+             "cli_args command_line_arguments tml yml configuration configuration_file",
     url="https://github.com/naorlivne/parse_it",
     install_requires=requirements,
     classifiers=[
