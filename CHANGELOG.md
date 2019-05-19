@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/naorlivne/parse_it/tree/HEAD)
-
-[Full Changelog](https://github.com/naorlivne/parse_it/compare/0.5.11...HEAD)
+## [0.6.0](https://github.com/naorlivne/parse_it/tree/0.6.0) (2019-05-19)
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/0.5.11...0.6.0)
 
 **Implemented enhancements:**
 
