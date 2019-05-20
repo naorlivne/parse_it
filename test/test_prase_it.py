@@ -710,31 +710,31 @@ class BaseTests(TestCase):
 
     def test_command_line_args_read_command_line_arg(self):
         testargs = ["parse_it_mock_script.py", "--test_key", "test_value"]
-        with patch.object(sys, 'argv', testargs):
+        with patch('sys.argv', testargs):
             reply = read_command_line_arg("test_key")
             self.assertEqual(reply, "test_value")
 
     def test_command_line_args_read_command_line_arg_not_defined(self):
         testargs = ["parse_it_mock_script.py", "--test_key", "test_value"]
-        with patch.object(sys, 'argv', testargs):
+        with patch('sys.argv', testargs):
             reply = read_command_line_arg("non_existing_test_key")
             self.assertIsNone(reply)
 
     def test_command_line_args_command_line_arg_defined_false(self):
         testargs = ["parse_it_mock_script.py", "--test_key", "test_value"]
-        with patch.object(sys, 'argv', testargs):
+        with patch('sys.argv', testargs):
             reply = command_line_arg_defined("non_existing_test_key")
             self.assertFalse(reply)
 
     def test_command_line_args_command_line_arg_defined_true(self):
         testargs = ["parse_it_mock_script.py", "--test_key", "test_value"]
-        with patch.object(sys, 'argv', testargs):
+        with patch('sys.argv', testargs):
             reply = command_line_arg_defined("test_key")
             self.assertTrue(reply)
 
     def test_parser_read_configuration_from_cli_arg(self):
         testargs = ["parse_it_mock_script.py", "--test_cli_key", "test_value", "--test_cli_int", "123"]
-        with patch.object(sys, 'argv', testargs):
+        with patch('sys.argv', testargs):
             parser = ParseIt()
             reply = parser.read_configuration_variable("test_cli_key")
             self.assertEqual(reply, "test_value")
