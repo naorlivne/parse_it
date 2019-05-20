@@ -1,5 +1,14 @@
 # Change Log
 
+## [Unreleased](https://github.com/naorlivne/parse_it/tree/HEAD)
+
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/0.7.0...HEAD)
+
+**Implemented enhancements:**
+
+- Add unit tests for CLI args [\#4](https://github.com/naorlivne/parse_it/issues/4)
+- Get code coverage to 100% [\#2](https://github.com/naorlivne/parse_it/issues/2)
+
 ## [0.7.0](https://github.com/naorlivne/parse_it/tree/0.7.0) (2019-05-20)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/0.6.1...0.7.0)
 
