@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.7.0](https://github.com/naorlivne/parse_it/tree/0.7.0) (2019-05-20)
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/0.6.1...0.7.0)
+
 ## [0.6.1](https://github.com/naorlivne/parse_it/tree/0.6.1) (2019-05-19)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/0.6.0...0.6.1)
 
