@@ -1,4 +1,3 @@
-import argparse
 import sys
 
 
@@ -11,10 +10,9 @@ def read_command_line_arg(argument):
                 the value of the argument, None if doesn't exist
     """
     if command_line_arg_defined(argument) is True:
-        parser = argparse.ArgumentParser()
-        parser.add_argument("--" + argument, default=None)
-        args = parser.parse_args()
-        reply = getattr(args, argument)
+        arg_list = sys.argv
+        key_index = arg_list.index("--" + argument) + 1
+        reply = arg_list[key_index]
     else:
         reply = None
     return reply
