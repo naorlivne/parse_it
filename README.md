@@ -116,16 +116,26 @@ import os
 
 # This is just for the example
 os.environ["MY_INT"] = "123"
+os.environ["MY_LIST"] = "['first_item', 'second_item', 'third_item']"
+os.environ["MY_DICT"] = "{'key': 'value'}"
 
 # Create API object
 parser = ParseIt()
 my_config_key = parser.read_configuration_variable("MY_INT")
-# my_config_key will now be an int of 123
+# my_config_key will now be an string of "123"
+my_config_key = parser.read_configuration_variable("MY_LIST")
+# my_config_key will now be an list of ['first_item', 'second_item', 'third_item']
+my_config_key = parser.read_configuration_variable("MY_DICT")
+# my_config_key will now be an dict of {'key': 'value'}
 
 # you can easily disable the type estimation
 parser = ParseIt(type_estimate=False)
 my_config_key = parser.read_configuration_variable("MY_INT")
 # my_config_key will now be an string of "123"
+my_config_key = parser.read_configuration_variable("MY_LIST")
+# my_config_key will now be an string of "['first_item', 'second_item', 'third_item']"
+my_config_key = parser.read_configuration_variable("MY_DICT")
+# my_config_key will now be an string of "{'key': 'value'}"
 
 ```
 
