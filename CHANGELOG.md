@@ -8,6 +8,7 @@
 
 - Add unit tests for CLI args [\#4](https://github.com/naorlivne/parse_it/issues/4)
 - Get code coverage to 100% [\#2](https://github.com/naorlivne/parse_it/issues/2)
+- Bump urllib3 from 1.25.2 to 1.25.3 [\#14](https://github.com/naorlivne/parse_it/pull/14) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [0.7.0](https://github.com/naorlivne/parse_it/tree/0.7.0) (2019-05-20)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/0.6.1...0.7.0)
@@ -21,7 +22,7 @@
 **Implemented enhancements:**
 
 - Add a changelog [\#12](https://github.com/naorlivne/parse_it/issues/12)
-- Bump requests from 2.21.0 to 2.22.0 [\#13](https://github.com/naorlivne/parse_it/pull/13) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump requests from 2.21.0 to 2.22.0 [\#13](https://github.com/naorlivne/parse_it/pull/13) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [0.5.11](https://github.com/naorlivne/parse_it/tree/0.5.11) (2019-05-14)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/0.5.10...0.5.11)
