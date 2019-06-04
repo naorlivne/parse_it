@@ -11,47 +11,6 @@ from parse_it.file.file_reader import *
 import warnings
 
 
-DEFAULT_VALID_FILE_TYPE_EXTENSIONS = [
-    "json",
-    "yaml",
-    "yml",
-    "toml",
-    "tml",
-    "hcl",
-    "tf",
-    "conf",
-    "cfg",
-    "ini",
-    "xml"
-]
-
-DEFAULT_SUFFIX_FILE_TYPE_MAPPING = {
-    "json": [
-        "json"
-    ],
-    "yaml": [
-        "yaml",
-        "yml"
-    ],
-    "toml": [
-        "toml",
-        "tml"
-    ],
-    "hcl": [
-        "hcl",
-        "tf"
-    ],
-    "ini": [
-        "conf",
-        "cfg",
-        "ini"
-    ],
-    "xml": [
-        "xml"
-    ]
-}
-
-
 class ParseIt:
 
     def __init__(self, config_type_priority=None, global_default_value=None, type_estimate=True, recurse=True,
@@ -80,12 +39,45 @@ class ParseIt:
                         custom_suffix_mapping -- a custom dict which will can map custom file suffixes to a file type
         """
 
-        self.suffix_file_type_mapping = dict(DEFAULT_SUFFIX_FILE_TYPE_MAPPING)
-        self.valid_file_type_extension = list(DEFAULT_VALID_FILE_TYPE_EXTENSIONS)
-        if envvar_prefix is None:
-            self.envvar_prefix = ""
-        else:
-            self.envvar_prefix = envvar_prefix
+        self.suffix_file_type_mapping = {
+            "json": [
+                "json"
+            ],
+            "yaml": [
+                "yaml",
+                "yml"
+            ],
+            "toml": [
+                "toml",
+                "tml"
+            ],
+            "hcl": [
+                "hcl",
+                "tf"
+            ],
+            "ini": [
+                "conf",
+                "cfg",
+                "ini"
+            ],
+            "xml": [
+                "xml"
+            ]
+        }
+        self.valid_file_type_extension = [
+            "json",
+            "yaml",
+            "yml",
+            "toml",
+            "tml",
+            "hcl",
+            "tf",
+            "conf",
+            "cfg",
+            "ini",
+            "xml"
+        ]
+
         if custom_suffix_mapping is not None:
             for file_type, custom_file_suffix in custom_suffix_mapping.items():
                 self.suffix_file_type_mapping[file_type] = self.suffix_file_type_mapping[file_type] + \
@@ -96,9 +88,16 @@ class ParseIt:
             if config_type_priority is None:
                 warnings.warn("custom_suffix_mapping is defined but config_type_priority is using the default setting, "
                               "custom file suffixes will not be used")
+
+        if envvar_prefix is None:
+            self.envvar_prefix = ""
+        else:
+            self.envvar_prefix = envvar_prefix
+
         self.global_default_value = global_default_value
         self.type_estimate = type_estimate
         self.force_envvars_uppercase = force_envvars_uppercase
+
         if config_type_priority is None:
             self.config_type_priority = [
                 "cli_args",
@@ -115,6 +114,7 @@ class ParseIt:
                 "ini",
                 "xml"
             ]
+
         else:
             self.config_type_priority = config_type_priority
         if config_folder_location is None:
