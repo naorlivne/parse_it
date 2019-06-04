@@ -18,7 +18,7 @@ requirements = [
     "pyhcl"
 ]
 
-# optional requirements, typing is used for support of Python versions 3.4 & lower
+# optional requirements, typing is used for support of Python versions 3.4 & lower, note 3.4 and lower is untested
 extra_requirements = {
           'typing':  ["typing"]
       }
