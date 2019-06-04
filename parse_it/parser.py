@@ -88,11 +88,11 @@ class ParseIt:
             self.envvar_prefix = envvar_prefix
         if custom_suffix_mapping is not None:
             for file_type, custom_file_suffix in custom_suffix_mapping.items():
-                self.suffix_file_type_mapping[file_type] = DEFAULT_SUFFIX_FILE_TYPE_MAPPING[file_type] + \
+                self.suffix_file_type_mapping[file_type] = self.suffix_file_type_mapping[file_type] + \
                                                            custom_file_suffix
             custom_suffixes_list = [suffix_value for suffix_list in custom_suffix_mapping.values() for suffix_value in
                                     suffix_list]
-            self.valid_file_type_extension = DEFAULT_VALID_FILE_TYPE_EXTENSIONS + custom_suffixes_list
+            self.valid_file_type_extension += custom_suffixes_list
             if config_type_priority is None:
                 warnings.warn("custom_suffix_mapping is defined but config_type_priority is using the default setting, "
                               "custom file suffixes will not be used")
