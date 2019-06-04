@@ -8,8 +8,10 @@ from parse_it.file.toml import *
 from parse_it.file.xml import *
 from parse_it.type_estimate.type_estimate import *
 from parse_it.file.file_reader import *
+import warnings
 
-VALID_FILE_TYPE_EXTENSIONS = [
+
+DEFAULT_VALID_FILE_TYPE_EXTENSIONS = [
     "json",
     "yaml",
     "yml",
@@ -23,11 +25,38 @@ VALID_FILE_TYPE_EXTENSIONS = [
     "xml"
 ]
 
+DEFAULT_SUFFIX_FILE_TYPE_MAPPING = {
+    "json": [
+        "json"
+    ],
+    "yaml": [
+        "yaml",
+        "yml"
+    ],
+    "toml": [
+        "toml",
+        "tml"
+    ],
+    "hcl": [
+        "hcl",
+        "tf"
+    ],
+    "ini": [
+        "conf",
+        "cfg",
+        "ini"
+    ],
+    "xml": [
+        "xml"
+    ]
+}
+
 
 class ParseIt:
 
     def __init__(self, config_type_priority=None, global_default_value=None, type_estimate=True, recurse=True,
-                 force_envvars_uppercase=True, config_folder_location=None, envvar_prefix=None):
+                 force_envvars_uppercase=True, config_folder_location=None, envvar_prefix=None,
+                 custom_suffix_mapping=None):
         """configures the object which is used to query all types of configuration inputs available and prioritize them
                 based on your needs
 
@@ -48,12 +77,25 @@ class ParseIt:
                         force_envvars_uppercase -- if set to True (which is the default) will force all envvars keys to
                             be UPPERCASE
                         envvar_prefix -- will add a prefix for all envvars if set
+                        custom_suffix_mapping -- a custom dict which will can map custom file suffixes to a file type
         """
 
+        self.suffix_file_type_mapping = dict(DEFAULT_SUFFIX_FILE_TYPE_MAPPING)
+        self.valid_file_type_extension = list(DEFAULT_VALID_FILE_TYPE_EXTENSIONS)
         if envvar_prefix is None:
             self.envvar_prefix = ""
         else:
             self.envvar_prefix = envvar_prefix
+        if custom_suffix_mapping is not None:
+            for file_type, custom_file_suffix in custom_suffix_mapping.items():
+                self.suffix_file_type_mapping[file_type] = DEFAULT_SUFFIX_FILE_TYPE_MAPPING[file_type] + \
+                                                           custom_file_suffix
+            custom_suffixes_list = [suffix_value for suffix_list in custom_suffix_mapping.values() for suffix_value in
+                                    suffix_list]
+            self.valid_file_type_extension = DEFAULT_VALID_FILE_TYPE_EXTENSIONS + custom_suffixes_list
+            if config_type_priority is None:
+                warnings.warn("custom_suffix_mapping is defined but config_type_priority is using the default setting, "
+                              "custom file suffixes will not be used")
         self.global_default_value = global_default_value
         self.type_estimate = type_estimate
         self.force_envvars_uppercase = force_envvars_uppercase
@@ -81,7 +123,7 @@ class ParseIt:
             self.config_folder_location = config_folder_location
         file_types_in_folder_list = []
         for config_type in self.config_type_priority:
-            if config_type in VALID_FILE_TYPE_EXTENSIONS:
+            if config_type in self.valid_file_type_extension:
                 file_types_in_folder_list.append(config_type)
         self.config_files_dict = file_types_in_folder(self.config_folder_location, file_types_in_folder_list,
                                                       recurse=recurse)
@@ -121,7 +163,7 @@ class ParseIt:
                     break
             # will loop over all files of each type until all files of all types are searched, first time the key is
             # found will break outside of both loops
-            elif config_type in VALID_FILE_TYPE_EXTENSIONS:
+            elif config_type in self.valid_file_type_extension:
                 for config_file in self.config_files_dict[config_type]:
                     file_dict = self._parse_file_per_type(config_type, os.path.join(self.config_folder_location,
                                                                                     config_file))
@@ -170,8 +212,7 @@ class ParseIt:
             config_found = False
         return config_found, config_value
 
-    @staticmethod
-    def _parse_file_per_type(config_file_type, config_file_location):
+    def _parse_file_per_type(self, config_file_type, config_file_location):
         """internal function which parses a file to a dict when given the file format type and it's location
 
             Arguments:
@@ -180,17 +221,17 @@ class ParseIt:
             Returns:
                 file_dict -- a parsed dict of the config file data
         """
-        if config_file_type == "json":
+        if config_file_type in self.suffix_file_type_mapping["json"]:
             file_dict = parse_json_file(config_file_location)
-        elif config_file_type == "yaml" or config_file_type == "yml":
+        elif config_file_type in self.suffix_file_type_mapping["yaml"]:
             file_dict = parse_yaml_file(config_file_location)
-        elif config_file_type == "toml" or config_file_type == "tml":
+        elif config_file_type in self.suffix_file_type_mapping["toml"]:
             file_dict = parse_toml_file(config_file_location)
-        elif config_file_type == "conf" or config_file_type == "cfg" or config_file_type == "ini":
+        elif config_file_type in self.suffix_file_type_mapping["ini"]:
             file_dict = parse_ini_file(config_file_location)
-        elif config_file_type == "hcl" or config_file_type == "tf":
+        elif config_file_type in self.suffix_file_type_mapping["hcl"]:
             file_dict = parse_hcl_file(config_file_location)
-        elif config_file_type == "xml":
+        elif config_file_type in self.suffix_file_type_mapping["xml"]:
             file_dict = parse_xml_file(config_file_location)
         else:
             raise ValueError

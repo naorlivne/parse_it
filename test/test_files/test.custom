@@ -1,0 +1,12 @@
+file_type: custom_yaml_suffix
+test_string: testing_custom
+test_bool_true: true
+test_bool_false: false
+test_int: 123
+test_float: 123.123
+test_list:
+- test1
+- test2
+- test3
+test_yaml:
+  test_yaml_key: custom_test_yaml_value

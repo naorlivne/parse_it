@@ -22,6 +22,7 @@ VALID_FILE_TYPE_EXTENSIONS = [
     "conf",
     "cfg",
     "ini",
+    "xml"
 ]
 
 test_files_location = os.getenv("TEST_FILES_LOCATION", "test_files")
@@ -109,6 +110,9 @@ class BaseTests(TestCase):
             'cfg': [],
             'ini': [
                 'test.ini'
+            ],
+            'xml': [
+                'test.xml'
             ]
         }
         self.assertEqual(reply, expected_reply)
@@ -333,6 +337,50 @@ class BaseTests(TestCase):
         self.assertTrue(parser.force_envvars_uppercase)
         self.assertIsNone(parser.global_default_value)
         self.assertTrue(parser.type_estimate)
+
+    def test_parser_custom_suffix_mapping_set_config_type_priority_not_set_raise_warning(self):
+        with self.assertWarns(Warning):
+            ParseIt(config_folder_location=test_files_location, custom_suffix_mapping={"yaml": ["custom"]})
+
+    def test_parser_custom_suffix_mapping_set(self):
+        parser = ParseIt(config_folder_location=test_files_location, custom_suffix_mapping={"yaml": ["custom"]},
+                         config_type_priority=["custom"] + VALID_FILE_TYPE_EXTENSIONS)
+        expected_config_type_priority = ["custom"] + VALID_FILE_TYPE_EXTENSIONS
+        expected_valid_type_extension = ['json', 'yaml', 'yml', 'toml', 'tml', 'hcl', 'tf', 'conf', 'cfg', 'ini', 'xml',
+                                         'custom']
+        expected_suffix_file_type_mapping = {
+            'json': [
+                'json'
+            ],
+            'yaml': [
+                'yaml',
+                'yml',
+                'custom'
+            ],
+            'toml': [
+                'toml',
+                'tml'
+            ],
+            'hcl': [
+                'hcl',
+                'tf'
+            ],
+            'ini': [
+                'conf',
+                'cfg',
+                'ini'
+            ],
+            'xml': [
+                'xml'
+            ]
+        }
+        reply = parser.read_configuration_variable("test_string")
+        self.assertEqual("testing_custom", reply)
+        reply = parser.read_configuration_variable("test_json")
+        self.assertEqual({'test_json_key': 'test_json_value'}, reply)
+        self.assertEqual(expected_config_type_priority, parser.config_type_priority)
+        self.assertEqual(expected_valid_type_extension, parser.valid_file_type_extension)
+        self.assertEqual(expected_suffix_file_type_mapping, parser.suffix_file_type_mapping)
 
     def test_parser_read_configuration_variable(self):
         parser = ParseIt(config_folder_location=test_files_location)
@@ -609,6 +657,28 @@ class BaseTests(TestCase):
         }
         self.assertEqual(reply, expected_reply)
         reply = parser._parse_file_per_type("yml", test_files_location + "/test.yaml")
+        self.assertEqual(reply, expected_reply)
+
+    def test_parser__parse_file_per_type_custom_yaml(self):
+        parser = ParseIt(config_folder_location=test_files_location, custom_suffix_mapping={"yaml": ["custom"]},
+                         config_type_priority=["custom"] + VALID_FILE_TYPE_EXTENSIONS)
+        reply = parser._parse_file_per_type("custom", test_files_location + "/test.custom")
+        expected_reply = {
+            'file_type': 'custom_yaml_suffix',
+            'test_string': 'testing_custom',
+            'test_bool_true': True,
+            'test_bool_false': False,
+            'test_int': 123,
+            'test_float': 123.123,
+            'test_list': [
+                'test1',
+                'test2',
+                'test3'
+            ],
+            'test_yaml': {
+                'test_yaml_key': 'custom_test_yaml_value'
+            }
+        }
         self.assertEqual(reply, expected_reply)
 
     def test_parser__parse_file_per_type_toml(self):

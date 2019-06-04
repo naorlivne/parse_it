@@ -204,3 +204,14 @@ my_config_key = parser.read_configuration_variable("my_undeclared_key", required
 # Will raise ValueError
 
 ```
+
+While generally not a good idea sometimes you can't avoid it and will need to use a custom non standard file suffix, you can add a custom mapping of suffixes to any of the supported file formats as follows (note that `config_type_priority` should also be set to configure the priority of said custom suffix):
+
+```python
+# Load parse_it
+from parse_it import ParseIt
+
+# Create API object which will only look for envvars then yaml & yml files then json files
+parser = ParseIt(config_type_priority=["envvars", "custom_yaml_suffix", "yaml", "yml", "json"], custom_suffix_mapping={"yaml": ["custom_yaml_suffix"]})
+
+```
