@@ -80,8 +80,7 @@ class ParseIt:
 
         if custom_suffix_mapping is not None:
             for file_type, custom_file_suffix in custom_suffix_mapping.items():
-                self.suffix_file_type_mapping[file_type] = self.suffix_file_type_mapping[file_type] + \
-                                                           custom_file_suffix
+                self.suffix_file_type_mapping[file_type] = self.suffix_file_type_mapping[file_type] + custom_file_suffix
             custom_suffixes_list = [suffix_value for suffix_list in custom_suffix_mapping.values() for suffix_value in
                                     suffix_list]
             self.valid_file_type_extension += custom_suffixes_list
