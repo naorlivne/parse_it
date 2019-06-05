@@ -74,7 +74,7 @@ By default parse_it will look for the configuration options in the following ord
 * `ini` - [INI](https://en.wikipedia.org/wiki/INI_file) formatted files, any file ending with a .ini extension in the configuration folder is assumed to be this
 * `xml` - [XML](https://en.wikipedia.org/wiki/XML) formatted files, any file ending with a .xml extension in the configuration folder is assumed to be this
 * configuration default value - every configuration value can also optionally be set with a default value
-* global default value - - the parser object also has a global default value which can be set
+* global default value - the parser object also has a global default value which can be set
 
 if multiple files of the same type exists in the same folder parse_it will look in all of them in alphabetical order before going to the next type, 
 
