@@ -1,9 +1,9 @@
 from pathlib import Path
-from typing import Union
+from typing import Optional
 import os
 
 
-def read_file(file_path: str) -> Union[str, None]:
+def read_file(file_path: str) -> Optional[str]:
     """Read a file and returns it's contents (as a string) or None if file does not exist.
 
      Arguments:

@@ -1,8 +1,8 @@
 import sys
-from typing import Union
+from typing import Optional
 
 
-def read_command_line_arg(argument: str) -> Union[str, None]:
+def read_command_line_arg(argument: str) -> Optional[str]:
     """Read an command line argument.
 
             Arguments:

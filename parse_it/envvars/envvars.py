@@ -1,8 +1,8 @@
 import os
-from typing import Union
+from typing import Optional
 
 
-def read_envvar(envvar: str, force_uppercase: bool = True) -> Union[str, None]:
+def read_envvar(envvar: str, force_uppercase: bool = True) -> Optional[str]:
     """Read an environment variable .
 
             Arguments:

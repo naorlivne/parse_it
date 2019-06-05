@@ -8,16 +8,16 @@ from parse_it.file.toml import *
 from parse_it.file.xml import *
 from parse_it.type_estimate.type_estimate import *
 from parse_it.file.file_reader import *
-from typing import Any, Tuple, Union
+from typing import Any, Tuple, Optional
 import warnings
 
 
 class ParseIt:
 
-    def __init__(self, config_type_priority: Union[list, None] = None, global_default_value: Any = None,
+    def __init__(self, config_type_priority: Optional[list] = None, global_default_value: Any = None,
                  type_estimate: bool = True, recurse: bool = True, force_envvars_uppercase: bool = True,
-                 config_folder_location: Union[str, None] = None, envvar_prefix: Union[str, None] = None,
-                 custom_suffix_mapping: Union[dict, None] = None):
+                 config_folder_location: Optional[str] = None, envvar_prefix: Optional[str] = None,
+                 custom_suffix_mapping: Optional[dict] = None):
         """configures the object which is used to query all types of configuration inputs available and prioritize them
                 based on your needs
 
