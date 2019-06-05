@@ -3,7 +3,7 @@ import xmltodict
 import json
 
 
-def parse_xml_file(path_to_xml_file):
+def parse_xml_file(path_to_xml_file: str) -> dict:
     """take a path to a XML file & returns it as a valid python dict.
 
             Arguments:

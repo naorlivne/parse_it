@@ -1,8 +1,9 @@
 from pathlib import Path
+from typing import Union
 import os
 
 
-def read_file(file_path):
+def read_file(file_path: str) -> Union[str, None]:
     """Read a file and returns it's contents (as a string) or None if file does not exist.
 
      Arguments:
@@ -16,7 +17,7 @@ def read_file(file_path):
         return None
 
 
-def folder_exists(folder_path):
+def folder_exists(folder_path: str) -> bool:
     """Returns True if folder exists, False otherwise.
 
      Arguments:
@@ -26,7 +27,7 @@ def folder_exists(folder_path):
     return possible_folder.is_dir()
 
 
-def strip_trailing_slash(folder_path):
+def strip_trailing_slash(folder_path: str) -> str:
     """if a folder_path ends in a slash strip it & return the path, otherwise just return the path, only edge case is
         the root folder (/) which is kept the same.
 
@@ -38,7 +39,7 @@ def strip_trailing_slash(folder_path):
     return folder_path
 
 
-def file_types_in_folder(folder_path, file_types_endings, recurse=True):
+def file_types_in_folder(folder_path: str, file_types_endings: list, recurse: bool = True) -> dict:
     """list all the config file types found inside the given folder based on the filename extension
 
         Arguments:

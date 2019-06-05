@@ -1,7 +1,8 @@
 import os
+from typing import Union
 
 
-def read_envvar(envvar, force_uppercase=True):
+def read_envvar(envvar: str, force_uppercase: bool = True) -> Union[str, None]:
     """Read an environment variable .
 
             Arguments:
@@ -20,7 +21,7 @@ def read_envvar(envvar, force_uppercase=True):
     return envvar_value
 
 
-def envvar_defined(envvar, force_uppercase=True):
+def envvar_defined(envvar: str, force_uppercase: bool = True) -> bool:
     """Read an environment variable .
 
             Arguments:

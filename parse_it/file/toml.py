@@ -2,7 +2,7 @@ from parse_it.file.file_reader import *
 import toml
 
 
-def parse_toml_file(path_to_toml_file):
+def parse_toml_file(path_to_toml_file: str) -> dict:
     """take a path to a TOML file & returns it as a valid python dict.
 
             Arguments:

@@ -1,7 +1,8 @@
 import sys
+from typing import Union
 
 
-def read_command_line_arg(argument):
+def read_command_line_arg(argument: str) -> Union[str, None]:
     """Read an command line argument.
 
             Arguments:
@@ -18,7 +19,7 @@ def read_command_line_arg(argument):
     return reply
 
 
-def command_line_arg_defined(argument):
+def command_line_arg_defined(argument: str) -> bool:
     """Check if a command line argument is defined.
 
             Arguments:

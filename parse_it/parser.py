@@ -8,14 +8,16 @@ from parse_it.file.toml import *
 from parse_it.file.xml import *
 from parse_it.type_estimate.type_estimate import *
 from parse_it.file.file_reader import *
+from typing import Any, Tuple, Union
 import warnings
 
 
 class ParseIt:
 
-    def __init__(self, config_type_priority=None, global_default_value=None, type_estimate=True, recurse=True,
-                 force_envvars_uppercase=True, config_folder_location=None, envvar_prefix=None,
-                 custom_suffix_mapping=None):
+    def __init__(self, config_type_priority: Union[list, None] = None, global_default_value: Any = None,
+                 type_estimate: bool = True, recurse: bool = True, force_envvars_uppercase: bool = True,
+                 config_folder_location: Union[str, None] = None, envvar_prefix: Union[str, None] = None,
+                 custom_suffix_mapping: Union[dict, None] = None):
         """configures the object which is used to query all types of configuration inputs available and prioritize them
                 based on your needs
 
@@ -35,6 +37,8 @@ class ParseIt:
                         recurse -- True by default, if set to True will also look in all subfolders
                         force_envvars_uppercase -- if set to True (which is the default) will force all envvars keys to
                             be UPPERCASE
+                        config_folder_location -- the folder where the configuration files will be looked for, if None
+                            (default) will look in the current working directory
                         envvar_prefix -- will add a prefix for all envvars if set
                         custom_suffix_mapping -- a custom dict which will can map custom file suffixes to a file type
         """
@@ -127,7 +131,7 @@ class ParseIt:
         self.config_files_dict = file_types_in_folder(self.config_folder_location, file_types_in_folder_list,
                                                       recurse=recurse)
 
-    def read_configuration_variable(self, config_name, default_value=None, required=False):
+    def read_configuration_variable(self, config_name: str, default_value: Any = None, required: bool = False) -> Any:
         """reads a single key of the configuration and returns the first value of it found based on the priority of each
                 config file option given in the __init__ of the class
 
@@ -192,7 +196,7 @@ class ParseIt:
         return config_value
 
     @staticmethod
-    def _check_config_in_dict(config_key, config_dict):
+    def _check_config_in_dict(config_key: str, config_dict: dict) -> Tuple[bool, Any]:
         """internal function which checks if the key is in a given dict
 
             Arguments:
@@ -211,7 +215,7 @@ class ParseIt:
             config_found = False
         return config_found, config_value
 
-    def _parse_file_per_type(self, config_file_type, config_file_location):
+    def _parse_file_per_type(self, config_file_type: str, config_file_location: str) -> dict:
         """internal function which parses a file to a dict when given the file format type and it's location
 
             Arguments:

@@ -2,7 +2,7 @@ from parse_it.file.file_reader import *
 import hcl
 
 
-def parse_hcl_file(path_to_hcl_file):
+def parse_hcl_file(path_to_hcl_file: str) -> dict:
     """take a path to a HCL file & returns it as a valid python dict.
 
             Arguments:

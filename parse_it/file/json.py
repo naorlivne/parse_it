@@ -2,7 +2,7 @@ from parse_it.file.file_reader import *
 import json
 
 
-def parse_json_file(path_to_json_file):
+def parse_json_file(path_to_json_file: str) -> dict:
     """take a path to a JSON file & returns it as a valid python dict.
 
             Arguments:
