@@ -211,7 +211,7 @@ While generally not a good idea sometimes you can't avoid it and will need to us
 # Load parse_it
 from parse_it import ParseIt
 
-# Create API object which will only look for envvars then yaml & yml files then json files
+# Create API object which will only look for envvars then the custom_yaml_suffix then standard yaml & yml files then json files
 parser = ParseIt(config_type_priority=["envvars", "custom_yaml_suffix", "yaml", "yml", "json"], custom_suffix_mapping={"yaml": ["custom_yaml_suffix"]})
 
 ```
