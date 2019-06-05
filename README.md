@@ -107,7 +107,7 @@ my_config_key = parser.read_configuration_variable("my_undeclared_key")
 
 ```
 
-parse_it will by default attempt to figure out the type of value returned so even in the case of envvars & INI files you will get strings/dicts/etc:
+parse_it will by default attempt to figure out the type of value returned so even in the case of envvars, cli args & INI files you will get strings/dicts/etc:
 
 ```python
 # Load parse_it
