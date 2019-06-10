@@ -30,7 +30,7 @@ pip install parse_it[typing]
 # Load parse_it
 from parse_it import ParseIt
 
-# Create API object.
+# Create parse_it object.
 parser = ParseIt()
 
 # Now you can read your configuration values no matter how they are configured (cli args, envvars, json/yaml/etc files)
@@ -51,7 +51,7 @@ from parse_it import ParseIt
 # }
 # 
 
-# Create API object that will look for the config files in the "/etc/my_config_folder" without looking in any subfolder
+# Create parse_it object that will look for the config files in the "/etc/my_config_folder" without looking in any subfolder
 parser = ParseIt(config_folder_location="/etc/my_config_folder", recurse=False)
 my_config_key = parser.read_configuration_variable("my_int")
 # my_config_key will now be an int of 123
@@ -84,7 +84,7 @@ You can decide on using your own custom order of any subset of the above options
 # Load parse_it
 from parse_it import ParseIt
 
-# Create API object which will only look for envvars then yaml & yml files then json files
+# Create parse_it object which will only look for envvars then yaml & yml files then json files
 parser = ParseIt(config_type_priority=["envvars", "yaml", "yml", "json"])
 
 ```
@@ -95,12 +95,12 @@ The global default value by default is None but if needed it's simple to set it:
 # Load parse_it
 from parse_it import ParseIt
 
-# Create API object with a custom default value
+# Create parse_it object with a custom default value
 parser = ParseIt()
 my_config_key = parser.read_configuration_variable("my_undeclared_key")
 # my_config_key will now be a None
 
-# Create API object with a custom default value
+# Create parse_it object with a custom default value
 parser = ParseIt(global_default_value="my_default_value")
 my_config_key = parser.read_configuration_variable("my_undeclared_key")
 # my_config_key will now be an string of "my_default_value"
@@ -119,7 +119,7 @@ os.environ["MY_INT"] = "123"
 os.environ["MY_LIST"] = "['first_item', 'second_item', 'third_item']"
 os.environ["MY_DICT"] = "{'key': 'value'}"
 
-# Create API object
+# Create parse_it object
 parser = ParseIt()
 my_config_key = parser.read_configuration_variable("MY_INT")
 # my_config_key will now be an string of "123"
@@ -150,7 +150,7 @@ import os
 os.environ["MY_STRING"] = "UPPER"
 os.environ["my_string"] = "lower"
 
-# Create API object
+# Create parse_it object
 parser = ParseIt()
 my_config_key = parser.read_configuration_variable("my_string")
 # my_config_key will now be an string of "UPPER"
@@ -211,7 +211,7 @@ While generally not a good idea sometimes you can't avoid it and will need to us
 # Load parse_it
 from parse_it import ParseIt
 
-# Create API object which will only look for envvars then the custom_yaml_suffix then standard yaml & yml files then json files
+# Create parse_it object which will only look for envvars then the custom_yaml_suffix then standard yaml & yml files then json files
 parser = ParseIt(config_type_priority=["envvars", "custom_yaml_suffix", "yaml", "yml", "json"], custom_suffix_mapping={"yaml": ["custom_yaml_suffix"]})
 
 ```
