@@ -1,4 +1,4 @@
-certifi==2019.3.9
+certifi==2019.6.16
 chardet==3.0.4
 codecov==2.0.15
 configobj==5.0.6
