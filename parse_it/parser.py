@@ -39,7 +39,7 @@ class ParseIt:
                             be UPPERCASE
                         config_folder_location -- the folder where the configuration files will be looked for, if None
                             (default) will look in the current working directory
-                        envvar_prefix -- will add a prefix for all envvars if set
+                        envvar_prefix -- will add the given prefix for all envvars if set
                         custom_suffix_mapping -- a custom dict which will can map custom file suffixes to a file type
         """
 
