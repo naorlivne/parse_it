@@ -162,7 +162,7 @@ my_config_key = parser.read_configuration_variable("my_string")
 
 ```
 
-You can also easily add a prefix to all envvars:
+You can also easily add a prefix to all envvars (note that `force_envvars_uppercase` will also affect the given prefix):
 
 ```python
 # Load parse_it
