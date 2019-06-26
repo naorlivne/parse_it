@@ -477,6 +477,9 @@ class BaseTests(TestCase):
         os.environ["TEST_ENVVAR_ESTIMATE_FALSE_BOOL_FALSE"] = "false"
         os.environ["TEST_ENVVAR_ESTIMATE_FALSE_LIST"] = "['test', False, 3]"
         os.environ["TEST_ENVVAR_ESTIMATE_FALSE_DICT"] = "{'string': 'string', 'int': 1}"
+        os.environ["TEST_ENVVAR_ESTIMATE_FALSE_RECURSIVE_LIST"] = "['test', False, 3, ['test', True, 35, {'test': 12}]]"
+        os.environ["TEST_ENVVAR_ESTIMATE_FALSE_RECURSIVE_DICT"] = "{'string': 'string', 'int': 1, 'dict': " \
+                                                                  "{'test': [1, 2]}}"
         reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_FALSE_INT")
         self.assertEqual(reply, "123")
         self.assertNotEqual(reply, 123)
@@ -494,6 +497,12 @@ class BaseTests(TestCase):
         reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_FALSE_DICT")
         self.assertEqual(reply, "{'string': 'string', 'int': 1}")
         self.assertNotEqual(reply, {'string': 'string', 'int': 1})
+        reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_FALSE_RECURSIVE_LIST")
+        self.assertEqual(reply, "['test', False, 3, ['test', True, 35, {'test': 12}]]")
+        self.assertNotEqual(reply, ['test', False, 3, ['test', True, 35, {'test': 12}]])
+        reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_FALSE_RECURSIVE_DICT")
+        self.assertEqual(reply, "{'string': 'string', 'int': 1, 'dict': {'test': [1, 2]}}")
+        self.assertNotEqual(reply, {'string': 'string', 'int': 1, 'dict': {'test': [1, 2]}})
 
     def test_parser_read_configuration_variable_type_estimate_true(self):
         parser = ParseIt(type_estimate=True, config_folder_location=test_files_location)
@@ -503,6 +512,9 @@ class BaseTests(TestCase):
         os.environ["TEST_ENVVAR_ESTIMATE_TRUE_BOOL_FALSE"] = "false"
         os.environ["TEST_ENVVAR_ESTIMATE_TRUE_LIST"] = "['test', False, 3]"
         os.environ["TEST_ENVVAR_ESTIMATE_TRUE_DICT"] = "{'string': 'string', 'int': 1}"
+        os.environ["TEST_ENVVAR_ESTIMATE_TRUE_RECURSIVE_LIST"] = "['test', False, 3, ['test', True, 35, {'test': 12}]]"
+        os.environ["TEST_ENVVAR_ESTIMATE_TRUE_RECURSIVE_DICT"] = "{'string': 'string', 'int': 1, 'dict': " \
+                                                                 "{'test': [1, 2]}}"
         reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_TRUE_INT")
         self.assertNotEqual(reply, "123")
         self.assertEqual(reply, 123)
@@ -520,6 +532,12 @@ class BaseTests(TestCase):
         reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_TRUE_DICT")
         self.assertNotEqual(reply, "{'string': 'string', 'int': 1}")
         self.assertEqual(reply, {'string': 'string', 'int': 1})
+        reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_TRUE_RECURSIVE_LIST")
+        self.assertNotEqual(reply, "['test', False, 3, ['test', True, 35, {'test': 12}]]")
+        self.assertEqual(reply, ['test', False, 3, ['test', True, 35, {'test': 12}]])
+        reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_TRUE_RECURSIVE_DICT")
+        self.assertNotEqual(reply, "{'string': 'string', 'int': 1, 'dict': {'test': [1, 2]}}")
+        self.assertEqual(reply, {'string': 'string', 'int': 1, 'dict': {'test': [1, 2]}})
 
     def test_parser_read_configuration_variable_force_envvars_uppercase_true(self):
         parser = ParseIt(force_envvars_uppercase=True)
