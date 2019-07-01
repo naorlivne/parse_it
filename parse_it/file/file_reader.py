@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import Optional
 import os
+import warnings
 
 
 def read_file(file_path: str) -> Optional[str]:
@@ -45,13 +46,16 @@ def file_types_in_folder(folder_path: str, file_types_endings: list, recurse: bo
         Arguments:
             folder_path -- the path of the folder to be checked
             file_types_endings -- list of file types to look for
-            recurse -- True by default, if set to True will also look in all subfolders
+            recurse -- if True (default) will also look in all subfolders
         Returns:
             config_files_dict -- dict of {file_type: [list_of_file_names_of_said_type]}
     """
     folder_path = strip_trailing_slash(folder_path)
     if folder_exists(folder_path) is False:
-        raise FileNotFoundError
+        warnings.warn("config_folder_location does not exist, only envvars & cli args will be used")
+        config_files_dict = {}
+        for file_type_ending in file_types_endings:
+            config_files_dict[file_type_ending] = []
     else:
         config_files_dict = {}
         for file_type_ending in file_types_endings:
@@ -71,4 +75,4 @@ def file_types_in_folder(folder_path: str, file_types_endings: list, recurse: bo
                     if os.path.isfile(os.path.join(folder_path, file)) and file.endswith(file_type_ending):
                         config_files_dict[file_type_ending].append(file)
             config_files_dict[file_type_ending].sort()
-        return config_files_dict
+    return config_files_dict

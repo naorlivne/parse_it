@@ -85,9 +85,33 @@ class BaseTests(TestCase):
         reply = strip_trailing_slash(test_files_location)
         self.assertEqual(reply, test_files_location)
 
-    def test_file_reader_file_types_in_folder_folder_does_not_exist(self):
-        with self.assertRaises(FileNotFoundError):
+    def test_file_reader_file_types_in_folder_folder_does_not_exist_raise_warn(self):
+        with self.assertWarns(Warning):
             file_types_in_folder("totally_bogus_folder_location", VALID_FILE_TYPE_EXTENSIONS)
+
+    def test_read_envvar_folder_does_not_exist_raise_warn(self):
+        with self.assertWarns(Warning):
+            os.environ["TEST_CONFIG_FOLDER_NON_EXISTING_ENVVAR"] = "TEST_CONFIG_FOLDER_NON_EXISTING_ENVVAR"
+            ParseIt(config_folder_location="totally_bogus_folder_location", config_type_priority=[
+                "yaml",
+                "json",
+                "env_vars"
+            ])
+            reply = read_envvar("test_config_folder_non_existing_envvar")
+            self.assertEqual(reply, "TEST_CONFIG_FOLDER_NON_EXISTING_ENVVAR")
+
+    def test_read_cli_args_folder_does_not_exist_raise_warn(self):
+        with self.assertWarns(Warning):
+            ParseIt(config_folder_location="totally_bogus_folder_location", config_type_priority=[
+                "yaml",
+                "json",
+                "cli_args"
+            ])
+            testargs = ["parse_it_mock_script.py", "--test_cli_key_no_folder", "test_value"]
+            with mock.patch('sys.argv', testargs):
+                parser = ParseIt()
+                reply = parser.read_configuration_variable("test_cli_key_no_folder")
+                self.assertEqual(reply, "test_value")
 
     def test_file_reader_file_types_in_folder(self):
         reply = file_types_in_folder(test_files_location, VALID_FILE_TYPE_EXTENSIONS)

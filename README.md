@@ -85,7 +85,7 @@ You can decide on using your own custom order of any subset of the above options
 from parse_it import ParseIt
 
 # Create parse_it object which will only look for envvars then yaml & yml files then json files
-parser = ParseIt(config_type_priority=["envvars", "yaml", "yml", "json"])
+parser = ParseIt(config_type_priority=["env_vars", "yaml", "yml", "json"])
 
 ```
 
@@ -212,6 +212,6 @@ While generally not a good idea sometimes you can't avoid it and will need to us
 from parse_it import ParseIt
 
 # Create parse_it object which will only look for envvars then the custom_yaml_suffix then standard yaml & yml files then json files
-parser = ParseIt(config_type_priority=["envvars", "custom_yaml_suffix", "yaml", "yml", "json"], custom_suffix_mapping={"yaml": ["custom_yaml_suffix"]})
+parser = ParseIt(config_type_priority=["env_vars", "custom_yaml_suffix", "yaml", "yml", "json"], custom_suffix_mapping={"yaml": ["custom_yaml_suffix"]})
 
 ```
