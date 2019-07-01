@@ -92,12 +92,12 @@ class BaseTests(TestCase):
     def test_read_envvar_folder_does_not_exist_raise_warn(self):
         with self.assertWarns(Warning):
             os.environ["TEST_CONFIG_FOLDER_NON_EXISTING_ENVVAR"] = "TEST_CONFIG_FOLDER_NON_EXISTING_ENVVAR"
-            ParseIt(config_folder_location="totally_bogus_folder_location", config_type_priority=[
+            parser = ParseIt(config_folder_location="totally_bogus_folder_location", config_type_priority=[
                 "yaml",
                 "json",
                 "env_vars"
             ])
-            reply = read_envvar("test_config_folder_non_existing_envvar")
+            reply = parser.read_configuration_variable("test_config_folder_non_existing_envvar")
             self.assertEqual(reply, "TEST_CONFIG_FOLDER_NON_EXISTING_ENVVAR")
 
     def test_read_cli_args_folder_does_not_exist_raise_warn(self):
