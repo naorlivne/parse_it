@@ -52,7 +52,7 @@ def file_types_in_folder(folder_path: str, file_types_endings: list, recurse: bo
     """
     folder_path = strip_trailing_slash(folder_path)
     if folder_exists(folder_path) is False:
-        warnings.warn("config_folder_location does not exist, only envvars & cli args will be used")
+        warnings.warn("config folder " + folder_path + " does not exist, only envvars & cli args will be used")
         config_files_dict = {}
         for file_type_ending in file_types_endings:
             config_files_dict[file_type_ending] = []
