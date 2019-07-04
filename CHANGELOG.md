@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.9.1](https://github.com/naorlivne/parse_it/tree/0.9.1) (2019-07-04)
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/0.9.0...0.9.1)
+
 ## [0.9.0](https://github.com/naorlivne/parse_it/tree/0.9.0) (2019-07-01)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/0.8.1...0.9.0)
 
@@ -32,6 +35,7 @@
 **Implemented enhancements:**
 
 - Add a changelog [\#12](https://github.com/naorlivne/parse_it/issues/12)
+- Bump requests from 2.21.0 to 2.22.0 [\#13](https://github.com/naorlivne/parse_it/pull/13) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [0.5.11](https://github.com/naorlivne/parse_it/tree/0.5.11) (2019-05-14)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/0.5.10...0.5.11)
@@ -46,7 +50,6 @@
 - move github templates to .github/ directory [\#9](https://github.com/naorlivne/parse_it/issues/9)
 - add python version specifiers to pypi metadata [\#7](https://github.com/naorlivne/parse_it/issues/7)
 - Add recursive flag support to config file location [\#3](https://github.com/naorlivne/parse_it/issues/3)
-- Bump requests from 2.21.0 to 2.22.0 [\#13](https://github.com/naorlivne/parse_it/pull/13) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 **Merged pull requests:**
 
