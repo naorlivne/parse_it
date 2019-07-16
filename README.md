@@ -112,9 +112,9 @@ parse_it will by default attempt to figure out the type of value returned so eve
 ```python
 # Load parse_it
 from parse_it import ParseIt
-import os
 
 # This is just for the example
+import os
 os.environ["MY_INT"] = "123"
 os.environ["MY_LIST"] = "['first_item', 'second_item', 'third_item']"
 os.environ["MY_DICT"] = "{'key': 'value'}"
@@ -144,9 +144,9 @@ As envvars recommended syntax is to have all keys be UPPERCASE which is diffrent
 ```python
 # Load parse_it
 from parse_it import ParseIt
-import os
 
 # This is just for the example
+import os
 os.environ["MY_STRING"] = "UPPER"
 os.environ["my_string"] = "lower"
 
@@ -167,9 +167,9 @@ You can also easily add a prefix to all envvars (note that `force_envvars_upperc
 ```python
 # Load parse_it
 from parse_it import ParseIt
-import os
 
 # This is just for the example
+import os
 os.environ["PREFIX_MY_INT"] = "123"
 
 # add a prefix to all envvars used
@@ -213,5 +213,29 @@ from parse_it import ParseIt
 
 # Create parse_it object which will only look for envvars then the custom_yaml_suffix then standard yaml & yml files then json files
 parser = ParseIt(config_type_priority=["env_vars", "custom_yaml_suffix", "yaml", "yml", "json"], custom_suffix_mapping={"yaml": ["custom_yaml_suffix"]})
+
+```
+
+You might sometimes want to check that the enduser passed to your config a specific type of variable, parse_it allows you to easily check if a value belongs to a given list of types by setting `allowed_types` which will then raise a TypeError if the value type given is not in the list of `allowed_types`, by default this is set to None so no type ensuring takes place:
+
+```python
+# Load parse_it
+from parse_it import ParseIt
+
+# This is just for the example
+import os
+os.environ["ONLY_INTGERS_PLEASE"] = "123"
+
+# Create parse_it object which will only look for envvars then the custom_yaml_suffix then standard yaml & yml files then json files
+parser = ParseIt()
+
+# skips the type ensuring check as it's not set so all types are accepted
+my_config_key = parser.read_configuration_variable("only_intgers_please")
+
+# the type of the variable value is in the list of allowed_types so no errors\warning\etc will be raised
+my_config_key = parser.read_configuration_variable("only_intgers_please", allowed_types=[int])
+
+# will raise a TypeError
+my_config_key = parser.read_configuration_variable("only_intgers_please", allowed_types=[str, dict, list, None])
 
 ```

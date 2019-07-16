@@ -851,3 +851,19 @@ class BaseTests(TestCase):
             self.assertEqual(reply, "test_value")
             reply = parser.read_configuration_variable("test_cli_int")
             self.assertEqual(reply, 123)
+
+    def test_parser_read_configuration_variable_check_allowed_types_None(self):
+        parser = ParseIt(config_folder_location=test_files_location)
+        reply_json = parser.read_configuration_variable("file_type", allowed_types=None)
+        self.assertEqual(reply_json, "json")
+
+    def test_parser_read_configuration_variable_check_allowed_not_in_types_list(self):
+        with self.assertRaises(TypeError):
+            parser = ParseIt(config_folder_location=test_files_location)
+            reply_json = parser.read_configuration_variable("file_type", allowed_types=[int, list, dict, None, float])
+            self.assertEqual(reply_json, "json")
+
+    def test_parser_read_configuration_variable_check_allowed_in_types_list(self):
+        parser = ParseIt(config_folder_location=test_files_location)
+        reply_json = parser.read_configuration_variable("file_type", allowed_types=[int, str, dict, None, float])
+        self.assertEqual(reply_json, "json")

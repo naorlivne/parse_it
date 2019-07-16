@@ -131,7 +131,8 @@ class ParseIt:
         self.config_files_dict = file_types_in_folder(self.config_folder_location, file_types_in_folder_list,
                                                       recurse=recurse)
 
-    def read_configuration_variable(self, config_name: str, default_value: Any = None, required: bool = False) -> Any:
+    def read_configuration_variable(self, config_name: str, default_value: Any = None, required: bool = False,
+                                    allowed_types: Optional[list] = None) -> Any:
         """reads a single key of the configuration and returns the first value of it found based on the priority of each
                 config file option given in the __init__ of the class
 
@@ -141,6 +142,9 @@ class ParseIt:
                         required -- defaults to False, if set to True will ignore default_value & global_default_value
                             and will raise an ValueError if the configuration is not configured in any of the config
                             files/envvars/cli args
+                        allowed_types -- Defaults to None, an optional list of types that are accepted for the variable
+                            to be, if set a check will be preformed and if the variables value given is not of any of
+                            the types in said list a TypeError will be raised
                     Returns:
                         config_value -- the value of the configuration requested
         """
@@ -193,6 +197,10 @@ class ParseIt:
         # if type estimation is True try to guess the type of the value
         if self.type_estimate is True:
             config_value = estimate_type(config_value)
+
+        if allowed_types is not None:
+            if type(config_value) not in allowed_types:
+                raise TypeError
         return config_value
 
     @staticmethod
