@@ -4,6 +4,9 @@ test_bool_true = true
 test_bool_false = false
 test_int = 123
 test_float = 123.123
+test_dict = {
+  "hcl_dict_key" = "hcl_dict_value"
+}
 test_list = [
   "test1",
   "test2",
