@@ -203,6 +203,31 @@ class ParseIt:
                 raise TypeError
         return config_value
 
+    def read_multiple_configuration_variables(self, config_names: list, default_value: Any = None,
+                                              required: bool = False, allowed_types: Optional[list] = None) -> dict:
+        """reads multiple keys of the configuration and returns the first value of each it found based on the priority
+                of each config file option given in the __init__ of the class, basically a simple loop of the
+                read_configuration_variable function with all the configurable values being the same in all iterations
+
+                    Arguments:
+                        config_names -- a list of the configuration key names you want to get the value of
+                        default_value -- defaults to None, see config_type_priority in class init for it's use
+                        required -- defaults to False, if set to True will ignore default_value & global_default_value
+                            and will raise an ValueError if the configuration is not configured in any of the config
+                            files/envvars/cli args
+                        allowed_types -- Defaults to None, an optional list of types that are accepted for the variable
+                            to be, if set a check will be preformed and if the variables value given is not of any of
+                            the types in said list a TypeError will be raised
+                    Returns:
+                        config_value_dict -- a dict of the key/value pairs of all the configurations requested
+        """
+
+        config_value_dict = {}
+        for config_name in config_names:
+            config_value_dict[config_name] = self.read_configuration_variable(config_name, default_value, required,
+                                                                              allowed_types)
+        return config_value_dict
+
     @staticmethod
     def _check_config_in_dict(config_key: str, config_dict: dict) -> Tuple[bool, Any]:
         """internal function which checks if the key is in a given dict
@@ -215,6 +240,7 @@ class ParseIt:
                 config_value -- the value of the configuration requested, returns None if the key is not part of the
                     the dict
         """
+
         if config_key in config_dict:
             config_value = config_dict[config_key]
             config_found = True
@@ -232,6 +258,7 @@ class ParseIt:
             Returns:
                 file_dict -- a parsed dict of the config file data
         """
+
         if config_file_type in self.suffix_file_type_mapping["json"]:
             file_dict = parse_json_file(config_file_location)
         elif config_file_type in self.suffix_file_type_mapping["yaml"]:

@@ -239,3 +239,17 @@ my_config_key = parser.read_configuration_variable("only_intgers_please", allowe
 my_config_key = parser.read_configuration_variable("only_intgers_please", allowed_types=[str, dict, list, None])
 
 ```
+
+Sometimes you'll need a lot of configuration keys to have the same parse_it configuration params, rather then looping over them yourself this can be achieved with the `read_multiple_configuration_variables` function that you will give it a list of the configuration keys you want & will apply the same configuration to all and return you a dict with the key/value of the configurations back.
+
+```python
+# Load parse_it
+from parse_it import ParseIt
+
+# Create parse_it object.
+parser = ParseIt()
+
+# Read multiple config keys at once, will return {"my_first_config_key": "default_value", "my_second_config_key": "default_value"} in the example below
+my_config_key = parser.read_multiple_configuration_variables(["my_first_config_key", "my_second_config_key"], default_value="default_value", required=False, allowed_types=[str, list, dict, int])
+
+```

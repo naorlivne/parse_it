@@ -872,3 +872,42 @@ class BaseTests(TestCase):
         parser = ParseIt(config_folder_location=test_files_location)
         reply_json = parser.read_configuration_variable("file_type", allowed_types=[int, str, dict, None, float])
         self.assertEqual(reply_json, "json")
+
+    def test_parser_read_multiple_configuration_variables_works_multiple_list(self):
+        expected_reply = {
+            'file_type': 'json',
+            'test_hcl': {
+                'test_hcl_name': {
+                    'test_hcl_key': 'test_hcl_value'
+                }
+            },
+            'test_int': 123,
+            'test_list': [
+                'test1',
+                'test2',
+                'test3'
+            ]
+        }
+        parser = ParseIt(config_folder_location=test_files_location)
+        reply_json = parser.read_multiple_configuration_variables(["file_type", "test_hcl", "test_int", "test_list"])
+        self.assertEqual(reply_json, expected_reply)
+
+    def test_parser_read_multiple_configuration_variables_default_value(self):
+        expected_reply = {
+            'file_type': 'json',
+            'non_existing_value': 'test'
+        }
+        parser = ParseIt(config_folder_location=test_files_location)
+        reply_json = parser.read_multiple_configuration_variables(["file_type", "non_existing_value"],
+                                                                  default_value="test")
+        self.assertEqual(reply_json, expected_reply)
+
+    def test_parser_read_multiple_configuration_variables_required_true_raise_error(self):
+        parser = ParseIt(config_folder_location=test_files_location)
+        with self.assertRaises(ValueError):
+            parser.read_multiple_configuration_variables(["file_type", "non_existing_value"], required=True)
+
+    def test_parser_read_multiple_configuration_variables_allowed_types_raise_error(self):
+        parser = ParseIt(config_folder_location=test_files_location)
+        with self.assertRaises(TypeError):
+            parser.read_multiple_configuration_variables(["file_type", "non_existing_value"], allowed_types=[int, dict])
