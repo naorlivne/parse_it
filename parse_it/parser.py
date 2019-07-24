@@ -43,6 +43,7 @@ class ParseIt:
                         custom_suffix_mapping -- a custom dict which will can map custom file suffixes to a file type
         """
 
+        # first we describe the standard file type suffix mapping and what file types are are standard file extensions
         self.suffix_file_type_mapping = {
             "json": [
                 "json"
@@ -82,6 +83,8 @@ class ParseIt:
             "xml"
         ]
 
+        # now we add any custom file suffixes the user wanted to the list of possible file extensions and valid
+        # suffixes
         if custom_suffix_mapping is not None:
             for file_type, custom_file_suffix in custom_suffix_mapping.items():
                 self.suffix_file_type_mapping[file_type] = self.suffix_file_type_mapping[file_type] + custom_file_suffix
@@ -124,6 +127,8 @@ class ParseIt:
             self.config_folder_location = os.getcwd()
         else:
             self.config_folder_location = config_folder_location
+
+        # populate the config_files_dict with the list of locations for each file type
         file_types_in_folder_list = []
         for config_type in self.config_type_priority:
             if config_type in self.valid_file_type_extension:
