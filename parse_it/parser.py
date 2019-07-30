@@ -15,7 +15,7 @@ import warnings
 class ParseIt:
 
     def __init__(self, config_type_priority: Optional[list] = None, global_default_value: Any = None,
-                 type_estimate: bool = True, recurse: bool = True, force_envvars_uppercase: bool = True,
+                 type_estimate: bool = True, recurse: bool = False, force_envvars_uppercase: bool = True,
                  config_folder_location: Optional[str] = None, envvar_prefix: Optional[str] = None,
                  custom_suffix_mapping: Optional[dict] = None):
         """configures the object which is used to query all types of configuration inputs available and prioritize them
@@ -34,7 +34,7 @@ class ParseIt:
                         type_estimate -- if set to True (True by default) will try to automatically figure out the type
                             of the returned value on it's own, useful for envvars & ini type files which always return a
                             string otherwise
-                        recurse -- True by default, if set to True will also look in all subfolders
+                        recurse -- False by default, if set to True will also look in all subfolders
                         force_envvars_uppercase -- if set to True (which is the default) will force all envvars keys to
                             be UPPERCASE
                         config_folder_location -- the folder where the configuration files will be looked for, if None

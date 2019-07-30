@@ -38,21 +38,21 @@ my_config_key = parser.read_configuration_variable("my_config_key")
 
 ```
 
-By default all configuration files will be assumed to be in the workdir or any (recursive) subfolder but that too can be easily changed:
+By default all configuration files will be assumed to be in the workdir but if you want you can also easily set it to look in all subfolders recursively:
 
 ```python
 # Load parse_it
 from parse_it import ParseIt
 
-# cat /etc/my_config_folder/my_config.json >>>
+# cat /etc/my_config_folder/my_inner_conf_folder/my_config.json >>>
 #
 # {
 #   "my_int": 123
 # }
 # 
 
-# Create parse_it object that will look for the config files in the "/etc/my_config_folder" without looking in any subfolder
-parser = ParseIt(config_folder_location="/etc/my_config_folder", recurse=False)
+# Create parse_it object that will look for the config files in the "/etc/my_config_folder" and all of it's subfolders
+parser = ParseIt(config_folder_location="/etc/my_config_folder", recurse=True)
 my_config_key = parser.read_configuration_variable("my_int")
 # my_config_key will now be an int of 123
 
