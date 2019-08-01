@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/naorlivne/parse_it/tree/HEAD)
+
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/2.0.0...HEAD)
+
+**Implemented enhancements:**
+
+- Bump pyyaml from 5.1.1 to 5.1.2 [\#21](https://github.com/naorlivne/parse_it/pull/21) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+
 ## [2.0.0](https://github.com/naorlivne/parse_it/tree/2.0.0) (2019-07-30)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/1.1.0...2.0.0)
 
