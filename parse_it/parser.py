@@ -203,9 +203,12 @@ class ParseIt:
         if self.type_estimate is True:
             config_value = estimate_type(config_value)
 
+        # if the type the config is in the end isn't in the list of allowed_types and allowed_types list is set raise
+        # a TypeError
         if allowed_types is not None:
             if type(config_value) not in allowed_types:
                 raise TypeError
+
         return config_value
 
     def read_multiple_configuration_variables(self, config_names: list, default_value: Any = None,
