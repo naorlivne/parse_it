@@ -120,9 +120,9 @@ class ParseIt:
                 "ini",
                 "xml"
             ]
-
         else:
             self.config_type_priority = config_type_priority
+
         if config_folder_location is None:
             self.config_folder_location = os.getcwd()
         else:
