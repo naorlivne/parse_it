@@ -112,6 +112,12 @@ class BaseTests(TestCase):
             reply = parser.read_configuration_variable("test_config_folder_non_existing_envvar")
             self.assertEqual(reply, "TEST_CONFIG_FOLDER_NON_EXISTING_ENVVAR")
 
+    def test_read_envvar_single_file_config(self):
+        os.environ["FILE_TYPE"] = "envvar"
+        parser = ParseIt(config_location=test_files_location + "/test.hcl")
+        reply = parser.read_configuration_variable("file_type")
+        self.assertEqual(reply, "envvar")
+
     def test_read_cli_args_folder_does_not_exist_raise_warn(self):
         with self.assertWarns(Warning):
             ParseIt(config_location="totally_bogus_folder_location", config_type_priority=[
