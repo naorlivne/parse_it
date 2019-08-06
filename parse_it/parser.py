@@ -16,7 +16,7 @@ class ParseIt:
 
     def __init__(self, config_type_priority: Optional[list] = None, global_default_value: Any = None,
                  type_estimate: bool = True, recurse: bool = False, force_envvars_uppercase: bool = True,
-                 config_folder_location: Optional[str] = None, envvar_prefix: Optional[str] = None,
+                 config_location: Optional[str] = None, envvar_prefix: Optional[str] = None,
                  custom_suffix_mapping: Optional[dict] = None):
         """configures the object which is used to query all types of configuration inputs available and prioritize them
                 based on your needs
@@ -24,12 +24,12 @@ class ParseIt:
                     Arguments:
                         config_type_priority -- a list of file types extensions your willing to accept, list order
                             dictates priority of said file types, default list order is as follow:
-                                [ "cli_args", "envvars", "json", "yaml", "yml", "toml", "tml", "hcl", "tf", "conf",
-                                "cfg", "ini", "xml" ]
+                            [ "cli_args", "envvars", "json", "yaml", "yml", "toml", "tml", "hcl", "tf", "conf", "cfg",
+                            "ini", "xml" ]
                             in the case of multiple files of same type they are all read and the first one that has the
-                                needed key is the one used.
+                            needed key is the one used.
                             if no value is returned then the default_value declared at the read_configuration_variable
-                                will be used and if that is not configured then the global_default_value will be used
+                            will be used and if that is not configured then the global_default_value will be used
                         global_default_value -- defaults to None, see config_type_priority for it's use
                         type_estimate -- if set to True (True by default) will try to automatically figure out the type
                             of the returned value on it's own, useful for envvars & ini type files which always return a
@@ -37,8 +37,10 @@ class ParseIt:
                         recurse -- False by default, if set to True will also look in all subfolders
                         force_envvars_uppercase -- if set to True (which is the default) will force all envvars keys to
                             be UPPERCASE
-                        config_folder_location -- the folder where the configuration files will be looked for, if None
-                            (default) will look in the current working directory
+                        config_location -- the location where the configuration file(s) will be looked for, if None
+                            (default) will look in the current working directory, accepts either a directory which will
+                            then look in all files in that directory (possibly recursivly depanding on the recurse flag)
+                            or if a standard file will look only in said file
                         envvar_prefix -- will add the given prefix for all envvars if set
                         custom_suffix_mapping -- a custom dict which will can map custom file suffixes to a file type
         """
@@ -123,18 +125,32 @@ class ParseIt:
         else:
             self.config_type_priority = config_type_priority
 
-        if config_folder_location is None:
-            self.config_folder_location = os.getcwd()
+        if config_location is None:
+            self.config_location = os.getcwd()
         else:
-            self.config_folder_location = config_folder_location
+            self.config_location = config_location
 
-        # populate the config_files_dict with the list of locations for each file type
-        file_types_in_folder_list = []
+        # create a list of all valid types
+        valid_config_types = []
         for config_type in self.config_type_priority:
             if config_type in self.valid_file_type_extension:
-                file_types_in_folder_list.append(config_type)
-        self.config_files_dict = file_types_in_folder(self.config_folder_location, file_types_in_folder_list,
-                                                      recurse=recurse)
+                valid_config_types.append(config_type)
+
+        # we check if the config is a file or a folder
+        self.config_file_type = file_or_folder(self.config_location)
+
+        # if config is dict or not declared populate the config_files_dict with the list of locations for each file type
+        if self.config_file_type == "folder" or self.config_file_type is None:
+            self.config_files_dict = file_types_in_folder(self.config_location, valid_config_types,
+                                                          recurse=recurse)
+        # if the config is a file populate the config_files_dict with that single file and have the rest file types
+        # be blank
+        elif self.config_file_type == "file":
+            self.config_files_dict = {}
+            for file_type_ending in valid_config_types:
+                self.config_files_dict[file_type_ending] = []
+                if self.config_location.endswith(file_type_ending):
+                    self.config_files_dict[file_type_ending].append(self.config_location)
 
     def read_configuration_variable(self, config_name: str, default_value: Any = None, required: bool = False,
                                     allowed_types: Optional[list] = None) -> Any:
@@ -177,8 +193,11 @@ class ParseIt:
             # found will break outside of both loops
             elif config_type in self.valid_file_type_extension:
                 for config_file in self.config_files_dict[config_type]:
-                    file_dict = self._parse_file_per_type(config_type, os.path.join(self.config_folder_location,
-                                                                                    config_file))
+                    if self.config_file_type == "file":
+                        file_dict = self._parse_file_per_type(config_type, config_file)
+                    else:
+                        file_dict = self._parse_file_per_type(config_type, os.path.join(self.config_location,
+                                                                                        config_file))
                     config_key_found, config_value = self._check_config_in_dict(config_name, file_dict)
                     if config_key_found is True:
                         break

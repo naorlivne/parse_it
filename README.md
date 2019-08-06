@@ -52,7 +52,7 @@ from parse_it import ParseIt
 # 
 
 # Create parse_it object that will look for the config files in the "/etc/my_config_folder" and all of it's subfolders
-parser = ParseIt(config_folder_location="/etc/my_config_folder", recurse=True)
+parser = ParseIt(config_location="/etc/my_config_folder", recurse=True)
 my_config_key = parser.read_configuration_variable("my_int")
 # my_config_key will now be an int of 123
 
@@ -253,3 +253,21 @@ parser = ParseIt()
 my_config_key = parser.read_multiple_configuration_variables(["my_first_config_key", "my_second_config_key"], default_value="default_value", required=False, allowed_types=[str, list, dict, int])
 
 ```
+
+You can also read a single file rather then a config directory.
+
+```python
+# Load parse_it
+from parse_it import ParseIt
+
+# cat /etc/my_config_folder/my_config.json >>>
+#
+# {
+#   "my_int": 123
+# }
+# 
+
+# Create parse_it object that will look at a single config file, envvars & cli
+parser = ParseIt(config_location="/etc/my_config_folder/my_config.json")
+my_config_key = parser.read_configuration_variable("my_int")
+# my_config_key will now be an int of 123

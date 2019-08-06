@@ -28,6 +28,21 @@ def folder_exists(folder_path: str) -> bool:
     return possible_folder.is_dir()
 
 
+def file_or_folder(checked_path: str) -> Optional[str]:
+    """Returns "file" if the file_path is a file, "folder" if it's a dir & None otherwise.
+
+     Arguments:
+    checked_path -- the path of the file to be checked if it's a file or a folder
+    """
+    checked_file_path = Path(strip_trailing_slash(checked_path))
+    if checked_file_path.is_dir() is True:
+        return "folder"
+    elif checked_file_path.is_file() is True:
+        return "file"
+    else:
+        return None
+
+
 def strip_trailing_slash(folder_path: str) -> str:
     """if a folder_path ends in a slash strip it & return the path, otherwise just return the path, only edge case is
         the root folder (/) which is kept the same.
@@ -52,7 +67,7 @@ def file_types_in_folder(folder_path: str, file_types_endings: list, recurse: bo
     """
     folder_path = strip_trailing_slash(folder_path)
     if folder_exists(folder_path) is False:
-        warnings.warn("config folder " + folder_path + " does not exist, only envvars & cli args will be used")
+        warnings.warn("config_location " + folder_path + " does not exist, only envvars & cli args will be used")
         config_files_dict = {}
         for file_type_ending in file_types_endings:
             config_files_dict[file_type_ending] = []
