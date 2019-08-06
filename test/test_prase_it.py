@@ -416,16 +416,16 @@ class BaseTests(TestCase):
             'cfg': [],
             'conf': [],
             'hcl': [],
-             'ini': [],
-             'json': [
-                 'test/test_files/test.json'
-             ],
-             'tf': [],
-             'tml': [],
-             'toml': [],
-             'xml': [],
-             'yaml': [],
-             'yml': []
+            'ini': [],
+            'json': [
+                'test/test_files/test.json'
+            ],
+            'tf': [],
+            'tml': [],
+            'toml': [],
+            'xml': [],
+            'yaml': [],
+            'yml': []
         }
         expected_config_type_priority = ['cli_args', 'env_vars', 'json', 'yaml', 'yml', 'toml', 'tml', 'hcl', 'tf',
                                          'conf', 'cfg', 'ini', 'xml']
