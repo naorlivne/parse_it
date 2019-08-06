@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/naorlivne/parse_it/tree/HEAD)
+
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/3.0.0...HEAD)
+
+**Closed issues:**
+
+- Add the option of giving a single config file location rather then a config folder location [\#22](https://github.com/naorlivne/parse_it/issues/22)
+
 ## [3.0.0](https://github.com/naorlivne/parse_it/tree/3.0.0) (2019-08-06)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/2.0.0...3.0.0)
 
