@@ -528,8 +528,8 @@ class BaseTests(TestCase):
     def test_parser_read_configuration_single_file(self):
         parser = ParseIt(config_location=test_files_location + "/test.hcl")
         reply = parser.read_configuration_variable("file_type")
-        expected_reply_xml = "hcl"
-        self.assertEqual(reply, expected_reply_xml)
+        expected_reply = "hcl"
+        self.assertEqual(reply, expected_reply)
 
     def test_parser_read_configuration_variable_default_value(self):
         parser = ParseIt(config_location=test_files_location)
