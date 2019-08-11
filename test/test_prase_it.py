@@ -730,6 +730,24 @@ class BaseTests(TestCase):
         reply = envvar_defined("test_env", force_uppercase=False)
         self.assertFalse(reply)
 
+    def test_read_all_envvars_to_dict_force_uppercase_true(self):
+        # Not testing the full envvar dict as it changes due to PATH on every machine the unit test will run on
+        os.environ["TEST_ENV"] = "123"
+        os.environ["test_env_lowercase"] = "456"
+        reply = read_all_envvars_to_dict(force_uppercase=True)
+        self.assertEqual(type(reply), dict)
+        self.assertEqual(reply["test_env"], "123")
+        self.assertEqual(reply["test_env_lowercase"], "456")
+
+    def test_read_all_envvars_to_dict_force_uppercase_false(self):
+        # Not testing the full envvar dict as it changes due to PATH on every machine the unit test will run on
+        os.environ["TEST_ENV"] = "123"
+        os.environ["test_env_lowercase"] = "456"
+        reply = read_all_envvars_to_dict(force_uppercase=False)
+        self.assertEqual(type(reply), dict)
+        self.assertEqual(reply["TEST_ENV"], "123")
+        self.assertEqual(reply["test_env_lowercase"], "456")
+
     def test_parser_config_found_in_key(self):
         parser = ParseIt(config_location=test_files_location)
         config_found_reply, config_value_reply = parser._check_config_in_dict("test_key", {"test_key": "test_value"})
