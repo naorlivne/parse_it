@@ -954,6 +954,27 @@ class BaseTests(TestCase):
             reply = command_line_arg_defined("test_key")
             self.assertTrue(reply)
 
+    def test_command_line_args_read_all_cli_args_to_dict(self):
+        testargs = ["parse_it_mock_script.py", "--test_key", "test_value", "--another_test", "another_value"]
+        expected_reply = {"test_key": "test_value", "another_test": "another_value"}
+        with mock.patch('sys.argv', testargs):
+            reply = read_all_cli_args_to_dict()
+            self.assertEqual(reply, expected_reply)
+
+    def test_command_line_args_read_all_cli_args_to_dict_no_cli_args(self):
+        testargs = ["parse_it_mock_script.py"]
+        expected_reply = {}
+        with mock.patch('sys.argv', testargs):
+            reply = read_all_cli_args_to_dict()
+            self.assertEqual(reply, expected_reply)
+
+    def test_command_line_args_read_all_cli_args_to_dict_no_cli_args_with_double_dash(self):
+        testargs = ["parse_it_mock_script.py", "-wrong_format_test_key", "test_value"]
+        expected_reply = {}
+        with mock.patch('sys.argv', testargs):
+            reply = read_all_cli_args_to_dict()
+            self.assertEqual(reply, expected_reply)
+
     def test_parser_read_configuration_from_cli_arg(self):
         testargs = ["parse_it_mock_script.py", "--test_cli_key", "test_value", "--test_cli_int", "123"]
         with mock.patch('sys.argv', testargs):

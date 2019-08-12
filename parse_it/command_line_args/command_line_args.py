@@ -6,7 +6,7 @@ def read_command_line_arg(argument: str) -> Optional[str]:
     """Read an command line argument.
 
             Arguments:
-                argument -- name of the argument to get the value of
+                argument -- name of the cli argument to get the value of, will auto append "--" to it
             Returns:
                 the value of the argument, None if doesn't exist
     """
@@ -23,7 +23,7 @@ def command_line_arg_defined(argument: str) -> bool:
     """Check if a command line argument is defined.
 
             Arguments:
-                argument -- name of the envvar to get the value of
+                argument -- name of the cli argument to get the value of, will auto append "--" to it
             Returns:
                 True if argument is declared, False otherwise
     """
@@ -32,3 +32,18 @@ def command_line_arg_defined(argument: str) -> bool:
         return True
     else:
         return False
+
+
+def read_all_cli_args_to_dict() -> dict:
+    """Returns all cli args (that start with --) key/value pairs as a single dict.
+
+                Returns:
+                    A dict of all cli arguments key/value pair
+        """
+    argument_dict = {}
+    arg_list = sys.argv
+    for argument in arg_list:
+        if argument.startswith("--"):
+            key_index = arg_list.index(argument) + 1
+            argument_dict[argument[2:]] = arg_list[key_index]
+    return argument_dict
