@@ -2,7 +2,14 @@
 
 ## [Unreleased](https://github.com/naorlivne/parse_it/tree/HEAD)
 
-[Full Changelog](https://github.com/naorlivne/parse_it/compare/3.0.0...HEAD)
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/3.1.0...HEAD)
+
+**Closed issues:**
+
+- Add a function to read all configurtion paramters from all possible sources into a single dict [\#19](https://github.com/naorlivne/parse_it/issues/19)
+
+## [3.1.0](https://github.com/naorlivne/parse_it/tree/3.1.0) (2019-08-12)
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/3.0.0...3.1.0)
 
 **Closed issues:**
 
