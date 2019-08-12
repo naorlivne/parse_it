@@ -1224,3 +1224,15 @@ class BaseTests(TestCase):
             self.assertEqual(reply["test_float"], 123.123)
             self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
             self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
+
+    def test_parser_read_all_configuration_variables_read_single_file(self):
+        parser = ParseIt(config_location=test_files_location + "/test.hcl", type_estimate=True)
+        reply = parser.read_all_configuration_variables()
+        self.assertEqual(reply["file_type"], "hcl")
+        self.assertEqual(reply["test_string"], "testing")
+        self.assertTrue(reply["test_bool_true"])
+        self.assertFalse(reply["test_bool_false"])
+        self.assertEqual(reply["test_int"], 123)
+        self.assertEqual(reply["test_float"], 123.123)
+        self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
+        self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
