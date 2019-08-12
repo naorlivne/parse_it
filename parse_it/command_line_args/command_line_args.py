@@ -37,8 +37,8 @@ def command_line_arg_defined(argument: str) -> bool:
 def read_all_cli_args_to_dict() -> dict:
     """Returns all cli args (that start with --) key/value pairs as a single dict.
 
-                Returns:
-                    A dict of all cli arguments key/value pair
+            Returns:
+                argument_dict -- A dict of all cli arguments key/value pair
         """
     argument_dict = {}
     arg_list = sys.argv

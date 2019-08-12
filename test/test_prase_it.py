@@ -157,7 +157,7 @@ class BaseTests(TestCase):
                 'test.xml'
             ]
         }
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
 
     def test_ini(self):
         reply = parse_ini_file(test_files_location + "/test.ini")
@@ -175,7 +175,7 @@ class BaseTests(TestCase):
                 'test_ini_key': 'test_ini_value'
             }
         }
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
 
     def test_json(self):
         reply = parse_json_file(test_files_location + "/test.json")
@@ -195,7 +195,7 @@ class BaseTests(TestCase):
                 'test_json_key': 'test_json_value'
             }
         }
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
 
     def test_hcl(self):
         reply = parse_hcl_file(test_files_location + "/test.hcl")
@@ -220,7 +220,7 @@ class BaseTests(TestCase):
                 }
             }
         }
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
 
     def test_xml(self):
         reply = parse_xml_file(test_files_location + "/test.xml")
@@ -244,7 +244,7 @@ class BaseTests(TestCase):
                 'test_string': 'testing'
             }
         }
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
 
     def test_toml(self):
         reply = parse_toml_file(test_files_location + "/test.toml")
@@ -264,7 +264,7 @@ class BaseTests(TestCase):
                 'test_toml_key': 'test_toml_value'
             }
         }
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
 
     def test_yaml(self):
         reply = parse_yaml_file(test_files_location + "/test.yaml")
@@ -284,7 +284,7 @@ class BaseTests(TestCase):
                 'test_yaml_key': 'test_yaml_value'
             }
         }
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
 
     def test_type_estimate_string(self):
         reply = estimate_type("this_is_a_string")
@@ -326,9 +326,9 @@ class BaseTests(TestCase):
         reply = estimate_type("['test1', 123, True]")
         self.assertEqual(reply, ['test1', 123, True])
         reply = estimate_type('["test1", "test2", "test3"]')
-        self.assertEqual(reply, ["test1", "test2", "test3"])
+        self.assertListEqual(reply, ["test1", "test2", "test3"])
         reply = estimate_type('["test1", {"test_key": "test_value"}, "test3", None]')
-        self.assertEqual(reply, ["test1", {"test_key": "test_value"}, "test3", None])
+        self.assertListEqual(reply, ["test1", {"test_key": "test_value"}, "test3", None])
 
     def test_type_estimate_dict(self):
         reply = estimate_type("{'test_key': ['test1', 123, {'key': 'value'}]}")
@@ -372,9 +372,9 @@ class BaseTests(TestCase):
                                          'conf', 'cfg', 'ini', 'xml']
         parser = ParseIt(config_type_priority=None, global_default_value=None, type_estimate=True,
                          force_envvars_uppercase=True, config_location=test_files_location, envvar_prefix=None)
-        self.assertEqual(parser.config_files_dict, expected_config_files_dict)
+        self.assertDictEqual(parser.config_files_dict, expected_config_files_dict)
         self.assertEqual(parser.config_location, test_files_location)
-        self.assertEqual(parser.config_type_priority, expected_config_type_priority)
+        self.assertListEqual(parser.config_type_priority, expected_config_type_priority)
         self.assertEqual(parser.envvar_prefix, '')
         self.assertTrue(parser.force_envvars_uppercase)
         self.assertIsNone(parser.global_default_value)
@@ -409,9 +409,9 @@ class BaseTests(TestCase):
                                          'conf', 'cfg', 'ini', 'xml']
         parser = ParseIt(config_type_priority=None, global_default_value=None, type_estimate=True, recurse=True,
                          force_envvars_uppercase=True, config_location=test_files_location, envvar_prefix=None)
-        self.assertEqual(parser.config_files_dict, expected_config_files_dict)
+        self.assertDictEqual(parser.config_files_dict, expected_config_files_dict)
         self.assertEqual(parser.config_location, test_files_location)
-        self.assertEqual(parser.config_type_priority, expected_config_type_priority)
+        self.assertListEqual(parser.config_type_priority, expected_config_type_priority)
         self.assertEqual(parser.envvar_prefix, '')
         self.assertTrue(parser.force_envvars_uppercase)
         self.assertIsNone(parser.global_default_value)
@@ -438,9 +438,9 @@ class BaseTests(TestCase):
         parser = ParseIt(config_type_priority=None, global_default_value=None, type_estimate=True,
                          force_envvars_uppercase=True, config_location=test_files_location + "/test.json",
                          envvar_prefix=None)
-        self.assertEqual(parser.config_files_dict, expected_config_files_dict)
+        self.assertDictEqual(parser.config_files_dict, expected_config_files_dict)
         self.assertEqual(parser.config_location, test_files_location + "/test.json")
-        self.assertEqual(parser.config_type_priority, expected_config_type_priority)
+        self.assertListEqual(parser.config_type_priority, expected_config_type_priority)
         self.assertEqual(parser.envvar_prefix, '')
         self.assertTrue(parser.force_envvars_uppercase)
         self.assertIsNone(parser.global_default_value)
@@ -486,16 +486,16 @@ class BaseTests(TestCase):
         self.assertEqual("testing_custom", reply)
         reply = parser.read_configuration_variable("test_json")
         self.assertEqual({'test_json_key': 'test_json_value'}, reply)
-        self.assertEqual(expected_config_type_priority, parser.config_type_priority)
-        self.assertEqual(expected_valid_type_extension, parser.valid_file_type_extension)
-        self.assertEqual(expected_suffix_file_type_mapping, parser.suffix_file_type_mapping)
+        self.assertListEqual(expected_config_type_priority, parser.config_type_priority)
+        self.assertListEqual(expected_valid_type_extension, parser.valid_file_type_extension)
+        self.assertDictEqual(expected_suffix_file_type_mapping, parser.suffix_file_type_mapping)
 
     def test_parser_read_configuration_variable(self):
         parser = ParseIt(config_location=test_files_location)
         reply_json = parser.read_configuration_variable("file_type")
         self.assertEqual(reply_json, "json")
         reply_yaml = parser.read_configuration_variable("test_yaml")
-        self.assertEqual(reply_yaml, {'test_yaml_key': 'test_yaml_value'})
+        self.assertDictEqual(reply_yaml, {'test_yaml_key': 'test_yaml_value'})
 
     def test_parser_read_configuration_subfolder(self):
         parser = ParseIt(config_location=test_files_location, recurse=True)
@@ -528,7 +528,7 @@ class BaseTests(TestCase):
                 'test.xml'
             ]
         }
-        self.assertEqual(parser.config_files_dict, expected_config_files_dict)
+        self.assertDictEqual(parser.config_files_dict, expected_config_files_dict)
         self.assertIsNone(reply)
 
     def test_parser_read_configuration_single_file(self):
@@ -575,11 +575,11 @@ class BaseTests(TestCase):
         reply = parser.read_configuration_variable("file_type")
         self.assertEqual(reply, "yaml")
         reply = parser.read_configuration_variable("test_toml")
-        self.assertEqual(reply, {'test_toml_key': 'test_toml_value'})
+        self.assertDictEqual(reply, {'test_toml_key': 'test_toml_value'})
         reply = parser.read_configuration_variable("test_ini")
-        self.assertEqual(reply, {'test_ini_key': 'test_ini_value'})
+        self.assertDictEqual(reply, {'test_ini_key': 'test_ini_value'})
         reply = parser.read_configuration_variable("test_json")
-        self.assertEqual(reply, {'test_json_key': 'test_json_value'})
+        self.assertDictEqual(reply, {'test_json_key': 'test_json_value'})
         reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_TRUE_INT")
         self.assertEqual(reply, 123)
 
@@ -642,16 +642,16 @@ class BaseTests(TestCase):
         self.assertEqual(reply, False)
         reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_TRUE_LIST")
         self.assertNotEqual(reply, "['test', False, 3]")
-        self.assertEqual(reply, ['test', False, 3])
+        self.assertListEqual(reply, ['test', False, 3])
         reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_TRUE_DICT")
         self.assertNotEqual(reply, "{'string': 'string', 'int': 1}")
-        self.assertEqual(reply, {'string': 'string', 'int': 1})
+        self.assertDictEqual(reply, {'string': 'string', 'int': 1})
         reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_TRUE_RECURSIVE_LIST")
         self.assertNotEqual(reply, "['test', False, 3, ['test', True, 35, {'test': 12}]]")
-        self.assertEqual(reply, ['test', False, 3, ['test', True, 35, {'test': 12}]])
+        self.assertListEqual(reply, ['test', False, 3, ['test', True, 35, {'test': 12}]])
         reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_TRUE_RECURSIVE_DICT")
         self.assertNotEqual(reply, "{'string': 'string', 'int': 1, 'dict': {'test': [1, 2]}}")
-        self.assertEqual(reply, {'string': 'string', 'int': 1, 'dict': {'test': [1, 2]}})
+        self.assertDictEqual(reply, {'string': 'string', 'int': 1, 'dict': {'test': [1, 2]}})
 
     def test_parser_read_configuration_variable_force_envvars_uppercase_true(self):
         parser = ParseIt(force_envvars_uppercase=True)
@@ -676,7 +676,7 @@ class BaseTests(TestCase):
         reply_json = parser.read_configuration_variable("test_float")
         self.assertEqual(reply_json, 123.123)
         reply_yaml = parser.read_configuration_variable("test_yaml")
-        self.assertEqual(reply_yaml, {'test_yaml_key': 'test_yaml_value'})
+        self.assertDictEqual(reply_yaml, {'test_yaml_key': 'test_yaml_value'})
         reply_xml = parser.read_configuration_variable("xml_root")
         expected_reply_xml = {
             'file_type': 'xml',
@@ -696,14 +696,14 @@ class BaseTests(TestCase):
             },
             'test_string': 'testing'
         }
-        self.assertEqual(reply_xml, expected_reply_xml)
+        self.assertDictEqual(reply_xml, expected_reply_xml)
         reply_hcl = parser.read_configuration_variable("test_hcl")
         expected_reply_hcl = {
             'test_hcl_name': {
                 'test_hcl_key': 'test_hcl_value'
             }
         }
-        self.assertEqual(reply_hcl, expected_reply_hcl)
+        self.assertDictEqual(reply_hcl, expected_reply_hcl)
 
     def test_parser_read_configuration_variable_envvar_prefix(self):
         parser = ParseIt(envvar_prefix="prefix_test_", config_location=test_files_location)
@@ -782,7 +782,7 @@ class BaseTests(TestCase):
                 'test_json_key': 'test_json_value'
             }
         }
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
 
     def test_parser__parse_file_per_type_yaml(self):
         parser = ParseIt(config_location=test_files_location)
@@ -803,9 +803,9 @@ class BaseTests(TestCase):
                 'test_yaml_key': 'test_yaml_value'
             }
         }
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
         reply = parser._parse_file_per_type("yml", test_files_location + "/test.yaml")
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
 
     def test_parser__parse_file_per_type_custom_yaml(self):
         parser = ParseIt(config_location=test_files_location, custom_suffix_mapping={"yaml": ["custom"]},
@@ -827,7 +827,7 @@ class BaseTests(TestCase):
                 'test_yaml_key': 'custom_test_yaml_value'
             }
         }
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
 
     def test_parser__parse_file_per_type_toml(self):
         parser = ParseIt(config_location=test_files_location)
@@ -848,9 +848,9 @@ class BaseTests(TestCase):
                 'test_toml_key': 'test_toml_value'
             }
         }
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
         reply = parser._parse_file_per_type("tml", test_files_location + "/test.toml")
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
 
     def test_parser__parse_file_per_type_hcl(self):
         parser = ParseIt(config_location=test_files_location)
@@ -876,9 +876,9 @@ class BaseTests(TestCase):
                 }
             }
         }
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
         reply = parser._parse_file_per_type("tf", test_files_location + "/test.hcl")
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
 
     def test_parser__parse_file_per_type_ini(self):
         parser = ParseIt(config_location=test_files_location)
@@ -897,11 +897,11 @@ class BaseTests(TestCase):
                 'test_ini_key': 'test_ini_value'
             }
         }
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
         reply = parser._parse_file_per_type("conf", test_files_location + "/test.ini")
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
         reply = parser._parse_file_per_type("cfg", test_files_location + "/test.ini")
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
 
     def test_parser__parse_file_per_type_xml(self):
         parser = ParseIt(config_location=test_files_location)
@@ -926,7 +926,7 @@ class BaseTests(TestCase):
                 'test_string': 'testing'
             }
         }
-        self.assertEqual(reply, expected_reply)
+        self.assertDictEqual(reply, expected_reply)
 
     def test_command_line_args_read_command_line_arg(self):
         test_args = ["parse_it_mock_script.py", "--test_key", "test_value"]
@@ -1014,7 +1014,7 @@ class BaseTests(TestCase):
         }
         parser = ParseIt(config_location=test_files_location)
         reply_json = parser.read_multiple_configuration_variables(["file_type", "test_hcl", "test_int", "test_list"])
-        self.assertEqual(reply_json, expected_reply)
+        self.assertDictEqual(reply_json, expected_reply)
 
     def test_parser_read_multiple_configuration_variables_default_value(self):
         expected_reply = {
@@ -1024,7 +1024,7 @@ class BaseTests(TestCase):
         parser = ParseIt(config_location=test_files_location)
         reply_json = parser.read_multiple_configuration_variables(["file_type", "non_existing_value"],
                                                                   default_value="test")
-        self.assertEqual(reply_json, expected_reply)
+        self.assertDictEqual(reply_json, expected_reply)
 
     def test_parser_read_multiple_configuration_variables_required_true_raise_error(self):
         parser = ParseIt(config_location=test_files_location)
@@ -1035,3 +1035,192 @@ class BaseTests(TestCase):
         parser = ParseIt(config_location=test_files_location)
         with self.assertRaises(TypeError):
             parser.read_multiple_configuration_variables(["file_type", "non_existing_value"], allowed_types=[int, dict])
+
+    def test_parser_read_all_configuration_variables(self):
+        parser = ParseIt(config_location=test_files_location)
+        reply = parser.read_all_configuration_variables()
+        self.assertEqual(reply["file_type"], "json")
+        self.assertEqual(reply["test_string"], "testing")
+        self.assertTrue(reply["test_bool_true"])
+        self.assertFalse(reply["test_bool_false"])
+        self.assertEqual(reply["test_int"], 123)
+        self.assertEqual(reply["test_float"], 123.123)
+        self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
+        self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
+
+    def test_parser_read_all_configuration_variables_default_value_given(self):
+        parser = ParseIt(config_location=test_files_location)
+        reply = parser.read_all_configuration_variables(default_value={"default_value_test": "it_works"})
+        self.assertEqual(reply["default_value_test"], "it_works")
+        self.assertEqual(reply["file_type"], "json")
+        self.assertEqual(reply["test_string"], "testing")
+        self.assertTrue(reply["test_bool_true"])
+        self.assertFalse(reply["test_bool_false"])
+        self.assertEqual(reply["test_int"], 123)
+        self.assertEqual(reply["test_float"], 123.123)
+        self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
+        self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
+
+    def test_parser_read_all_configuration_variables_none_default_value_given(self):
+        parser = ParseIt(config_location=test_files_location)
+        reply = parser.read_all_configuration_variables(default_value=None)
+        self.assertEqual(reply["file_type"], "json")
+        self.assertEqual(reply["test_string"], "testing")
+        self.assertTrue(reply["test_bool_true"])
+        self.assertFalse(reply["test_bool_false"])
+        self.assertEqual(reply["test_int"], 123)
+        self.assertEqual(reply["test_float"], 123.123)
+        self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
+        self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
+
+    def test_parser_read_all_configuration_variables_empty_default_value_given(self):
+        parser = ParseIt(config_location=test_files_location)
+        reply = parser.read_all_configuration_variables(default_value={})
+        self.assertEqual(reply["file_type"], "json")
+        self.assertEqual(reply["test_string"], "testing")
+        self.assertTrue(reply["test_bool_true"])
+        self.assertFalse(reply["test_bool_false"])
+        self.assertEqual(reply["test_int"], 123)
+        self.assertEqual(reply["test_float"], 123.123)
+        self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
+        self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
+
+    def test_parser_read_all_configuration_variables_required_given(self):
+        parser = ParseIt(config_location=test_files_location)
+        reply = parser.read_all_configuration_variables(required=["file_type", "test_int"])
+        self.assertEqual(reply["file_type"], "json")
+        self.assertEqual(reply["test_string"], "testing")
+        self.assertTrue(reply["test_bool_true"])
+        self.assertFalse(reply["test_bool_false"])
+        self.assertEqual(reply["test_int"], 123)
+        self.assertEqual(reply["test_float"], 123.123)
+        self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
+        self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
+
+    def test_parser_read_all_configuration_variables_empty_required_given(self):
+        parser = ParseIt(config_location=test_files_location)
+        reply = parser.read_all_configuration_variables(required=[])
+        self.assertEqual(reply["file_type"], "json")
+        self.assertEqual(reply["test_string"], "testing")
+        self.assertTrue(reply["test_bool_true"])
+        self.assertFalse(reply["test_bool_false"])
+        self.assertEqual(reply["test_int"], 123)
+        self.assertEqual(reply["test_float"], 123.123)
+        self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
+        self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
+
+    def test_parser_read_all_configuration_variables_none_required_given(self):
+        parser = ParseIt(config_location=test_files_location)
+        reply = parser.read_all_configuration_variables(required=None)
+        self.assertEqual(reply["file_type"], "json")
+        self.assertEqual(reply["test_string"], "testing")
+        self.assertTrue(reply["test_bool_true"])
+        self.assertFalse(reply["test_bool_false"])
+        self.assertEqual(reply["test_int"], 123)
+        self.assertEqual(reply["test_float"], 123.123)
+        self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
+        self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
+
+    def test_parser_read_all_configuration_variables_allowed_types_given(self):
+        parser = ParseIt(config_location=test_files_location)
+        reply = parser.read_all_configuration_variables(allowed_types={
+            "file_type": [
+                str,
+                bool
+            ],
+            "test_int": [
+                int,
+                str
+            ]
+        })
+        self.assertEqual(reply["file_type"], "json")
+        self.assertEqual(reply["test_string"], "testing")
+        self.assertTrue(reply["test_bool_true"])
+        self.assertFalse(reply["test_bool_false"])
+        self.assertEqual(reply["test_int"], 123)
+        self.assertEqual(reply["test_float"], 123.123)
+        self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
+        self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
+
+    def test_parser_read_all_configuration_variables_empty_allowed_types_given(self):
+        parser = ParseIt(config_location=test_files_location)
+        reply = parser.read_all_configuration_variables(allowed_types={})
+        self.assertEqual(reply["file_type"], "json")
+        self.assertEqual(reply["test_string"], "testing")
+        self.assertTrue(reply["test_bool_true"])
+        self.assertFalse(reply["test_bool_false"])
+        self.assertEqual(reply["test_int"], 123)
+        self.assertEqual(reply["test_float"], 123.123)
+        self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
+        self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
+
+    def test_parser_read_all_configuration_variables_none_allowed_types_given(self):
+        parser = ParseIt(config_location=test_files_location)
+        reply = parser.read_all_configuration_variables(allowed_types=None)
+        self.assertEqual(reply["file_type"], "json")
+        self.assertEqual(reply["test_string"], "testing")
+        self.assertTrue(reply["test_bool_true"])
+        self.assertFalse(reply["test_bool_false"])
+        self.assertEqual(reply["test_int"], 123)
+        self.assertEqual(reply["test_float"], 123.123)
+        self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
+        self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
+
+    def test_parser_read_all_configuration_variables_type_estimate_true(self):
+        test_envvars = {"TEST_ENV_TYPE_ESTIMATE": "123"}
+        with mock.patch.dict(os.environ, test_envvars):
+            parser = ParseIt(config_location=test_files_location, type_estimate=True)
+            reply = parser.read_all_configuration_variables()
+            self.assertEqual(reply["test_env_type_estimate"], 123)
+
+    def test_parser_read_all_configuration_variables_type_estimate_false(self):
+        test_envvars = {"TEST_ENV_TYPE_ESTIMATE": "123"}
+        with mock.patch.dict(os.environ, test_envvars):
+            parser = ParseIt(config_location=test_files_location, type_estimate=False)
+            reply = parser.read_all_configuration_variables()
+            self.assertEqual(reply["test_env_type_estimate"], "123")
+
+    def test_parser_read_all_configuration_variables_raise_allowed_types_error(self):
+        parser = ParseIt(config_location=test_files_location)
+        with self.assertRaises(TypeError):
+            parser.read_all_configuration_variables(allowed_types={"file_type": [bool, dict]})
+
+    def test_parser_read_all_configuration_variables_raise_required_error(self):
+        parser = ParseIt(config_location=test_files_location)
+        with self.assertRaises(ValueError):
+            parser.read_all_configuration_variables(required=["non_existing_key"])
+
+    def test_parser_read_all_configuration_variables_config_type_in_data_sources_error(self):
+        parser = ParseIt(config_type_priority=['non_existing_type', 'json'])
+        with self.assertRaises(ValueError):
+            parser.read_all_configuration_variables(required=["non_existing_key"])
+
+    def test_parser_read_all_configuration_variables_read_envvars(self):
+        test_envvars = {"TEST_ENV_TYPE_ESTIMATE": "123"}
+        with mock.patch.dict(os.environ, test_envvars):
+            parser = ParseIt(config_location=test_files_location, type_estimate=True)
+            reply = parser.read_all_configuration_variables()
+            self.assertEqual(reply["test_env_type_estimate"], 123)
+            self.assertEqual(reply["file_type"], "json")
+            self.assertEqual(reply["test_string"], "testing")
+            self.assertTrue(reply["test_bool_true"])
+            self.assertFalse(reply["test_bool_false"])
+            self.assertEqual(reply["test_int"], 123)
+            self.assertEqual(reply["test_float"], 123.123)
+            self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
+            self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
+
+    def test_parser_read_all_configuration_variables_read_cli_args(self):
+        test_args = ["parse_it_mock_script.py", "--test_cli_key_no_folder", "test_value"]
+        with mock.patch('sys.argv', test_args):
+            parser = ParseIt(config_location=test_files_location, type_estimate=True)
+            reply = parser.read_all_configuration_variables()
+            self.assertEqual(reply["test_cli_key_no_folder"], "test_value")
+            self.assertEqual(reply["file_type"], "json")
+            self.assertEqual(reply["test_string"], "testing")
+            self.assertTrue(reply["test_bool_true"])
+            self.assertFalse(reply["test_bool_false"])
+            self.assertEqual(reply["test_int"], 123)
+            self.assertEqual(reply["test_float"], 123.123)
+            self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
+            self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])

@@ -255,6 +255,78 @@ class ParseIt:
                                                                               allowed_types)
         return config_value_dict
 
+    def read_all_configuration_variables(self, default_value: Optional[dict] = None, required: Optional[list] = None,
+                                         allowed_types: Optional[dict] = None) -> dict:
+        """reads all configuration variables from all allowed sources and returns a dict that includes the combined
+                        result of all of them, if a configuration variable exists in two (or more) different sources the
+                         one with the higher priority will be the only one returned
+
+                    Arguments:
+                        default_value -- defaults to None, a dict of key/value pairs of a configuration variables & it's
+                            value should it not be defined in any of the valid sources
+                        required -- defaults to None, if given a list configuration variables it will raise a ValueError
+                            if any of the configuration variables is not configured in any of the config
+                            files/envvars/cli args
+                        allowed_types -- Defaults to None, an optional dict of types that are accepted for a variable to
+                            be, if set a check will be preformed and if the variables value given is not of any of the
+                            types in said list a TypeError will be raised
+                    Returns:
+                        config_value_dict -- a dict of the key/value pairs of all the configurations requested
+        """
+        # first we create an empty config_value_dict
+        config_value_dict = {}
+
+        # now we fill the config_value_dict with the data of all valid sources in reverse order (from least desired to
+        # the most desired source), overwriting each data that is found multiple times with the more desired state
+        data_sources = self.config_type_priority
+        data_sources.reverse()
+        for config_type in data_sources:
+            if config_type == "cli_args":
+                config_value_dict.update(read_all_cli_args_to_dict())
+            elif config_type == "envvars" or config_type == "env_vars":
+                config_value_dict.update(read_all_envvars_to_dict(force_uppercase=self.force_envvars_uppercase))
+            # will loop over all files of each type until all files of all types are searched, first time the key is
+            # found will break outside of both loops
+            elif config_type in self.valid_file_type_extension:
+                for config_file in self.config_files_dict[config_type]:
+                    if self.config_file_type == "file":
+                        file_dict = self._parse_file_per_type(config_type, config_file)
+                    else:
+                        file_dict = self._parse_file_per_type(config_type, os.path.join(self.config_location,
+                                                                                        config_file))
+                    config_value_dict.update(file_dict)
+            else:
+                raise ValueError
+
+        # now we need to add the default values from the provided "default_value" dict to any configuration variable in
+        # said list that wasn't found in any of the valid sources
+        if default_value is not None:
+            for default_config_key, default_config_value in default_value.items():
+                config_found, config_value = self._check_config_in_dict(default_config_key, config_value_dict)
+                if config_found is False:
+                    config_value_dict[default_config_key] = default_config_value
+
+        # and we run the type estimate (which is recursive) on the full dict if it's configured to be used
+        if self.type_estimate is True:
+            config_value_dict = estimate_type(config_value_dict)
+
+        # now we check that all the required values exist and raise a ValueError otherwise
+        if required is not None:
+            for required_config in required:
+                config_found, config_value = self._check_config_in_dict(required_config, config_value_dict)
+                if config_found is False:
+                    raise ValueError
+
+        # and we also check that the "allowed_types" of all keys in the dict are from the list of allowed types and
+        # raise a TypeError
+        if allowed_types is not None:
+            for allowed_types_key, allowed_types_value in allowed_types.items():
+                if type(config_value_dict[allowed_types_key]) not in allowed_types_value:
+                    raise TypeError
+
+        # all that's left is returning the combined dict
+        return config_value_dict
+
     @staticmethod
     def _check_config_in_dict(config_key: str, config_dict: dict) -> Tuple[bool, Any]:
         """internal function which checks if the key is in a given dict

@@ -271,3 +271,23 @@ from parse_it import ParseIt
 parser = ParseIt(config_location="/etc/my_config_folder/my_config.json")
 my_config_key = parser.read_configuration_variable("my_int")
 # my_config_key will now be an int of 123
+
+```
+
+Another option is to read all configurations from all valid sources into a single dict that will include the combined results of all of them (by combined it means it will return only the highest priority of each found key but will combine different keys from different sources into a single dict), this provides less flexibility then reading the configuration variables one by one and is a tad (but just a tad) slower but for some use cases is simpler to use:
+
+```python
+# Load parse_it
+from parse_it import ParseIt
+
+# Create parse_it object
+parser = ParseIt()
+
+my_config_dict = parser.read_all_configuration_variables()
+# my_config_dict will now be a dict that includes the keys of all valid sources with the values of each being taken only from the highest priority source
+
+# you can still define the "default_value", "required" & "allowed_types" when reading all configuration variables to a single dict
+my_config_dict = parser.read_all_configuration_variables(default_value={"my_key": "my_default_value", "my_other_key": "my_default_value"}, required=["my_required_key","my_other_required_key"], allowed_types={"my_key": [str, list, dict, int], "my_other_key": [str, list, dict, int]})
+
+```
+
