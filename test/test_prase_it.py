@@ -125,8 +125,8 @@ class BaseTests(TestCase):
                 "json",
                 "cli_args"
             ])
-            testargs = ["parse_it_mock_script.py", "--test_cli_key_no_folder", "test_value"]
-            with mock.patch('sys.argv', testargs):
+            test_args = ["parse_it_mock_script.py", "--test_cli_key_no_folder", "test_value"]
+            with mock.patch('sys.argv', test_args):
                 parser = ParseIt()
                 reply = parser.read_configuration_variable("test_cli_key_no_folder")
                 self.assertEqual(reply, "test_value")
@@ -731,22 +731,20 @@ class BaseTests(TestCase):
         self.assertFalse(reply)
 
     def test_read_all_envvars_to_dict_force_uppercase_true(self):
-        # Not testing the full envvar dict as it changes due to PATH on every machine the unit test will run on
-        os.environ["TEST_ENV"] = "123"
-        os.environ["test_env_lowercase"] = "456"
-        reply = read_all_envvars_to_dict(force_uppercase=True)
-        self.assertEqual(type(reply), dict)
-        self.assertEqual(reply["test_env"], "123")
-        self.assertEqual(reply["test_env_lowercase"], "456")
+        test_envvars = {"TEST_ENV": "123", "test_env_lowercase": "456"}
+        with mock.patch.dict(os.environ, test_envvars):
+            reply = read_all_envvars_to_dict(force_uppercase=True)
+            self.assertEqual(type(reply), dict)
+            self.assertEqual(reply["test_env"], "123")
+            self.assertEqual(reply["test_env_lowercase"], "456")
 
     def test_read_all_envvars_to_dict_force_uppercase_false(self):
-        # Not testing the full envvar dict as it changes due to PATH on every machine the unit test will run on
-        os.environ["TEST_ENV"] = "123"
-        os.environ["test_env_lowercase"] = "456"
-        reply = read_all_envvars_to_dict(force_uppercase=False)
-        self.assertEqual(type(reply), dict)
-        self.assertEqual(reply["TEST_ENV"], "123")
-        self.assertEqual(reply["test_env_lowercase"], "456")
+        test_envvars = {"TEST_ENV": "123", "test_env_lowercase": "456"}
+        with mock.patch.dict(os.environ, test_envvars):
+            reply = read_all_envvars_to_dict(force_uppercase=False)
+            self.assertEqual(type(reply), dict)
+            self.assertEqual(reply["TEST_ENV"], "123")
+            self.assertEqual(reply["test_env_lowercase"], "456")
 
     def test_parser_config_found_in_key(self):
         parser = ParseIt(config_location=test_files_location)
@@ -931,53 +929,53 @@ class BaseTests(TestCase):
         self.assertEqual(reply, expected_reply)
 
     def test_command_line_args_read_command_line_arg(self):
-        testargs = ["parse_it_mock_script.py", "--test_key", "test_value"]
-        with mock.patch('sys.argv', testargs):
+        test_args = ["parse_it_mock_script.py", "--test_key", "test_value"]
+        with mock.patch('sys.argv', test_args):
             reply = read_command_line_arg("test_key")
             self.assertEqual(reply, "test_value")
 
     def test_command_line_args_read_command_line_arg_not_defined(self):
-        testargs = ["parse_it_mock_script.py", "--test_key", "test_value"]
-        with mock.patch('sys.argv', testargs):
+        test_args = ["parse_it_mock_script.py", "--test_key", "test_value"]
+        with mock.patch('sys.argv', test_args):
             reply = read_command_line_arg("non_existing_test_key")
             self.assertIsNone(reply)
 
     def test_command_line_args_command_line_arg_defined_false(self):
-        testargs = ["parse_it_mock_script.py", "--test_key", "test_value"]
-        with mock.patch('sys.argv', testargs):
+        test_args = ["parse_it_mock_script.py", "--test_key", "test_value"]
+        with mock.patch('sys.argv', test_args):
             reply = command_line_arg_defined("non_existing_test_key")
             self.assertFalse(reply)
 
     def test_command_line_args_command_line_arg_defined_true(self):
-        testargs = ["parse_it_mock_script.py", "--test_key", "test_value"]
-        with mock.patch('sys.argv', testargs):
+        test_args = ["parse_it_mock_script.py", "--test_key", "test_value"]
+        with mock.patch('sys.argv', test_args):
             reply = command_line_arg_defined("test_key")
             self.assertTrue(reply)
 
     def test_command_line_args_read_all_cli_args_to_dict(self):
-        testargs = ["parse_it_mock_script.py", "--test_key", "test_value", "--another_test", "another_value"]
+        test_args = ["parse_it_mock_script.py", "--test_key", "test_value", "--another_test", "another_value"]
         expected_reply = {"test_key": "test_value", "another_test": "another_value"}
-        with mock.patch('sys.argv', testargs):
+        with mock.patch('sys.argv', test_args):
             reply = read_all_cli_args_to_dict()
             self.assertEqual(reply, expected_reply)
 
     def test_command_line_args_read_all_cli_args_to_dict_no_cli_args(self):
-        testargs = ["parse_it_mock_script.py"]
+        test_args = ["parse_it_mock_script.py"]
         expected_reply = {}
-        with mock.patch('sys.argv', testargs):
+        with mock.patch('sys.argv', test_args):
             reply = read_all_cli_args_to_dict()
             self.assertEqual(reply, expected_reply)
 
     def test_command_line_args_read_all_cli_args_to_dict_no_cli_args_with_double_dash(self):
-        testargs = ["parse_it_mock_script.py", "-wrong_format_test_key", "test_value"]
+        test_args = ["parse_it_mock_script.py", "-wrong_format_test_key", "test_value"]
         expected_reply = {}
-        with mock.patch('sys.argv', testargs):
+        with mock.patch('sys.argv', test_args):
             reply = read_all_cli_args_to_dict()
             self.assertEqual(reply, expected_reply)
 
     def test_parser_read_configuration_from_cli_arg(self):
-        testargs = ["parse_it_mock_script.py", "--test_cli_key", "test_value", "--test_cli_int", "123"]
-        with mock.patch('sys.argv', testargs):
+        test_args = ["parse_it_mock_script.py", "--test_cli_key", "test_value", "--test_cli_int", "123"]
+        with mock.patch('sys.argv', test_args):
             parser = ParseIt()
             reply = parser.read_configuration_variable("test_cli_key")
             self.assertEqual(reply, "test_value")
