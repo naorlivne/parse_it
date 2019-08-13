@@ -1236,3 +1236,41 @@ class BaseTests(TestCase):
         self.assertEqual(reply["test_float"], 123.123)
         self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
         self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
+
+    def test_parser_read_all_configuration_variables_recursive_false(self):
+        parser = ParseIt(config_location=test_files_location, recurse=False)
+        reply = parser.read_all_configuration_variables()
+        self.assertEqual(reply["file_type"], "json")
+        self.assertEqual(reply["test_string"], "testing")
+        self.assertTrue(reply["test_bool_true"])
+        self.assertFalse(reply["test_bool_false"])
+        self.assertEqual(reply["test_int"], 123)
+        self.assertEqual(reply["test_float"], 123.123)
+        self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
+        self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
+
+    def test_parser_read_all_configuration_variables_recursive_true(self):
+        parser = ParseIt(config_location=test_files_location, recurse=True)
+        reply = parser.read_all_configuration_variables()
+        self.assertEqual(reply["file_type"], "json")
+        self.assertEqual(reply["test_string"], "testing")
+        self.assertTrue(reply["test_bool_true"])
+        self.assertFalse(reply["test_bool_false"])
+        self.assertEqual(reply["test_int"], 666)
+        self.assertEqual(reply["test_float"], 666.123)
+        self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
+        self.assertListEqual(reply["test_list"], ['test40', 'test50', 'test60'])
+
+    def test_parser_read_all_configuration_variables_check_order(self):
+        parser = ParseIt(config_location=test_files_location, config_type_priority=["env_vars", "hcl", "json"])
+        test_envvars = {"TEST_INT": "12345"}
+        with mock.patch.dict(os.environ, test_envvars):
+            reply = parser.read_all_configuration_variables()
+            self.assertEqual(reply["file_type"], "hcl")
+            self.assertEqual(reply["test_string"], "testing")
+            self.assertTrue(reply["test_bool_true"])
+            self.assertFalse(reply["test_bool_false"])
+            self.assertEqual(reply["test_int"], 12345)
+            self.assertEqual(reply["test_float"], 123.123)
+            self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
+            self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
