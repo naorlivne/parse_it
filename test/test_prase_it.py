@@ -1274,3 +1274,4 @@ class BaseTests(TestCase):
             self.assertEqual(reply["test_float"], 123.123)
             self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
             self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
+            self.assertDictEqual(reply["test_json"], {"test_json_key": "test_json_value"})
