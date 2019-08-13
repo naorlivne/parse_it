@@ -274,7 +274,7 @@ my_config_key = parser.read_configuration_variable("my_int")
 
 ```
 
-Another option is to read all configurations from all valid sources into a single dict that will include the combined results of all of them (by combined it means it will return only the highest priority of each found key but will combine different keys from different sources into a single dict), this provides less flexibility then reading the configuration variables one by one and is a tad (but just a tad) slower but for some use cases is simpler to use:
+Another option is to read all configurations from all valid sources into a single dict that will include the combined results of all of them (by combined it means it will return only the highest priority of each found key & will combine different keys from different sources into a single dict), this provides less flexibility then reading the configuration variables one by one and is a tad (but just a tad) slower but for some use cases is simpler to use:
 
 ```python
 # Load parse_it
