@@ -3,6 +3,7 @@ from parse_it.envvars.envvars import *
 from parse_it.file.yaml import *
 from parse_it.file.ini import *
 from parse_it.file.json import *
+from parse_it.file.env import *
 from parse_it.file.hcl import *
 from parse_it.file.toml import *
 from parse_it.file.xml import *
@@ -24,8 +25,8 @@ class ParseIt:
                     Arguments:
                         config_type_priority -- a list of file types extensions your willing to accept, list order
                             dictates priority of said file types, default list order is as follow:
-                            [ "cli_args", "envvars", "json", "yaml", "yml", "toml", "tml", "hcl", "tf", "conf", "cfg",
-                            "ini", "xml" ]
+                            [ "cli_args", "envvars", "env", "json", "yaml", "yml", "toml", "tml", "hcl", "tf", "conf",
+                            "cfg", "ini", "xml" ]
                             in the case of multiple files of same type they are all read and the first one that has the
                             needed key is the one used.
                             if no value is returned then the default_value declared at the read_configuration_variable
@@ -47,6 +48,9 @@ class ParseIt:
 
         # first we describe the standard file type suffix mapping and what file types are are standard file extensions
         self.suffix_file_type_mapping = {
+            "env": [
+                "env"
+            ],
             "json": [
                 "json"
             ],
@@ -72,6 +76,7 @@ class ParseIt:
             ]
         }
         self.valid_file_type_extension = [
+            "env",
             "json",
             "yaml",
             "yml",
@@ -110,6 +115,7 @@ class ParseIt:
             self.config_type_priority = [
                 "cli_args",
                 "env_vars",
+                "env",
                 "json",
                 "yaml",
                 "yml",
@@ -370,6 +376,8 @@ class ParseIt:
             file_dict = parse_hcl_file(config_file_location)
         elif config_file_type in self.suffix_file_type_mapping["xml"]:
             file_dict = parse_xml_file(config_file_location)
+        elif config_file_type in self.suffix_file_type_mapping["env"]:
+            file_dict = parse_env_file(config_file_location)
         else:
             raise ValueError
         return file_dict

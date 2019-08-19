@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 __author__ = 'Naor Livne'
 __author_email__ = 'naorlivne@gmail.com'
-__version__ = "3.1.1"
+__version__ = "3.2.0"
 
 # read the README.md file for the long description of the package
 with open('README.md') as f:
@@ -15,7 +15,8 @@ requirements = [
     "toml",
     "configobj",
     "xmltodict",
-    "pyhcl"
+    "pyhcl",
+    "python-dotenv"
 ]
 
 # optional requirements, typing is used for support of Python versions 3.4 & lower, note 3.4 and lower is untested
