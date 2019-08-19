@@ -62,7 +62,7 @@ By default parse_it will look for the configuration options in the following ord
 
 * `cli_args` - [command line arguments](https://en.wikipedia.org/wiki/Command-line_interface#Arguments) that are passed in the following format ``--key value``
 * `env_vars` - [environment variables](https://en.wikipedia.org/wiki/Environment_variable), you can also use `envvars` as an alias for it
-* `env` - [.env file](https://github.com/theskumar/python-dotenv) formatted files, any file ending with a .env extension in the configuration folder is assumed to be this
+* `env` - [.env file](https://github.com/theskumar/python-dotenv#usages) formatted files, any file ending with a .env extension in the configuration folder is assumed to be this
 * `json` - [JSON](https://en.wikipedia.org/wiki/JSON) formatted files, any file ending with a .json extension in the configuration folder is assumed to be this
 * `yaml` - [YAML](https://en.wikipedia.org/wiki/YAML) formatted files, any file ending with a .yaml extension in the configuration folder is assumed to be this
 * `yml` - [YAML](https://en.wikipedia.org/wiki/YAML) formatted files, any file ending with a .yml extension in the configuration folder is assumed to be this
