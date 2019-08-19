@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/naorlivne/parse_it/tree/HEAD)
+
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/3.2.0...HEAD)
+
+**Closed issues:**
+
+- add .env file type support [\#23](https://github.com/naorlivne/parse_it/issues/23)
+
 ## [3.2.0](https://github.com/naorlivne/parse_it/tree/3.2.0) (2019-08-19)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/3.1.1...3.2.0)
 
