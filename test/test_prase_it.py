@@ -597,7 +597,7 @@ class BaseTests(TestCase):
 
     def test_parser_read_configuration_variable_config_type_priority(self):
         os.environ["TEST_ENVVAR_ESTIMATE_TRUE_INT"] = "123"
-        parser = ParseIt(config_type_priority=["yaml", "toml", "ini", "json", "envvars"],
+        parser = ParseIt(config_type_priority=["yaml", "toml", "ini", "json", "envvars", "env"],
                          config_location=test_files_location)
         reply = parser.read_configuration_variable("file_type")
         self.assertEqual(reply, "yaml")
@@ -609,6 +609,8 @@ class BaseTests(TestCase):
         self.assertDictEqual(reply, {'test_json_key': 'test_json_value'})
         reply = parser.read_configuration_variable("TEST_ENVVAR_ESTIMATE_TRUE_INT")
         self.assertEqual(reply, 123)
+        reply = parser.read_configuration_variable("test_list")
+        self.assertEqual(reply, ['test1', 'test2', 'test3'])
 
     def test_parser_read_configuration_variable_type_estimate_false(self):
         parser = ParseIt(type_estimate=False, config_location=test_files_location)
