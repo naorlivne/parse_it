@@ -8,7 +8,9 @@ def read_file(file_path: str) -> Optional[str]:
     """Read a file and returns it's contents (as a string) or None if file does not exist.
 
      Arguments:
-    file_path -- the path of the file to be read
+        file_path -- the path of the file to be read
+    Returns:
+        file_contents -- string of the file contents
     """
     try:
         with open(file_path) as f:
@@ -22,7 +24,9 @@ def folder_exists(folder_path: str) -> bool:
     """Returns True if folder exists, False otherwise.
 
      Arguments:
-    folder_path -- the path of the folder to be checked
+        folder_path -- the path of the folder to be checked
+    Returns:
+        True if folder is dir, False otherwise
     """
     possible_folder = Path(strip_trailing_slash(folder_path))
     return possible_folder.is_dir()
@@ -32,7 +36,9 @@ def file_or_folder(checked_path: str) -> Optional[str]:
     """Returns "file" if the file_path is a file, "folder" if it's a dir & None otherwise.
 
      Arguments:
-    checked_path -- the path of the file to be checked if it's a file or a folder
+        checked_path -- the path of the file to be checked if it's a file or a folder
+    Returns:
+        "folder" if the path is a folder, "file" if it's a file and None otherwise
     """
     checked_file_path = Path(strip_trailing_slash(checked_path))
     if checked_file_path.is_dir() is True:
@@ -48,7 +54,9 @@ def strip_trailing_slash(folder_path: str) -> str:
         the root folder (/) which is kept the same.
 
      Arguments:
-    folder_path -- the path of the folder to be checked
+        folder_path -- the path of the folder to be checked
+    Returns:
+        A trailing slash stripped string of folder_path
     """
     if len(folder_path) > 1 and folder_path.endswith(("/", "\\")):
         folder_path = folder_path[:-1]
