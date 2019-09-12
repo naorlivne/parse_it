@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/3.2.0...HEAD)
 
+**Implemented enhancements:**
+
+- Bump certifi from 2019.6.16 to 2019.9.11 [\#24](https://github.com/naorlivne/parse_it/pull/24) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+
 **Closed issues:**
 
 - add .env file type support [\#23](https://github.com/naorlivne/parse_it/issues/23)
@@ -54,7 +58,6 @@
 **Implemented enhancements:**
 
 - Bump certifi from 2019.3.9 to 2019.6.16 [\#17](https://github.com/naorlivne/parse_it/pull/17) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
-- Bump pyyaml from 5.1 to 5.1.1 [\#15](https://github.com/naorlivne/parse_it/pull/15) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [0.8.1](https://github.com/naorlivne/parse_it/tree/0.8.1) (2019-06-05)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/0.8.0...0.8.1)
