@@ -775,6 +775,34 @@ class BaseTests(TestCase):
             self.assertEqual(reply["TEST_ENV"], "123")
             self.assertEqual(reply["test_env_lowercase"], "456")
 
+    def test_envvars_split_force_uppercase_false(self):
+        expected_reply = {'dict': {'subdict': {'key': 'example_value'}}}
+        test_key = "dict_subdict_key"
+        test_value = "example_value"
+        reply = split_envvar(test_key, test_value, divider="_", force_uppercase=False)
+        self.assertEqual(expected_reply, reply)
+
+    def test_envvars_split_force_uppercase_true(self):
+        expected_reply = {'DICT': {'SUBDICT': {'KEY': 'example_value'}}}
+        test_key = "dict_subdict_key"
+        test_value = "example_value"
+        reply = split_envvar(test_key, test_value, divider="_")
+        self.assertEqual(expected_reply, reply)
+
+    def test_envvars_split_no_nesting_needed(self):
+        expected_reply = {'dict': 'example_value'}
+        test_key = "dict"
+        test_value = "example_value"
+        reply = split_envvar(test_key, test_value, divider="_", force_uppercase=False)
+        self.assertEqual(expected_reply, reply)
+
+    def test_envvars_split_custom_divider(self):
+        expected_reply = {'dict': {'subdict': {'key': 'example_value'}}}
+        test_key = "dict.subdict.key"
+        test_value = "example_value"
+        reply = split_envvar(test_key, test_value, divider=".", force_uppercase=False)
+        self.assertEqual(expected_reply, reply)
+
     def test_parser_config_found_in_key(self):
         parser = ParseIt(config_location=test_files_location)
         config_found_reply, config_value_reply = parser._check_config_in_dict("test_key", {"test_key": "test_value"})

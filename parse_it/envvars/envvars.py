@@ -1,9 +1,10 @@
 import os
-from typing import Optional
+from typing import Optional, Union
 
 
 def read_envvar(envvar: str, force_uppercase: bool = True) -> Optional[str]:
-    """Read an environment variable.
+    """Read an environment variable, if force_uppercase is true will convert all keys
+        to be UPPERCASE
 
             Arguments:
                 envvar -- name of the envvar to get the value of
@@ -22,7 +23,8 @@ def read_envvar(envvar: str, force_uppercase: bool = True) -> Optional[str]:
 
 
 def envvar_defined(envvar: str, force_uppercase: bool = True) -> bool:
-    """Check if an environment variable is defined.
+    """Check if an environment variable is defined, if force_uppercase is true will convert all keys
+        to be UPPERCASE
 
             Arguments:
                 envvar -- name of the envvar to get the value of
@@ -40,7 +42,8 @@ def envvar_defined(envvar: str, force_uppercase: bool = True) -> bool:
 
 
 def read_all_envvars_to_dict(force_uppercase: bool = True) -> dict:
-    """Read all environment variables and return them in a dict form, if
+    """Read all environment variables and return them in a dict form, if force_uppercase is true will convert all keys
+        to be UPPERCASE
 
             Arguments:
                 force_uppercase -- while counter-intuitive in the naming it means that if the environment variable
@@ -48,11 +51,40 @@ def read_all_envvars_to_dict(force_uppercase: bool = True) -> dict:
                     lowercase form (name saved to match all the other uses of said function)
             Returns:
                 envvar_dict -- A dict of all environment variables key/value pairs
-        """
+    """
     envvar_dict = {}
     for envvar in os.environ:
         if force_uppercase is True:
             envvar_dict[envvar.lower()] = os.environ.get(envvar)
         else:
             envvar_dict[envvar] = os.environ.get(envvar)
+    return envvar_dict
+
+
+def split_envvar(envvar: Union[str, list], value: str, divider: str = "_", force_uppercase: bool = True):
+    """Take an envvar & it's value and split it by the divider to a nested dictionary
+
+                Arguments:
+                    envvar -- the envvar key to split into nested dictionary
+                    value -- the bottom most value of the nested envvars keys
+                    divider -- the string letter by which to divide the envvar key by, defaults to "_"
+                    force_uppercase -- if the envvar key will be forced to be all in UPPERCASE, defaults to True
+                Returns:
+                    envvar_dict -- A dict that is the result of the envvar being split by the divider with the value
+                        appended as the bottom most of the nest key
+    """
+    if type(envvar) == str:
+        if force_uppercase is True:
+            envvar = envvar.upper()
+        envvar_list = envvar.split(divider)
+    elif type(envvar) == list:
+        envvar_list = envvar
+    if len(envvar_list) > 1:
+        envvar_dict = {
+            envvar_list[0]: split_envvar(envvar_list[1:], value, divider)
+        }
+    else:
+        envvar_dict = {
+            envvar_list[0]: value
+        }
     return envvar_dict
