@@ -4,6 +4,11 @@
 
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/3.2.0...HEAD)
 
+**Implemented enhancements:**
+
+- Bump urllib3 from 1.25.3 to 1.25.5 [\#26](https://github.com/naorlivne/parse_it/pull/26) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Bump certifi from 2019.6.16 to 2019.9.11 [\#24](https://github.com/naorlivne/parse_it/pull/24) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+
 **Closed issues:**
 
 - add .env file type support [\#23](https://github.com/naorlivne/parse_it/issues/23)
