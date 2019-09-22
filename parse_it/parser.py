@@ -18,7 +18,7 @@ class ParseIt:
     def __init__(self, config_type_priority: Optional[list] = None, global_default_value: Any = None,
                  type_estimate: bool = True, recurse: bool = False, force_envvars_uppercase: bool = True,
                  config_location: Optional[str] = None, envvar_prefix: Optional[str] = None,
-                 custom_suffix_mapping: Optional[dict] = None):
+                 custom_suffix_mapping: Optional[dict] = None, envvar_divider: Optional[str] = None):
         """configures the object which is used to query all types of configuration inputs available and prioritize them
                 based on your needs
 
@@ -44,6 +44,8 @@ class ParseIt:
                             or if a standard file will look only in said file
                         envvar_prefix -- will add the given prefix for all envvars if set
                         custom_suffix_mapping -- a custom dict which will can map custom file suffixes to a file type
+                        envvar_divider -- the divider to split an envvar to nested dicts, if set to None (default) said
+                            nesting is disabled
         """
 
         # first we describe the standard file type suffix mapping and what file types are are standard file extensions
@@ -90,7 +92,13 @@ class ParseIt:
             "xml"
         ]
 
-        # now we add any custom file suffixes the user wanted to the list of possible file extensions and valid
+        if envvar_divider is None:
+            self.nest_envvars = False
+        else:
+            self.nest_envvars = True
+            self.envvar_divider = envvar_divider
+
+            # now we add any custom file suffixes the user wanted to the list of possible file extensions and valid
         # suffixes
         if custom_suffix_mapping is not None:
             for file_type, custom_file_suffix in custom_suffix_mapping.items():
@@ -194,7 +202,12 @@ class ParseIt:
                 config_value = read_envvar(self.envvar_prefix + config_name,
                                            force_uppercase=self.force_envvars_uppercase)
                 if config_key_found is True:
+                    # next the envvar if so desired to assist in matching to other file formats
+                    if self.nest_envvars is True:
+                        config_value = split_envvar(config_name, config_value, divider=self.envvar_divider,
+                                                    force_uppercase=self.force_envvars_uppercase)
                     break
+
             # will loop over all files of each type until all files of all types are searched, first time the key is
             # found will break outside of both loops
             elif config_type in self.valid_file_type_extension:

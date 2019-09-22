@@ -77,8 +77,9 @@ def split_envvar(envvar: Union[str, list], value: str, divider: str = "_", force
         if force_uppercase is True:
             envvar = envvar.upper()
         envvar_list = envvar.split(divider)
-    elif type(envvar) == list:
+    else:
         envvar_list = envvar
+
     if len(envvar_list) > 1:
         envvar_dict = {
             envvar_list[0]: split_envvar(envvar_list[1:], value, divider)
@@ -87,4 +88,5 @@ def split_envvar(envvar: Union[str, list], value: str, divider: str = "_", force
         envvar_dict = {
             envvar_list[0]: value
         }
+
     return envvar_dict

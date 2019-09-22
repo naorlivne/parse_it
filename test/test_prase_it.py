@@ -467,6 +467,16 @@ class BaseTests(TestCase):
         self.assertIsNone(parser.global_default_value)
         self.assertTrue(parser.type_estimate)
 
+    def test_parser_init_envvar_divider_none(self):
+        parser = ParseIt(config_location=test_files_location + "/test.json", envvar_divider=None)
+        self.assertFalse(parser.nest_envvars)
+
+    def test_parser_init_envvar_divider_set(self):
+        test_envvar_divider = "_"
+        parser = ParseIt(config_location=test_files_location + "/test.json", envvar_divider=test_envvar_divider)
+        self.assertTrue(parser.nest_envvars)
+        self.assertEqual(test_envvar_divider, parser.envvar_divider)
+
     def test_parser_custom_suffix_mapping_set_config_type_priority_not_set_raise_warning(self):
         with self.assertWarns(Warning):
             ParseIt(config_location=test_files_location, custom_suffix_mapping={"yaml": ["custom"]})
@@ -739,6 +749,12 @@ class BaseTests(TestCase):
         os.environ["PREFIX_TEST_TEST_ENVVAR_ESTIMATE_TRUE_INT"] = "123"
         reply = parser.read_configuration_variable("test_envvar_estimate_true_int")
         self.assertEqual(reply, 123)
+
+    def test_parser_read_configuration_variable_envvar_nested(self):
+        parser = ParseIt(config_location=test_files_location, envvar_divider="_")
+        os.environ["TEST_ENVVAR_NESTED"] = "123"
+        reply = parser.read_configuration_variable("test_envvar_nested")
+        self.assertDictEqual(reply, {"TEST": {"ENVVAR": {"NESTED": 123}}})
 
     def test_envvar_defined_true(self):
         os.environ["TEST_ENV"] = "123"
