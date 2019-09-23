@@ -37,10 +37,6 @@
 
 - Bump pyyaml from 5.1.1 to 5.1.2 [\#21](https://github.com/naorlivne/parse_it/pull/21) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
-**Merged pull requests:**
-
-- Refactor `type\_estimate.estimate\_type` with more understandable pattern [\#1](https://github.com/naorlivne/parse_it/pull/1) ([isidentical](https://github.com/isidentical))
-
 ## [2.0.0](https://github.com/naorlivne/parse_it/tree/2.0.0) (2019-07-30)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/1.1.0...2.0.0)
 
@@ -104,6 +100,10 @@
 - move github templates to .github/ directory [\#9](https://github.com/naorlivne/parse_it/issues/9)
 - add python version specifiers to pypi metadata [\#7](https://github.com/naorlivne/parse_it/issues/7)
 - Add recursive flag support to config file location [\#3](https://github.com/naorlivne/parse_it/issues/3)
+
+**Merged pull requests:**
+
+- Refactor `type\_estimate.estimate\_type` with more understandable pattern [\#1](https://github.com/naorlivne/parse_it/pull/1) ([isidentical](https://github.com/isidentical))
 
 
 
