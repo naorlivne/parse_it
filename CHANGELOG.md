@@ -1,5 +1,8 @@
 # Change Log
 
+## [3.3.2](https://github.com/naorlivne/parse_it/tree/3.3.2) (2019-09-23)
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/3.3.1...3.3.2)
+
 ## [3.3.1](https://github.com/naorlivne/parse_it/tree/3.3.1) (2019-09-23)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/3.3.0...3.3.1)
 
@@ -41,6 +44,10 @@
 
 ## [2.0.0](https://github.com/naorlivne/parse_it/tree/2.0.0) (2019-07-30)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/1.1.0...2.0.0)
+
+**Implemented enhancements:**
+
+- Bump coverage from 4.5.3 to 4.5.4 [\#20](https://github.com/naorlivne/parse_it/pull/20) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [1.1.0](https://github.com/naorlivne/parse_it/tree/1.1.0) (2019-07-23)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/1.0.0...1.1.0)
