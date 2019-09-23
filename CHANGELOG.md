@@ -36,7 +36,6 @@
 **Implemented enhancements:**
 
 - Bump pyyaml from 5.1.1 to 5.1.2 [\#21](https://github.com/naorlivne/parse_it/pull/21) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
-- Bump requests from 2.21.0 to 2.22.0 [\#13](https://github.com/naorlivne/parse_it/pull/13) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [2.0.0](https://github.com/naorlivne/parse_it/tree/2.0.0) (2019-07-30)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/1.1.0...2.0.0)
@@ -86,6 +85,7 @@
 **Implemented enhancements:**
 
 - Add a changelog [\#12](https://github.com/naorlivne/parse_it/issues/12)
+- Bump requests from 2.21.0 to 2.22.0 [\#13](https://github.com/naorlivne/parse_it/pull/13) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [0.5.11](https://github.com/naorlivne/parse_it/tree/0.5.11) (2019-05-14)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/0.5.10...0.5.11)
