@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump urllib3 from 1.25.3 to 1.25.5 [\#26](https://github.com/naorlivne/parse_it/pull/26) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump certifi from 2019.6.16 to 2019.9.11 [\#24](https://github.com/naorlivne/parse_it/pull/24) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 **Closed issues:**
@@ -59,6 +60,7 @@
 
 - Bump certifi from 2019.3.9 to 2019.6.16 [\#17](https://github.com/naorlivne/parse_it/pull/17) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump pyyaml from 5.1 to 5.1.1 [\#15](https://github.com/naorlivne/parse_it/pull/15) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Bump requests from 2.21.0 to 2.22.0 [\#13](https://github.com/naorlivne/parse_it/pull/13) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [0.8.1](https://github.com/naorlivne/parse_it/tree/0.8.1) (2019-06-05)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/0.8.0...0.8.1)
@@ -70,7 +72,6 @@
 
 - Add unit tests for CLI args [\#4](https://github.com/naorlivne/parse_it/issues/4)
 - Get code coverage to 100% [\#2](https://github.com/naorlivne/parse_it/issues/2)
-- Bump urllib3 from 1.25.3 to 1.25.5 [\#26](https://github.com/naorlivne/parse_it/pull/26) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump urllib3 from 1.25.2 to 1.25.3 [\#14](https://github.com/naorlivne/parse_it/pull/14) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [0.7.0](https://github.com/naorlivne/parse_it/tree/0.7.0) (2019-05-20)
@@ -85,7 +86,6 @@
 **Implemented enhancements:**
 
 - Add a changelog [\#12](https://github.com/naorlivne/parse_it/issues/12)
-- Bump requests from 2.21.0 to 2.22.0 [\#13](https://github.com/naorlivne/parse_it/pull/13) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [0.5.11](https://github.com/naorlivne/parse_it/tree/0.5.11) (2019-05-14)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/0.5.10...0.5.11)
