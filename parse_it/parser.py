@@ -303,7 +303,11 @@ class ParseIt:
             if config_type == "cli_args":
                 config_value_dict.update(read_all_cli_args_to_dict())
             elif config_type == "envvars" or config_type == "env_vars":
-                config_value_dict.update(read_all_envvars_to_dict(force_uppercase=self.force_envvars_uppercase))
+                if self.nest_envvars is True:
+                    config_value_dict.update(split_envvar_combained_dict(divider=self.envvar_divider,
+                                                                         force_uppercase=self.force_envvars_uppercase))
+                else:
+                    config_value_dict.update(read_all_envvars_to_dict(force_uppercase=self.force_envvars_uppercase))
             # will loop over all files of each type until all files of all types are searched, first time the key is
             # found will break outside of both loops
             elif config_type in self.valid_file_type_extension:

@@ -836,13 +836,17 @@ class BaseTests(TestCase):
             self.assertEqual(reply["TEST"]["ENV"]["LOWER_CASE2"], "test456")
 
     def test_envvars_split_envvar_combained_dict_force_uppercase_false(self):
-        test_envvars = {"TEST_ENV_UPPERCASE3": "123", "test_env_lowercase3": "456", "test_env_lowercase4": "789"}
+        test_envvars = {
+            "TEST_ENV_UPPERCASE3": "test123",
+            "test_env_lowercase3": "test456",
+            "test_env_lowercase4": "test789"
+        }
         with mock.patch.dict(os.environ, test_envvars):
             reply = split_envvar_combained_dict(force_uppercase=False)
             self.assertEqual(type(reply), dict)
-            self.assertEqual(reply["TEST"]["ENV"]["UPPERCASE3"], "123")
-            self.assertEqual(reply["test"]["env"]["lowercase3"], "456")
-            self.assertEqual(reply["test"]["env"]["lowercase4"], "789")
+            self.assertEqual(reply["TEST"]["ENV"]["UPPERCASE3"], "test123")
+            self.assertEqual(reply["test"]["env"]["lowercase3"], "test456")
+            self.assertEqual(reply["test"]["env"]["lowercase4"], "test789")
 
     def test_parser_config_found_in_key(self):
         parser = ParseIt(config_location=test_files_location)
@@ -1145,6 +1149,21 @@ class BaseTests(TestCase):
         self.assertEqual(reply["test_float"], 123.123)
         self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
         self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
+
+    def test_parser_read_all_configuration_variables_nest_envvars(self):
+        parser = ParseIt(config_location=test_files_location, envvar_divider="_", force_envvars_uppercase=True)
+        test_envvars = {"test_env_nesting1": "test123", "test_env_nesting2": "test456"}
+        with mock.patch.dict(os.environ, test_envvars):
+            reply = parser.read_all_configuration_variables()
+            self.assertDictEqual(reply["TEST"]["ENV"], {'NESTING1': 'test123', 'NESTING2': 'test456'})
+            self.assertEqual(reply["file_type"], "env")
+            self.assertEqual(reply["test_string"], "testing")
+            self.assertTrue(reply["test_bool_true"])
+            self.assertFalse(reply["test_bool_false"])
+            self.assertEqual(reply["test_int"], 123)
+            self.assertEqual(reply["test_float"], 123.123)
+            self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
+            self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
 
     def test_parser_read_all_configuration_variables_default_value_given(self):
         parser = ParseIt(config_location=test_files_location)
