@@ -820,29 +820,29 @@ class BaseTests(TestCase):
         self.assertEqual(expected_reply, reply)
 
     def test_envvars_split_envvar_combained_dict(self):
-        test_envvars = {"TEST_ENV_UPPERCASE": "123", "test_env_lowercase": "456"}
+        test_envvars = {"TEST_ENV_UPPERCASE1": "test123", "test_env_lowercase1": "test456"}
         with mock.patch.dict(os.environ, test_envvars):
             reply = split_envvar_combained_dict()
             self.assertEqual(type(reply), dict)
-            self.assertEqual(reply["TEST"]["ENV"]["UPPERCASE"], "123")
-            self.assertEqual(reply["TEST"]["ENV"]["LOWERCASE"], "456")
+            self.assertEqual(reply["TEST"]["ENV"]["UPPERCASE1"], "test123")
+            self.assertEqual(reply["TEST"]["ENV"]["LOWERCASE1"], "test456")
 
     def test_envvars_split_envvar_combained_dict_custom_divider(self):
-        test_envvars = {"TEST.ENV.UPPER_CASE": "123", "test.env.lower_case": "456"}
+        test_envvars = {"TEST.ENV.UPPER_CASE2": "test123", "test.env.lower_case2": "test456"}
         with mock.patch.dict(os.environ, test_envvars):
             reply = split_envvar_combained_dict(divider=".")
             self.assertEqual(type(reply), dict)
-            self.assertEqual(reply["TEST"]["ENV"]["UPPER_CASE"], "123")
-            self.assertEqual(reply["TEST"]["ENV"]["LOWER_CASE"], "456")
+            self.assertEqual(reply["TEST"]["ENV"]["UPPER_CASE2"], "test123")
+            self.assertEqual(reply["TEST"]["ENV"]["LOWER_CASE2"], "test456")
 
     def test_envvars_split_envvar_combained_dict_force_uppercase_false(self):
-        test_envvars = {"TEST_ENV_UPPERCASE": "123", "test_env_lowercase": "456", "test_env_lowercase2": "789"}
+        test_envvars = {"TEST_ENV_UPPERCASE3": "123", "test_env_lowercase3": "456", "test_env_lowercase4": "789"}
         with mock.patch.dict(os.environ, test_envvars):
             reply = split_envvar_combained_dict(force_uppercase=False)
             self.assertEqual(type(reply), dict)
-            self.assertEqual(reply["TEST"]["ENV"]["UPPERCASE"], "123")
-            self.assertEqual(reply["test"]["env"]["lowercase"], "456")
-            self.assertEqual(reply["test"]["env"]["lowercase2"], "789")
+            self.assertEqual(reply["TEST"]["ENV"]["UPPERCASE3"], "123")
+            self.assertEqual(reply["test"]["env"]["lowercase3"], "456")
+            self.assertEqual(reply["test"]["env"]["lowercase4"], "789")
 
     def test_parser_config_found_in_key(self):
         parser = ParseIt(config_location=test_files_location)
