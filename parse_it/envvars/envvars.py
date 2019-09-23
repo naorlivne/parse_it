@@ -94,7 +94,7 @@ def split_envvar(envvar: Union[str, list], value: str, divider: str = "_", force
 
 
 def split_envvar_combained_dict(divider: str = "_", force_uppercase: bool = True):
-    """returns a dict of all envvars that has had their keys split by the divider into nested dicts
+    """Returns a dict of all envvars that has had their keys split by the divider into nested dicts
 
                     Arguments:
                         divider -- the string letter by which to divide the envvar key by, defaults to "_"
