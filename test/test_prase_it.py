@@ -754,7 +754,7 @@ class BaseTests(TestCase):
         parser = ParseIt(config_location=test_files_location, envvar_divider="_")
         os.environ["TEST_ENVVAR_NESTED"] = "123"
         reply = parser.read_configuration_variable("test_envvar_nested")
-        self.assertDictEqual(reply, {"TEST": {"ENVVAR": {"NESTED": 123}}})
+        self.assertDictEqual(reply, {"test": {"envvar": {"nested": 123}}})
 
     def test_envvar_defined_true(self):
         os.environ["TEST_ENV"] = "123"
@@ -795,11 +795,11 @@ class BaseTests(TestCase):
         expected_reply = {'dict': {'subdict': {'key': 'example_value'}}}
         test_key = "dict_subdict_key"
         test_value = "example_value"
-        reply = split_envvar(test_key, test_value, divider="_", force_uppercase=False)
+        reply = split_envvar(test_key, test_value, divider="_")
         self.assertEqual(expected_reply, reply)
 
     def test_envvars_split_force_uppercase_true(self):
-        expected_reply = {'DICT': {'SUBDICT': {'KEY': 'example_value'}}}
+        expected_reply = {'dict': {'subdict': {'key': 'example_value'}}}
         test_key = "dict_subdict_key"
         test_value = "example_value"
         reply = split_envvar(test_key, test_value, divider="_")
@@ -809,14 +809,14 @@ class BaseTests(TestCase):
         expected_reply = {'dict': 'example_value'}
         test_key = "dict"
         test_value = "example_value"
-        reply = split_envvar(test_key, test_value, divider="_", force_uppercase=False)
+        reply = split_envvar(test_key, test_value, divider="_")
         self.assertEqual(expected_reply, reply)
 
     def test_envvars_split_custom_divider(self):
         expected_reply = {'dict': {'subdict': {'key': 'example_value'}}}
         test_key = "dict.subdict.key"
         test_value = "example_value"
-        reply = split_envvar(test_key, test_value, divider=".", force_uppercase=False)
+        reply = split_envvar(test_key, test_value, divider=".")
         self.assertEqual(expected_reply, reply)
 
     def test_envvars_split_envvar_combained_dict(self):
@@ -824,16 +824,16 @@ class BaseTests(TestCase):
         with mock.patch.dict(os.environ, test_envvars):
             reply = split_envvar_combained_dict()
             self.assertEqual(type(reply), dict)
-            self.assertEqual(reply["TEST"]["SPLIT"]["UPPERCASE1"], "test123")
-            self.assertEqual(reply["TEST"]["SPLIT"]["LOWERCASE1"], "test456")
+            self.assertEqual(reply["test"]["split"]["uppercase1"], "test123")
+            self.assertEqual(reply["test"]["split"]["lowercase1"], "test456")
 
     def test_envvars_split_envvar_combained_dict_custom_divider(self):
         test_envvars = {"TEST.SPLIT.UPPER_CASE2": "test123", "test.split.lower_case2": "test456"}
         with mock.patch.dict(os.environ, test_envvars):
             reply = split_envvar_combained_dict(divider=".")
             self.assertEqual(type(reply), dict)
-            self.assertEqual(reply["TEST"]["SPLIT"]["UPPER_CASE2"], "test123")
-            self.assertEqual(reply["TEST"]["SPLIT"]["LOWER_CASE2"], "test456")
+            self.assertEqual(reply["test"]["split"]["upper_case2"], "test123")
+            self.assertEqual(reply["test"]["split"]["lower_case2"], "test456")
 
     def test_envvars_split_envvar_combained_dict_force_uppercase_false(self):
         test_envvars = {
@@ -1155,7 +1155,7 @@ class BaseTests(TestCase):
         test_envvars = {"test_split_nesting1": "test123", "test_split_nesting2": "test456"}
         with mock.patch.dict(os.environ, test_envvars):
             reply = parser.read_all_configuration_variables()
-            self.assertDictEqual(reply["TEST"]["SPLIT"], {'NESTING1': 'test123', 'NESTING2': 'test456'})
+            self.assertDictEqual(reply["test"]["split"], {'nesting1': 'test123', 'nesting2': 'test456'})
             self.assertEqual(reply["file_type"], "env")
             self.assertEqual(reply["test_string"], "testing")
             self.assertTrue(reply["test_bool_true"])

@@ -204,8 +204,7 @@ class ParseIt:
                 if config_key_found is True:
                     # next the envvar if so desired to assist in matching to other file formats
                     if self.nest_envvars is True:
-                        config_value = split_envvar(config_name, config_value, divider=self.envvar_divider,
-                                                    force_uppercase=self.force_envvars_uppercase)
+                        config_value = split_envvar(config_name, config_value, divider=self.envvar_divider)
                     break
 
             # will loop over all files of each type until all files of all types are searched, first time the key is

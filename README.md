@@ -307,6 +307,6 @@ parser = ParseIt(envvar_divider="_")
 
 my_config_dict = parser.read_all_configuration_variables()
 # my_config_dict will now be a dict that includes the keys of all valid sources with the values of each being taken only from the highest priority source & the envars keys will be turned to nested subdicts.
-# my_config_dict will have in it the following dict {"NEST1": {"NEST2":{"NEST3": 123}}} 
+# my_config_dict will have in it the following dict {"nest1": {"nest2":{"nest3": 123}}} 
 
 ```

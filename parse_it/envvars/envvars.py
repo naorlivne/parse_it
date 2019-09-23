@@ -62,21 +62,18 @@ def read_all_envvars_to_dict(force_uppercase: bool = True) -> dict:
     return envvar_dict
 
 
-def split_envvar(envvar: Union[str, list], value: str, divider: str = "_", force_uppercase: bool = True):
+def split_envvar(envvar: Union[str, list], value: str, divider: str = "_"):
     """Take an envvar & it's value and split it by the divider to a nested dictionary
 
                 Arguments:
                     envvar -- the envvar key to split into nested dictionary
                     value -- the bottom most value of the nested envvars keys
                     divider -- the string letter by which to divide the envvar key by, defaults to "_"
-                    force_uppercase -- if the envvar key will be forced to be all in UPPERCASE, defaults to True
                 Returns:
                     envvar_dict -- A dict that is the result of the envvar being split by the divider with the value
                         appended as the bottom most of the nest key
     """
     if type(envvar) == str:
-        if force_uppercase is True:
-            envvar = envvar.upper()
         envvar_list = envvar.split(divider)
     else:
         envvar_list = envvar
@@ -106,6 +103,6 @@ def split_envvar_combained_dict(divider: str = "_", force_uppercase: bool = True
     envvar_dict = read_all_envvars_to_dict(force_uppercase=force_uppercase)
     envvar_split_dict = {}
     for envvar_key, envvar_value in envvar_dict.items():
-        temp_split_envvar = split_envvar(envvar_key, envvar_value, divider=divider, force_uppercase=force_uppercase)
+        temp_split_envvar = split_envvar(envvar_key, envvar_value, divider=divider)
         dpath.util.merge(envvar_split_dict, temp_split_envvar)
     return envvar_split_dict
