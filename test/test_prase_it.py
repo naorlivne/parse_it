@@ -820,28 +820,34 @@ class BaseTests(TestCase):
         self.assertEqual(expected_reply, reply)
 
     def test_envvars_split_envvar_combained_dict(self):
+        print(str(os.environ))
         test_envvars = {"TEST_ENV_UPPERCASE1": "test123", "test_env_lowercase1": "test456"}
         with mock.patch.dict(os.environ, test_envvars):
+            print(str(os.environ))
             reply = split_envvar_combained_dict()
             self.assertEqual(type(reply), dict)
             self.assertEqual(reply["TEST"]["ENV"]["UPPERCASE1"], "test123")
             self.assertEqual(reply["TEST"]["ENV"]["LOWERCASE1"], "test456")
 
     def test_envvars_split_envvar_combained_dict_custom_divider(self):
+        print(str(os.environ))
         test_envvars = {"TEST.ENV.UPPER_CASE2": "test123", "test.env.lower_case2": "test456"}
         with mock.patch.dict(os.environ, test_envvars):
+            print(str(os.environ))
             reply = split_envvar_combained_dict(divider=".")
             self.assertEqual(type(reply), dict)
             self.assertEqual(reply["TEST"]["ENV"]["UPPER_CASE2"], "test123")
             self.assertEqual(reply["TEST"]["ENV"]["LOWER_CASE2"], "test456")
 
     def test_envvars_split_envvar_combained_dict_force_uppercase_false(self):
+        print(str(os.environ))
         test_envvars = {
             "TEST_ENV_UPPERCASE3": "test123",
             "test_env_lowercase3": "test456",
             "test_env_lowercase4": "test789"
         }
         with mock.patch.dict(os.environ, test_envvars):
+            print(str(os.environ))
             reply = split_envvar_combained_dict(force_uppercase=False)
             self.assertEqual(type(reply), dict)
             self.assertEqual(reply["TEST"]["ENV"]["UPPERCASE3"], "test123")
