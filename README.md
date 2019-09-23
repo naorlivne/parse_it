@@ -292,3 +292,21 @@ my_config_dict = parser.read_all_configuration_variables(default_value={"my_key"
 
 ```
 
+It has also become a common practice to divide envvar keys by a divider character (usually `_`) and nest then as subdicts, this assists in declaring complex dictionaries subkeys with each of them being given it's own key, parse_it supports this option as well by setting the `envvar_divider` variable when declaring the parse_it object (disabled by default):
+
+```python
+# Load parse_it
+from parse_it import ParseIt
+
+# This is just for the example
+import os
+os.environ["NEST1_NEST2_NEST3"] = "123"
+
+# Create parse_it object with an envvar_divider
+parser = ParseIt(envvar_divider="_")
+
+my_config_dict = parser.read_all_configuration_variables()
+# my_config_dict will now be a dict that includes the keys of all valid sources with the values of each being taken only from the highest priority source & the envars keys will be turned to nested subdicts.
+# my_config_dict will have in it the following dict {"NEST1": {"NEST2":{"NEST3": 123}}} 
+
+```
