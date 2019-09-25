@@ -1,5 +1,17 @@
 # Change Log
 
+## [Unreleased](https://github.com/naorlivne/parse_it/tree/HEAD)
+
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/3.3.2...HEAD)
+
+**Implemented enhancements:**
+
+- Bump urllib3 from 1.25.5 to 1.25.6 [\#27](https://github.com/naorlivne/parse_it/pull/27) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+
+**Closed issues:**
+
+- Add option to define subdicts via envvars [\#25](https://github.com/naorlivne/parse_it/issues/25)
+
 ## [3.3.2](https://github.com/naorlivne/parse_it/tree/3.3.2) (2019-09-23)
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/3.3.1...3.3.2)
 
