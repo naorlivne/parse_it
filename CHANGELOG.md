@@ -6,7 +6,7 @@
 
 **Implemented enhancements:**
 
-- Bump urllib3 from 1.25.5 to 1.25.6 [\#27](https://github.com/naorlivne/parse_it/pull/27) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Bump pyhcl from 0.3.12 to 0.3.13 [\#28](https://github.com/naorlivne/parse_it/pull/28) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 **Closed issues:**
 
@@ -75,6 +75,7 @@
 
 **Implemented enhancements:**
 
+- Bump urllib3 from 1.25.5 to 1.25.6 [\#27](https://github.com/naorlivne/parse_it/pull/27) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump certifi from 2019.3.9 to 2019.6.16 [\#17](https://github.com/naorlivne/parse_it/pull/17) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump pyyaml from 5.1 to 5.1.1 [\#15](https://github.com/naorlivne/parse_it/pull/15) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
