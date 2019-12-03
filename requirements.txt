@@ -8,7 +8,7 @@ idna==2.8
 ply==3.11
 pyhcl==0.3.13
 python-dotenv==0.10.3
-PyYAML==5.1.2
+PyYAML==5.2
 requests==2.22.0
 six==1.13.0
 toml==0.10.0
