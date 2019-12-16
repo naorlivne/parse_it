@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump coverage from 4.5.4 to 5.0 [\#33](https://github.com/naorlivne/parse_it/pull/33) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump pyyaml from 5.1.2 to 5.2 [\#32](https://github.com/naorlivne/parse_it/pull/32) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump certifi from 2019.9.11 to 2019.11.28 [\#31](https://github.com/naorlivne/parse_it/pull/31) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump urllib3 from 1.25.6 to 1.25.7 [\#30](https://github.com/naorlivne/parse_it/pull/30) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
