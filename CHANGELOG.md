@@ -6,6 +6,8 @@
 
 **Implemented enhancements:**
 
+- Bump coverage from 5.0.1 to 5.0.2 [\#37](https://github.com/naorlivne/parse_it/pull/37) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Bump pyhcl from 0.3.13 to 0.3.15 [\#36](https://github.com/naorlivne/parse_it/pull/36) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump dpath from 1.4.2 to 1.5.0 [\#35](https://github.com/naorlivne/parse_it/pull/35) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump coverage from 5.0 to 5.0.1 [\#34](https://github.com/naorlivne/parse_it/pull/34) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump coverage from 4.5.4 to 5.0 [\#33](https://github.com/naorlivne/parse_it/pull/33) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
@@ -36,7 +38,6 @@
 
 - Bump urllib3 from 1.25.3 to 1.25.5 [\#26](https://github.com/naorlivne/parse_it/pull/26) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump certifi from 2019.6.16 to 2019.9.11 [\#24](https://github.com/naorlivne/parse_it/pull/24) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
-- Bump urllib3 from 1.25.2 to 1.25.3 [\#14](https://github.com/naorlivne/parse_it/pull/14) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 **Closed issues:**
 
@@ -111,6 +112,7 @@
 
 - Add unit tests for CLI args [\#4](https://github.com/naorlivne/parse_it/issues/4)
 - Get code coverage to 100% [\#2](https://github.com/naorlivne/parse_it/issues/2)
+- Bump urllib3 from 1.25.2 to 1.25.3 [\#14](https://github.com/naorlivne/parse_it/pull/14) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [0.7.0](https://github.com/naorlivne/parse_it/tree/0.7.0) (2019-05-20)
 
