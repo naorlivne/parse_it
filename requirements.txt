@@ -6,7 +6,7 @@ coverage==5.0.1
 dpath==1.5.0
 idna==2.8
 ply==3.11
-pyhcl==0.3.13
+pyhcl==0.3.15
 python-dotenv==0.10.3
 PyYAML==5.2
 requests==2.22.0
