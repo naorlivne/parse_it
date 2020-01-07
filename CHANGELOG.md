@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump pyyaml from 5.2 to 5.3 [\#38](https://github.com/naorlivne/parse_it/pull/38) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump coverage from 5.0.1 to 5.0.2 [\#37](https://github.com/naorlivne/parse_it/pull/37) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump pyhcl from 0.3.13 to 0.3.15 [\#36](https://github.com/naorlivne/parse_it/pull/36) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump dpath from 1.4.2 to 1.5.0 [\#35](https://github.com/naorlivne/parse_it/pull/35) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
