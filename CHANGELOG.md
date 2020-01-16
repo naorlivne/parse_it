@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump six from 1.13.0 to 1.14.0 [\#41](https://github.com/naorlivne/parse_it/pull/41) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump coverage from 5.0.2 to 5.0.3 [\#40](https://github.com/naorlivne/parse_it/pull/40) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump pyhcl from 0.3.15 to 0.4.0 [\#39](https://github.com/naorlivne/parse_it/pull/39) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump pyyaml from 5.2 to 5.3 [\#38](https://github.com/naorlivne/parse_it/pull/38) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
