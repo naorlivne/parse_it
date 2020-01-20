@@ -7,7 +7,7 @@ dpath==1.5.0
 idna==2.8
 ply==3.11
 pyhcl==0.4.0
-python-dotenv==0.10.3
+python-dotenv==0.10.5
 PyYAML==5.3
 requests==2.22.0
 six==1.14.0
