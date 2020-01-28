@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 __author__ = 'Naor Livne'
 __author_email__ = 'naorlivne@gmail.com'
-__version__ = "3.3.2"
+__version__ = "3.4.0"
 
 # read the README.md file for the long description of the package
 with open('README.md') as f:
