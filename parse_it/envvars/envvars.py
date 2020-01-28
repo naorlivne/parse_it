@@ -1,5 +1,6 @@
 import os
 import dpath.util
+import dpath.options
 from typing import Optional, Union
 
 
@@ -103,6 +104,7 @@ def split_envvar_combained_dict(divider: str = "_", force_uppercase: bool = True
     envvar_dict = read_all_envvars_to_dict(force_uppercase=force_uppercase)
     envvar_split_dict = {}
     for envvar_key, envvar_value in envvar_dict.items():
+        dpath.options.ALLOW_EMPTY_STRING_KEYS=True
         temp_split_envvar = split_envvar(envvar_key, envvar_value, divider=divider)
         dpath.util.merge(envvar_split_dict, temp_split_envvar)
     return envvar_split_dict
