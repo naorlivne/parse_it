@@ -1,11 +1,12 @@
 # Changelog
 
-## [Unreleased](https://github.com/naorlivne/parse_it/tree/HEAD)
+## [3.4.0](https://github.com/naorlivne/parse_it/tree/3.4.0) (2020-01-28)
 
-[Full Changelog](https://github.com/naorlivne/parse_it/compare/3.3.2...HEAD)
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/3.3.2...3.4.0)
 
 **Implemented enhancements:**
 
+- Bump dpath from 1.5.0 to 2.0.1 [\#44](https://github.com/naorlivne/parse_it/pull/44) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump urllib3 from 1.25.7 to 1.25.8 [\#43](https://github.com/naorlivne/parse_it/pull/43) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump python-dotenv from 0.10.3 to 0.10.5 [\#42](https://github.com/naorlivne/parse_it/pull/42) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump six from 1.13.0 to 1.14.0 [\#41](https://github.com/naorlivne/parse_it/pull/41) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
