@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/naorlivne/parse_it/tree/HEAD)
+
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/3.4.0...HEAD)
+
+**Implemented enhancements:**
+
+- Bump python-dotenv from 0.10.5 to 0.11.0 [\#45](https://github.com/naorlivne/parse_it/pull/45) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+
 ## [3.4.0](https://github.com/naorlivne/parse_it/tree/3.4.0) (2020-01-28)
 
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/3.3.2...3.4.0)
