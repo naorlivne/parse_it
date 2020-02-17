@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump idna from 2.8 to 2.9 [\#46](https://github.com/naorlivne/parse_it/pull/46) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump python-dotenv from 0.10.5 to 0.11.0 [\#45](https://github.com/naorlivne/parse_it/pull/45) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [3.4.0](https://github.com/naorlivne/parse_it/tree/3.4.0) (2020-01-28)
