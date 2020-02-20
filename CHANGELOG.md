@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump requests from 2.22.0 to 2.23.0 [\#47](https://github.com/naorlivne/parse_it/pull/47) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump idna from 2.8 to 2.9 [\#46](https://github.com/naorlivne/parse_it/pull/46) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump python-dotenv from 0.10.5 to 0.11.0 [\#45](https://github.com/naorlivne/parse_it/pull/45) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
