@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump codecov from 2.0.16 to 2.0.21 [\#52](https://github.com/naorlivne/parse_it/pull/52) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump coverage from 5.0.3 to 5.0.4 [\#51](https://github.com/naorlivne/parse_it/pull/51) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump python-dotenv from 0.11.0 to 0.12.0 [\#50](https://github.com/naorlivne/parse_it/pull/50) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump codecov from 2.0.15 to 2.0.16 [\#48](https://github.com/naorlivne/parse_it/pull/48) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
