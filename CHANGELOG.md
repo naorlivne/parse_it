@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump certifi from 2019.11.28 to 2020.4.5.1 [\#57](https://github.com/naorlivne/parse_it/pull/57) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump pyhcl from 0.4.1 to 0.4.2 [\#56](https://github.com/naorlivne/parse_it/pull/56) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump pyhcl from 0.4.0 to 0.4.1 [\#55](https://github.com/naorlivne/parse_it/pull/55) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump codecov from 2.0.21 to 2.0.22 [\#54](https://github.com/naorlivne/parse_it/pull/54) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
@@ -17,6 +18,10 @@
 - Bump requests from 2.22.0 to 2.23.0 [\#47](https://github.com/naorlivne/parse_it/pull/47) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump idna from 2.8 to 2.9 [\#46](https://github.com/naorlivne/parse_it/pull/46) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump python-dotenv from 0.10.5 to 0.11.0 [\#45](https://github.com/naorlivne/parse_it/pull/45) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+
+**Closed issues:**
+
+- CLI args nested key names [\#49](https://github.com/naorlivne/parse_it/issues/49)
 
 ## [3.4.0](https://github.com/naorlivne/parse_it/tree/3.4.0) (2020-01-28)
 
