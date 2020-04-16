@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump pyhcl from 0.4.2 to 0.4.3 [\#59](https://github.com/naorlivne/parse_it/pull/59) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump coverage from 5.0.4 to 5.1 [\#58](https://github.com/naorlivne/parse_it/pull/58) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump certifi from 2019.11.28 to 2020.4.5.1 [\#57](https://github.com/naorlivne/parse_it/pull/57) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump pyhcl from 0.4.1 to 0.4.2 [\#56](https://github.com/naorlivne/parse_it/pull/56) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
