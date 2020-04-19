@@ -6,6 +6,8 @@
 
 **Implemented enhancements:**
 
+- Bump python-dotenv from 0.12.0 to 0.13.0 [\#61](https://github.com/naorlivne/parse_it/pull/61) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Bump urllib3 from 1.25.8 to 1.25.9 [\#60](https://github.com/naorlivne/parse_it/pull/60) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump pyhcl from 0.4.2 to 0.4.3 [\#59](https://github.com/naorlivne/parse_it/pull/59) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump coverage from 5.0.4 to 5.1 [\#58](https://github.com/naorlivne/parse_it/pull/58) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump certifi from 2019.11.28 to 2020.4.5.1 [\#57](https://github.com/naorlivne/parse_it/pull/57) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
