@@ -6,6 +6,8 @@
 
 **Implemented enhancements:**
 
+- Bump toml from 0.10.0 to 0.10.1 [\#63](https://github.com/naorlivne/parse_it/pull/63) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Bump pyhcl from 0.4.3 to 0.4.4 [\#62](https://github.com/naorlivne/parse_it/pull/62) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump python-dotenv from 0.12.0 to 0.13.0 [\#61](https://github.com/naorlivne/parse_it/pull/61) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump urllib3 from 1.25.8 to 1.25.9 [\#60](https://github.com/naorlivne/parse_it/pull/60) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump pyhcl from 0.4.2 to 0.4.3 [\#59](https://github.com/naorlivne/parse_it/pull/59) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
