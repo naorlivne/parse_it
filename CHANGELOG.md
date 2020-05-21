@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump codecov from 2.1.0 to 2.1.1 [\#65](https://github.com/naorlivne/parse_it/pull/65) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump codecov from 2.0.22 to 2.1.0 [\#64](https://github.com/naorlivne/parse_it/pull/64) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump toml from 0.10.0 to 0.10.1 [\#63](https://github.com/naorlivne/parse_it/pull/63) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump pyhcl from 0.4.3 to 0.4.4 [\#62](https://github.com/naorlivne/parse_it/pull/62) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
