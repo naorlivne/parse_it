@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump certifi from 2020.4.5.1 to 2020.4.5.2 [\#69](https://github.com/naorlivne/parse_it/pull/69) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump codecov from 2.1.3 to 2.1.4 [\#68](https://github.com/naorlivne/parse_it/pull/68) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump codecov from 2.1.1 to 2.1.3 [\#67](https://github.com/naorlivne/parse_it/pull/67) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump six from 1.14.0 to 1.15.0 [\#66](https://github.com/naorlivne/parse_it/pull/66) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
