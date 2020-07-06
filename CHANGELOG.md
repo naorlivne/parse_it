@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump python-dotenv from 0.13.0 to 0.14.0 [\#76](https://github.com/naorlivne/parse_it/pull/76) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump idna from 2.9 to 2.10 [\#75](https://github.com/naorlivne/parse_it/pull/75) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump certifi from 2020.4.5.2 to 2020.6.20 [\#73](https://github.com/naorlivne/parse_it/pull/73) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump requests from 2.23.0 to 2.24.0 [\#72](https://github.com/naorlivne/parse_it/pull/72) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
