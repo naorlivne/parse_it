@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump urllib3 from 1.25.9 to 1.25.10 [\#79](https://github.com/naorlivne/parse_it/pull/79) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump codecov from 2.1.7 to 2.1.8 [\#78](https://github.com/naorlivne/parse_it/pull/78) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump coverage from 5.1 to 5.2 [\#77](https://github.com/naorlivne/parse_it/pull/77) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump python-dotenv from 0.13.0 to 0.14.0 [\#76](https://github.com/naorlivne/parse_it/pull/76) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
