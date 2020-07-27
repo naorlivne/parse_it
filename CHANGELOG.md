@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump coverage from 5.2 to 5.2.1 [\#80](https://github.com/naorlivne/parse_it/pull/80) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump urllib3 from 1.25.9 to 1.25.10 [\#79](https://github.com/naorlivne/parse_it/pull/79) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump codecov from 2.1.7 to 2.1.8 [\#78](https://github.com/naorlivne/parse_it/pull/78) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump coverage from 5.1 to 5.2 [\#77](https://github.com/naorlivne/parse_it/pull/77) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
