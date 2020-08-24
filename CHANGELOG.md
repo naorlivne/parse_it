@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump codecov from 2.1.8 to 2.1.9 [\#82](https://github.com/naorlivne/parse_it/pull/82) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump coverage from 5.2 to 5.2.1 [\#80](https://github.com/naorlivne/parse_it/pull/80) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump urllib3 from 1.25.9 to 1.25.10 [\#79](https://github.com/naorlivne/parse_it/pull/79) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump codecov from 2.1.7 to 2.1.8 [\#78](https://github.com/naorlivne/parse_it/pull/78) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
@@ -42,6 +43,7 @@
 
 **Fixed bugs:**
 
+- Unresolved import when using "from parse\_it import ParseIt" [\#81](https://github.com/naorlivne/parse_it/issues/81)
 - Wrong estimation of type [\#70](https://github.com/naorlivne/parse_it/issues/70)
 
 **Closed issues:**
