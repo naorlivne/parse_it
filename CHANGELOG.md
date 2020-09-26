@@ -49,7 +49,12 @@
 
 **Closed issues:**
 
+- Dependabot couldn't authenticate with https://pypi.python.org/simple/ [\#84](https://github.com/naorlivne/parse_it/issues/84)
 - CLI args nested key names [\#49](https://github.com/naorlivne/parse_it/issues/49)
+
+**Merged pull requests:**
+
+- Create Dependabot config file [\#85](https://github.com/naorlivne/parse_it/pull/85) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [3.4.0](https://github.com/naorlivne/parse_it/tree/3.4.0) (2020-01-28)
 
