@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump urllib3 from 1.25.10 to 1.25.11 [\#87](https://github.com/naorlivne/parse_it/pull/87) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump codecov from 2.1.9 to 2.1.10 [\#86](https://github.com/naorlivne/parse_it/pull/86) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump coverage from 5.2.1 to 5.3 [\#83](https://github.com/naorlivne/parse_it/pull/83) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump codecov from 2.1.8 to 2.1.9 [\#82](https://github.com/naorlivne/parse_it/pull/82) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
@@ -42,7 +43,6 @@
 - Bump requests from 2.22.0 to 2.23.0 [\#47](https://github.com/naorlivne/parse_it/pull/47) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump idna from 2.8 to 2.9 [\#46](https://github.com/naorlivne/parse_it/pull/46) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump python-dotenv from 0.10.5 to 0.11.0 [\#45](https://github.com/naorlivne/parse_it/pull/45) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
-- Bump coverage from 5.0.2 to 5.0.3 [\#40](https://github.com/naorlivne/parse_it/pull/40) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 **Fixed bugs:**
 
@@ -68,6 +68,7 @@
 - Bump urllib3 from 1.25.7 to 1.25.8 [\#43](https://github.com/naorlivne/parse_it/pull/43) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump python-dotenv from 0.10.3 to 0.10.5 [\#42](https://github.com/naorlivne/parse_it/pull/42) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump six from 1.13.0 to 1.14.0 [\#41](https://github.com/naorlivne/parse_it/pull/41) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Bump coverage from 5.0.2 to 5.0.3 [\#40](https://github.com/naorlivne/parse_it/pull/40) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump pyhcl from 0.3.15 to 0.4.0 [\#39](https://github.com/naorlivne/parse_it/pull/39) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump pyyaml from 5.2 to 5.3 [\#38](https://github.com/naorlivne/parse_it/pull/38) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump coverage from 5.0.1 to 5.0.2 [\#37](https://github.com/naorlivne/parse_it/pull/37) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
