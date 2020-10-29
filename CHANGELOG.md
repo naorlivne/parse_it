@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump python-dotenv from 0.14.0 to 0.15.0 [\#88](https://github.com/naorlivne/parse_it/pull/88) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump urllib3 from 1.25.10 to 1.25.11 [\#87](https://github.com/naorlivne/parse_it/pull/87) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump codecov from 2.1.9 to 2.1.10 [\#86](https://github.com/naorlivne/parse_it/pull/86) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump coverage from 5.2.1 to 5.3 [\#83](https://github.com/naorlivne/parse_it/pull/83) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
@@ -102,7 +103,6 @@
 **Implemented enhancements:**
 
 - Bump urllib3 from 1.25.3 to 1.25.5 [\#26](https://github.com/naorlivne/parse_it/pull/26) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
-- Bump certifi from 2019.6.16 to 2019.9.11 [\#24](https://github.com/naorlivne/parse_it/pull/24) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 **Closed issues:**
 
@@ -134,6 +134,7 @@
 
 **Implemented enhancements:**
 
+- Bump certifi from 2019.6.16 to 2019.9.11 [\#24](https://github.com/naorlivne/parse_it/pull/24) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump pyyaml from 5.1.1 to 5.1.2 [\#21](https://github.com/naorlivne/parse_it/pull/21) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [2.0.0](https://github.com/naorlivne/parse_it/tree/2.0.0) (2019-07-30)
