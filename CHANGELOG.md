@@ -6,6 +6,10 @@
 
 **Implemented enhancements:**
 
+- Bump urllib3 from 1.26.1 to 1.26.2 [\#94](https://github.com/naorlivne/parse_it/pull/94) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump requests from 2.24.0 to 2.25.0 [\#93](https://github.com/naorlivne/parse_it/pull/93) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump urllib3 from 1.25.11 to 1.26.1 [\#92](https://github.com/naorlivne/parse_it/pull/92) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump certifi from 2020.6.20 to 2020.11.8 [\#90](https://github.com/naorlivne/parse_it/pull/90) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump toml from 0.10.1 to 0.10.2 [\#89](https://github.com/naorlivne/parse_it/pull/89) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump python-dotenv from 0.14.0 to 0.15.0 [\#88](https://github.com/naorlivne/parse_it/pull/88) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump urllib3 from 1.25.10 to 1.25.11 [\#87](https://github.com/naorlivne/parse_it/pull/87) ([dependabot[bot]](https://github.com/apps/dependabot))
