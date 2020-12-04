@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/naorlivne/parse_it/tree/HEAD)
+## [3.5.0](https://github.com/naorlivne/parse_it/tree/3.5.0) (2020-12-04)
 
-[Full Changelog](https://github.com/naorlivne/parse_it/compare/3.4.0...HEAD)
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/3.4.0...3.5.0)
 
 **Implemented enhancements:**
 
