@@ -5,6 +5,7 @@ python:
 - '3.6'
 - '3.7'
 - '3.8'
+- '3.9'
 services:
 - docker
 install:
@@ -27,7 +28,7 @@ deploy:
   distributions: sdist bdist_wheel
   skip_existing: true
   on:
-    python: '3.7'
+    python: '3.9'
 after_deploy:
 - git config credential.helper "store --file=.git/credentials"
 - echo "https://${GH_TOKEN}:@github.com" > .git/credentials

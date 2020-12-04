@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 __author__ = 'Naor Livne'
 __author_email__ = 'naorlivne@gmail.com'
-__version__ = "3.4.0"
+__version__ = "3.5.0"
 
 # read the README.md file for the long description of the package
 with open('README.md') as f:
@@ -55,6 +55,7 @@ setup(
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8"
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9"
         ]
 )
