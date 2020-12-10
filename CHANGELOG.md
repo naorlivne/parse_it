@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/naorlivne/parse_it/tree/HEAD)
+
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/3.5.0...HEAD)
+
+**Implemented enhancements:**
+
+- Bump certifi from 2020.11.8 to 2020.12.5 [\#96](https://github.com/naorlivne/parse_it/pull/96) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [3.5.0](https://github.com/naorlivne/parse_it/tree/3.5.0) (2020-12-04)
 
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/3.4.0...3.5.0)
