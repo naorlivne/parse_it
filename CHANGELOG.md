@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump requests from 2.25.0 to 2.25.1 [\#98](https://github.com/naorlivne/parse_it/pull/98) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump chardet from 3.0.4 to 4.0.0 [\#97](https://github.com/naorlivne/parse_it/pull/97) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump certifi from 2020.11.8 to 2020.12.5 [\#96](https://github.com/naorlivne/parse_it/pull/96) ([dependabot[bot]](https://github.com/apps/dependabot))
 
