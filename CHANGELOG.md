@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump coverage from 5.3 to 5.3.1 [\#100](https://github.com/naorlivne/parse_it/pull/100) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump codecov from 2.1.10 to 2.1.11 [\#99](https://github.com/naorlivne/parse_it/pull/99) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump requests from 2.25.0 to 2.25.1 [\#98](https://github.com/naorlivne/parse_it/pull/98) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump chardet from 3.0.4 to 4.0.0 [\#97](https://github.com/naorlivne/parse_it/pull/97) ([dependabot[bot]](https://github.com/apps/dependabot))
