@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/naorlivne/parse_it/tree/HEAD)
+## [3.6.0](https://github.com/naorlivne/parse_it/tree/3.6.0) (2021-03-24)
 
-[Full Changelog](https://github.com/naorlivne/parse_it/compare/3.5.0...HEAD)
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/3.5.0...3.6.0)
 
 **Implemented enhancements:**
 
