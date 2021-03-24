@@ -9,10 +9,10 @@ Code coverage: [![codecov](https://codecov.io/gh/naorlivne/parse_it/branch/maste
 
 # Install
 
-First install parse_it, for Python 3.5 & higher this is simply done using pip:
+First install parse_it, for Python 3.6 & higher this is simply done using pip:
 
 ```bash
-# Install from PyPi for Python version 3.5 & higher
+# Install from PyPi for Python version 3.6 & higher
 pip install parse_it
 ```
 
