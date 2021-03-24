@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/naorlivne/parse_it/tree/HEAD)
+
+[Full Changelog](https://github.com/naorlivne/parse_it/compare/3.6.0...HEAD)
+
+**Implemented enhancements:**
+
+- Bump coverage from 5.4 to 5.5 [\#107](https://github.com/naorlivne/parse_it/pull/107) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [3.6.0](https://github.com/naorlivne/parse_it/tree/3.6.0) (2021-03-24)
 
 [Full Changelog](https://github.com/naorlivne/parse_it/compare/3.5.0...3.6.0)
