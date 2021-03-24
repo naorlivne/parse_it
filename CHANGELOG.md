@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump urllib3 from 1.26.3 to 1.26.4 [\#108](https://github.com/naorlivne/parse_it/pull/108) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump urllib3 from 1.26.2 to 1.26.3 [\#106](https://github.com/naorlivne/parse_it/pull/106) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump coverage from 5.3.1 to 5.4 [\#105](https://github.com/naorlivne/parse_it/pull/105) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump pyyaml from 5.3.1 to 5.4.1 [\#104](https://github.com/naorlivne/parse_it/pull/104) ([dependabot[bot]](https://github.com/apps/dependabot))
