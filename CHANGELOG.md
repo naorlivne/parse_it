@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Bump python-dotenv from 0.15.0 to 0.16.0 [\#109](https://github.com/naorlivne/parse_it/pull/109) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump coverage from 5.4 to 5.5 [\#107](https://github.com/naorlivne/parse_it/pull/107) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [3.6.0](https://github.com/naorlivne/parse_it/tree/3.6.0) (2021-03-24)
