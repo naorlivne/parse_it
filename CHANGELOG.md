@@ -6,9 +6,14 @@
 
 **Implemented enhancements:**
 
+- Bump python-dotenv from 0.17.0 to 0.17.1 [\#112](https://github.com/naorlivne/parse_it/pull/112) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump python-dotenv from 0.16.0 to 0.17.0 [\#110](https://github.com/naorlivne/parse_it/pull/110) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump python-dotenv from 0.15.0 to 0.16.0 [\#109](https://github.com/naorlivne/parse_it/pull/109) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump coverage from 5.4 to 5.5 [\#107](https://github.com/naorlivne/parse_it/pull/107) ([dependabot[bot]](https://github.com/apps/dependabot))
+
+**Closed issues:**
+
+- Read the config from the remote server [\#111](https://github.com/naorlivne/parse_it/issues/111)
 
 ## [3.6.0](https://github.com/naorlivne/parse_it/tree/3.6.0) (2021-03-24)
 
