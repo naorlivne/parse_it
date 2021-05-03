@@ -1,0 +1,143 @@
+kind: pipeline
+type: docker
+name: amd64_build
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+
+- name: run_python_unit_test
+  image: python:3.9.0-alpine3.12
+  commands:
+  - pip install -r requirements.txt
+  - coverage run -m unittest
+  - codecov  --commit=$DRONE_COMMIT_SHA
+  environment:
+    TEST_FILES_LOCATION: test/test_files
+    CODECOV_TOKEN:
+      from_secret: codecov_token
+
+---
+kind: pipeline
+type: docker
+name: arm_build
+
+platform:
+  os: linux
+  arch: arm
+
+steps:
+
+- name: run_python_unit_test
+  image: python:3.9.0-alpine3.12
+  commands:
+  - pip install -r requirements.txt
+  - coverage run -m unittest
+  - codecov  --commit=$DRONE_COMMIT_SHA
+  environment:
+    TEST_FILES_LOCATION: test/test_files
+    CODECOV_TOKEN:
+      from_secret: codecov_token
+
+---
+kind: pipeline
+type: docker
+name: arm64_build
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+
+- name: run_python_unit_test
+  image: python:3.9.0-alpine3.12
+  commands:
+  - pip install -r requirements.txt
+  - coverage run -m unittest
+  - codecov  --commit=$DRONE_COMMIT_SHA
+  environment:
+    TEST_FILES_LOCATION: test/test_files
+    CODECOV_TOKEN:
+      from_secret: codecov_token
+
+---
+kind: pipeline
+type: docker
+name: publish_pypi_package
+
+trigger:
+  event:
+  - push
+  branch:
+  - master
+
+steps:
+- name: pypi_publish
+  image: plugins/pypi
+  settings:
+    distributions:
+      - sdist
+      - bdist_wheel
+    username: __token__
+    password:
+      from_secret: pypi_token
+
+
+depends_on:
+- amd64_build
+- arm_build
+- arm64_build
+
+---
+kind: pipeline
+type: docker
+name: publish_changelog
+
+trigger:
+  event:
+  - push
+  branch:
+  - master
+
+steps:
+- name: create_changelog
+  image: naorlivne/drone-github-changelog-generator
+  settings:
+    github_user: ${DRONE_REPO_NAMESPACE}
+    github_project: ${DRONE_REPO_NAME}
+    output_path: CHANGELOG.md
+  environment:
+    CHANGELOG_GITHUB_TOKEN:
+      from_secret: changelog_github_token
+
+depends_on:
+- amd64_build
+- arm_build
+- arm64_build
+
+---
+
+kind: pipeline
+type: docker
+name: notify
+
+steps:
+- name: notify
+  image: drillster/drone-email
+  settings:
+    host: aspmx.l.google.com
+    port: 25
+    from: dronealert@dronealert.com
+    recipients: [ naorlivne@gmail.com ]
+    recipients_only: true
+
+trigger:
+  status:
+  - failure
+
+depends_on:
+- publish_pypi_package
+- publish_changelog
