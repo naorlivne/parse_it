@@ -1,9 +1,10 @@
 from setuptools import setup, find_packages
+from datetime import datetime
 
 
 __author__ = 'Naor Livne'
 __author_email__ = 'naorlivne@gmail.com'
-__version__ = "3.8.0"
+__version__ = datetime.now().strftime("%Y.%m.%d.%H.%M")
 
 # read the README.md file for the long description of the package
 with open('README.md') as f:
