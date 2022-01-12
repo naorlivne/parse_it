@@ -31,6 +31,8 @@ test_files_location = os.getenv("TEST_FILES_LOCATION", "test_files")
 
 class BaseTests(TestCase):
 
+    maxDiff = None
+
     def test_command_line_args_empty(self):
         reply = read_command_line_arg("empty_variable")
         self.assertIsNone(reply)
@@ -139,6 +141,7 @@ class BaseTests(TestCase):
                 'test.json',
                 'test_subfolder_1/test_sub_subfolder_2/test_subfolder_2.json',
                 'test_subfolder_1/test_sub_subfolder_3/test_subfolder_3.json',
+                'test_subfolder_1/test_sub_subfolder_3/test_subfolder_4.json',
                 'test_subfolder_1/test_subfolder_1.json'
             ],
             'yaml': [
@@ -406,6 +409,7 @@ class BaseTests(TestCase):
                 'test.json',
                 'test_subfolder_1/test_sub_subfolder_2/test_subfolder_2.json',
                 'test_subfolder_1/test_sub_subfolder_3/test_subfolder_3.json',
+                'test_subfolder_1/test_sub_subfolder_3/test_subfolder_4.json',
                 'test_subfolder_1/test_subfolder_1.json'
             ],
             'yaml': [
