@@ -31,7 +31,7 @@ platform:
 steps:
 
 - name: run_python_unit_test
-  image: python:3.9.0-alpine3.12
+  image: python:3.9.0-alpine3.13
   commands:
   - pip install -r requirements.txt
   - coverage run -m unittest
