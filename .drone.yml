@@ -9,7 +9,7 @@ platform:
 steps:
 
 - name: run_python_unit_test
-  image: python:3.10.2-alpine3.15
+  image: python:3.10.2-alpine3.14
   commands:
   - pip install -r requirements.txt
   - coverage run -m unittest
@@ -31,7 +31,7 @@ platform:
 steps:
 
 - name: run_python_unit_test
-  image: python:3.10.2-alpine3.15
+  image: python:3.10.2-alpine3.14
   commands:
   - pip install -r requirements.txt
   - coverage run -m unittest
@@ -53,7 +53,7 @@ platform:
 steps:
 
 - name: run_python_unit_test
-  image: python:3.10.2-alpine3.15
+  image: python:3.10.2-alpine3.14
   commands:
   - pip install -r requirements.txt
   - coverage run -m unittest
