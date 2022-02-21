@@ -22,7 +22,7 @@ def estimate_type(node: Any) -> Any:
     if isinstance(node, str):
         if node.lower() in {"true", "false"}:
             node = node.title()
-        elif node.lower() in {"", "null", "none"}:
+        elif node.lower() in {"null", "none"}:
             node = "None"
 
         with suppress(ValueError, SyntaxError):
