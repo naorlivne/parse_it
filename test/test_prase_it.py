@@ -364,7 +364,7 @@ class BaseTests(TestCase):
         self.assertEqual(reply_mixed, None)
 
     def test_type_estimate_none_custom(self):
-        allowed_none_values = ("null", "none")
+        allowed_none_values = {"null", "none"}
         reply_empty = estimate_type("", allowed_none_values)
         reply_lowercase = estimate_type("none", allowed_none_values)
         reply_null = estimate_type("null", allowed_none_values)
