@@ -352,10 +352,25 @@ class BaseTests(TestCase):
         self.assertEqual(reply, {'test_key': ['test1', 123, {'key': 'value'}]})
 
     def test_type_estimate_none(self):
+        reply_empty = estimate_type("")
         reply_lowercase = estimate_type("none")
         reply_null = estimate_type("null")
         reply_uppercase = estimate_type("NONE")
         reply_mixed = estimate_type("None")
+        self.assertEqual(reply_empty, None)
+        self.assertEqual(reply_lowercase, None)
+        self.assertEqual(reply_null, None)
+        self.assertEqual(reply_uppercase, None)
+        self.assertEqual(reply_mixed, None)
+
+    def test_type_estimate_none_custom(self):
+        allowed_none_values = ("null", "none")
+        reply_empty = estimate_type("", allowed_none_values)
+        reply_lowercase = estimate_type("none", allowed_none_values)
+        reply_null = estimate_type("null", allowed_none_values)
+        reply_uppercase = estimate_type("NONE", allowed_none_values)
+        reply_mixed = estimate_type("None", allowed_none_values)
+        self.assertNotEqual(reply_empty, None)
         self.assertEqual(reply_lowercase, None)
         self.assertEqual(reply_null, None)
         self.assertEqual(reply_uppercase, None)

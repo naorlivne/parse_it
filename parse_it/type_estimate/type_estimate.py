@@ -3,13 +3,14 @@ from typing import Any
 from contextlib import suppress
 
 
-def estimate_type(node: Any) -> Any:
+def estimate_type(node: Any, none_values: tuple = ("", "null", "none")) -> Any:
     """ Takes any type and return it's value in a type it estimates it to be based on ast.literal_eval & internal logic,
     if the result is a list or a dict will recurse to run all internal values as well, in case of problems parsing the
     string with ast.literal_eval it will fallback to sticking with the original type
      
             Arguments:
                 node -- the string a type estimation is needed for
+                none_values -- the values that should be converted to `None`
             Returns:
                 node -- the value of the string in the estimated type
 
@@ -22,14 +23,14 @@ def estimate_type(node: Any) -> Any:
     if isinstance(node, str):
         if node.lower() in {"true", "false"}:
             node = node.title()
-        elif node.lower() in {"", "null", "none"}:
+        elif node.lower() in none_values:
             node = "None"
 
         with suppress(ValueError, SyntaxError):
             node = ast.literal_eval(node)
             if isinstance(node, list):
-                node = [estimate_type(item) for item in node]
+                node = [estimate_type(item, none_values=none_values) for item in node]
             if isinstance(node, dict):
-                node = {key: estimate_type(value) for key, value in node.items()}
+                node = {key: estimate_type(value, none_values=none_values) for key, value in node.items()}
 
     return node
