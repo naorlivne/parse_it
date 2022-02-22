@@ -18,7 +18,7 @@ class ParseIt:
     def __init__(self, config_type_priority: Optional[list] = None, global_default_value: Any = None,
                  type_estimate: bool = True, recurse: bool = False, force_envvars_uppercase: bool = True,
                  config_location: Optional[str] = None, envvar_prefix: Optional[str] = None,
-                 custom_suffix_mapping: Optional[dict] = None, envvar_divider: Optional[str] = None, none_values: tuple = None):
+                 custom_suffix_mapping: Optional[dict] = None, envvar_divider: Optional[str] = None, none_values: Optional[set] = None):
         """configures the object which is used to query all types of configuration inputs available and prioritize them
                 based on your needs
 
@@ -168,7 +168,7 @@ class ParseIt:
                     self.config_files_dict[file_type_ending].append(self.config_location)
 
         if none_values is None:
-            self.none_values = ("", "null", "none")
+            self.none_values = {"", "null", "none"}
         else:
             self.none_values = none_values
 
