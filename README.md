@@ -320,7 +320,7 @@ import os
 os.environ["my_config_key1"] = "Nothing"
 os.environ["my_config_key2"] = "null"
 # Create parse_it object that will only consider "Nothing" and "null" as None type ( defaults to {"", "null", "none"}) 
-parser = ParseIt(none_values={"Nothing"})
+parser = ParseIt(none_values={"Nothing", "null"})
 my_config_key1 = parser.read_configuration_variable("my_config_key1")
 my_config_key2 = parser.read_configuration_variable("my_config_key2")
 # my_config_key1 and my_config_key2 will now be `None`
