@@ -3,7 +3,7 @@ from typing import Any
 from contextlib import suppress
 
 
-def estimate_type(node: Any, none_values: set = {"", "null", "none"}) -> Any:
+def estimate_type(node: Any, none_values=None) -> Any:
     """ Takes any type and return it's value in a type it estimates it to be based on ast.literal_eval & internal logic,
     if the result is a list or a dict will recurse to run all internal values as well, in case of problems parsing the
     string with ast.literal_eval it will fallback to sticking with the original type
@@ -17,6 +17,9 @@ def estimate_type(node: Any, none_values: set = {"", "null", "none"}) -> Any:
     """
 
     # this is to support XML type estimation as it returns a dict of all strings
+    if none_values is None:
+        none_values = {"", "null", "none"}
+
     if isinstance(node, dict):
         node = str(node)
 
