@@ -18,7 +18,8 @@ class ParseIt:
     def __init__(self, config_type_priority: Optional[list] = None, global_default_value: Any = None,
                  type_estimate: bool = True, recurse: bool = False, force_envvars_uppercase: bool = True,
                  config_location: Optional[str] = None, envvar_prefix: Optional[str] = None,
-                 custom_suffix_mapping: Optional[dict] = None, envvar_divider: Optional[str] = None, none_values: Optional[set] = None):
+                 custom_suffix_mapping: Optional[dict] = None, envvar_divider: Optional[str] = None,
+                 none_values: Optional[set] = None):
         """configures the object which is used to query all types of configuration inputs available and prioritize them
                 based on your needs
 
@@ -280,7 +281,7 @@ class ParseIt:
         return config_value_dict
 
     def read_all_configuration_variables(self, default_value: Optional[dict] = None, required: Optional[list] = None,
-                                         allowed_types: Optional[dict] = None, none_values: Optional[tuple] = None) -> dict:
+                                         allowed_types: Optional[dict] = None) -> dict:
         """reads all configuration variables from all allowed sources and returns a dict that includes the combined
                         result of all of them, if a configuration variable exists in two (or more) different sources the
                          one with the higher priority will be the only one returned
