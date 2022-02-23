@@ -139,6 +139,7 @@ class BaseTests(TestCase):
         expected_reply = {
             'json': [
                 'test.json',
+                'test_none_values.json',
                 'test_subfolder_1/test_sub_subfolder_2/test_subfolder_2.json',
                 'test_subfolder_1/test_sub_subfolder_3/test_subfolder_3.json',
                 'test_subfolder_1/test_sub_subfolder_3/test_subfolder_4.json',
@@ -382,7 +383,8 @@ class BaseTests(TestCase):
                 "test.env"
             ],
             'json': [
-                'test.json'
+                'test.json',
+                'test_none_values.json'
             ],
             'yaml': [
                 'test.yaml'
@@ -420,6 +422,7 @@ class BaseTests(TestCase):
             ],
             'json': [
                 'test.json',
+                'test_none_values.json',
                 'test_subfolder_1/test_sub_subfolder_2/test_subfolder_2.json',
                 'test_subfolder_1/test_sub_subfolder_3/test_subfolder_3.json',
                 'test_subfolder_1/test_sub_subfolder_3/test_subfolder_4.json',
@@ -561,7 +564,8 @@ class BaseTests(TestCase):
                 'test.env'
             ],
             'json': [
-                'test.json'
+                'test.json',
+                'test_none_values.json'
             ],
             'yaml': [
                 'test.yaml'
