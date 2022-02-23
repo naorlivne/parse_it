@@ -29,8 +29,14 @@ def estimate_type(node: Any, none_values: set = {"", "null", "none"}) -> Any:
         with suppress(ValueError, SyntaxError):
             node = ast.literal_eval(node)
             if isinstance(node, list):
-                node = [estimate_type(item, none_values=none_values) for item in node]
+                node = [
+                    estimate_type(item, none_values=none_values)
+                    for item in node
+                ]
             if isinstance(node, dict):
-                node = {key: estimate_type(value, none_values=none_values) for key, value in node.items()}
+                node = {
+                    key: estimate_type(value, none_values=none_values)
+                    for key, value in node.items()
+                }
 
     return node
