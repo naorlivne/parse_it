@@ -16,10 +16,10 @@ def estimate_type(node: Any, none_values=None) -> Any:
 
     """
 
-    # this is to support XML type estimation as it returns a dict of all strings
     if none_values is None:
         none_values = {"", "null", "none"}
 
+    # this is to support XML type estimation as it returns a dict of all strings
     if isinstance(node, dict):
         node = str(node)
 
