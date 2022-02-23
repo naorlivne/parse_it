@@ -47,7 +47,8 @@ class ParseIt:
                         custom_suffix_mapping -- a custom dict which will can map custom file suffixes to a file type
                         envvar_divider -- the divider to split an envvar to nested dicts, if set to None (default) said
                             nesting is disabled
-                        none_values -- A tuple with values that should be considered `None`
+                        none_values -- A tuple with values that should be considered `None`, if set to None (default) it
+                            will take the default set tuple of {"", "null", "none"}
         """
 
         # first we describe the standard file type suffix mapping and what file types are are standard file extensions

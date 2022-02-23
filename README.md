@@ -310,7 +310,7 @@ my_config_dict = parser.read_all_configuration_variables()
 # my_config_dict will have in it the following dict {"nest1": {"nest2":{"nest3": 123}}} 
 
 ```
-You can define which values should be considered None type. Default is ("", "null", "none")
+You can define which values should be considered None type. Default is `{"", "null", "none"}`
 
 ```python
 # Load parse_it
