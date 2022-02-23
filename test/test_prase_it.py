@@ -1410,3 +1410,24 @@ class BaseTests(TestCase):
             self.assertDictEqual(reply["test_dict"], {'hcl_dict_key': 'hcl_dict_value'})
             self.assertListEqual(reply["test_list"], ['test1', 'test2', 'test3'])
             self.assertDictEqual(reply["test_json"], {"test_json_key": "test_json_value"})
+
+    def test_parser_type_estimate_none(self):
+        parser = ParseIt(
+            config_location=f"{test_files_location}/test_none_values.json")
+        reply = parser.read_all_configuration_variables()
+        self.assertEqual(reply["empty_string"], None)
+        self.assertEqual(reply["none_lower"], None)
+        self.assertEqual(reply["none_upper"], None)
+        self.assertEqual(reply["none_mixed"], None)
+        self.assertEqual(reply["null"], None)
+
+    def test_parser_type_estimate_none_custom(self):
+        parser = ParseIt(
+            config_location=f"{test_files_location}/test_none_values.json",
+            none_values={"null", "none"})
+        reply = parser.read_all_configuration_variables()
+        self.assertNotEqual(reply["empty_string"], None)
+        self.assertEqual(reply["none_lower"], None)
+        self.assertEqual(reply["none_upper"], None)
+        self.assertEqual(reply["none_mixed"], None)
+        self.assertEqual(reply["null"], None)
