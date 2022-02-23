@@ -18,7 +18,8 @@ class ParseIt:
     def __init__(self, config_type_priority: Optional[list] = None, global_default_value: Any = None,
                  type_estimate: bool = True, recurse: bool = False, force_envvars_uppercase: bool = True,
                  config_location: Optional[str] = None, envvar_prefix: Optional[str] = None,
-                 custom_suffix_mapping: Optional[dict] = None, envvar_divider: Optional[str] = None):
+                 custom_suffix_mapping: Optional[dict] = None, envvar_divider: Optional[str] = None,
+                 none_values: Optional[set] = None):
         """configures the object which is used to query all types of configuration inputs available and prioritize them
                 based on your needs
 
@@ -46,6 +47,7 @@ class ParseIt:
                         custom_suffix_mapping -- a custom dict which will can map custom file suffixes to a file type
                         envvar_divider -- the divider to split an envvar to nested dicts, if set to None (default) said
                             nesting is disabled
+                        none_values -- A tuple with values that should be considered `None`
         """
 
         # first we describe the standard file type suffix mapping and what file types are are standard file extensions
@@ -166,6 +168,11 @@ class ParseIt:
                 if self.config_location.endswith(file_type_ending):
                     self.config_files_dict[file_type_ending].append(self.config_location)
 
+        if none_values is None:
+            self.none_values = {"", "null", "none"}
+        else:
+            self.none_values = none_values
+
     def read_configuration_variable(self, config_name: str, default_value: Any = None, required: bool = False,
                                     allowed_types: Optional[list] = None) -> Any:
         """reads a single key of the configuration and returns the first value of it found based on the priority of each
@@ -238,7 +245,7 @@ class ParseIt:
 
         # if type estimation is True try to guess the type of the value
         if self.type_estimate is True:
-            config_value = estimate_type(config_value)
+            config_value = estimate_type(config_value, none_values=self.none_values)
 
         # if the type the config is in the end isn't in the list of allowed_types and allowed_types list is set raise
         # a TypeError
@@ -330,7 +337,7 @@ class ParseIt:
 
         # and we run the type estimate (which is recursive) on the full dict if it's configured to be used
         if self.type_estimate is True:
-            config_value_dict = estimate_type(config_value_dict)
+            config_value_dict = estimate_type(config_value_dict, none_values=self.none_values)
 
         # now we check that all the required values exist and raise a ValueError otherwise
         if required is not None:
