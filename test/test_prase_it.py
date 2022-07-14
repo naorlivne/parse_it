@@ -1319,6 +1319,7 @@ class BaseTests(TestCase):
             self.assertEqual(reply["test_env_type_estimate"], "123")
 
     def test_parser_read_all_configuration_variables_raise_allowed_types_error(self):
+        os.environ['FILE_TYPE'] = 'envvar'
         parser = ParseIt(config_location=test_files_location)
         with self.assertRaises(TypeError):
             parser.read_all_configuration_variables(allowed_types={"file_type": [bool, dict]})
