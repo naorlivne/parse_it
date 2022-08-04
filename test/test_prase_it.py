@@ -1323,6 +1323,7 @@ class BaseTests(TestCase):
         parser = ParseIt(config_location=test_files_location)
         with self.assertRaises(TypeError):
             parser.read_all_configuration_variables(allowed_types={"file_type": [bool, dict]})
+        os.environ['FILE_TYPE'] = 'env'
 
     def test_parser_read_all_configuration_variables_raise_required_error(self):
         parser = ParseIt(config_location=test_files_location)
