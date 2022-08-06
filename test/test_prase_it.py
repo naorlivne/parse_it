@@ -26,7 +26,7 @@ VALID_FILE_TYPE_EXTENSIONS = [
     "xml"
 ]
 
-test_files_location = os.getenv("TEST_FILES_LOCATION", "test_files")
+test_files_location = os.getenv("TEST_FILES_LOCATION", "test/test_files")
 
 
 class BaseTests(TestCase):
@@ -120,6 +120,7 @@ class BaseTests(TestCase):
         parser = ParseIt(config_location=test_files_location + "/test.hcl")
         reply = parser.read_configuration_variable("file_type")
         self.assertEqual(reply, "envvar")
+        del os.environ["FILE_TYPE"]
 
     def test_read_cli_args_folder_does_not_exist_raise_warn(self):
         with self.assertWarns(Warning):
@@ -781,6 +782,7 @@ class BaseTests(TestCase):
         os.environ["TEST_ENV"] = "123"
         reply = envvar_defined("TEST_ENV")
         self.assertTrue(reply)
+        del os.environ["TEST_ENV"]
 
     def test_envvar_defined_false(self):
         reply = envvar_defined("TEST_ENV")
@@ -790,11 +792,13 @@ class BaseTests(TestCase):
         os.environ["TEST_ENV"] = "123"
         reply = envvar_defined("test_env", force_uppercase=True)
         self.assertTrue(reply)
+        del os.environ["TEST_ENV"]
 
     def test_envvar_defined_false_upper_case(self):
         os.environ["TEST_ENV"] = "123"
         reply = envvar_defined("test_env", force_uppercase=False)
         self.assertFalse(reply)
+        del os.environ["TEST_ENV"]
 
     def test_read_all_envvars_to_dict_force_uppercase_true(self):
         test_envvars = {"TEST_ENV": "123", "test_env_lowercase": "456"}
@@ -1319,11 +1323,9 @@ class BaseTests(TestCase):
             self.assertEqual(reply["test_env_type_estimate"], "123")
 
     def test_parser_read_all_configuration_variables_raise_allowed_types_error(self):
-        os.environ['FILE_TYPE'] = 'envvar'
         parser = ParseIt(config_location=test_files_location)
         with self.assertRaises(TypeError):
             parser.read_all_configuration_variables(allowed_types={"file_type": [bool, dict]})
-        os.environ['FILE_TYPE'] = 'env'
 
     def test_parser_read_all_configuration_variables_raise_required_error(self):
         parser = ParseIt(config_location=test_files_location)
