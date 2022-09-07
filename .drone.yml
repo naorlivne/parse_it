@@ -22,28 +22,6 @@ steps:
 ---
 kind: pipeline
 type: docker
-name: arm_build
-
-platform:
-  os: linux
-  arch: arm
-
-steps:
-
-- name: run_python_unit_test
-  image: python:3.10.2-buster #there seems to be a bug in the arm build with alpine3.13+ in drone right now
-  commands:
-  - pip install -r requirements.txt
-  - coverage run -m unittest
-  - codecov  --commit=$DRONE_COMMIT_SHA
-  environment:
-    TEST_FILES_LOCATION: test/test_files
-    CODECOV_TOKEN:
-      from_secret: codecov_token
-
----
-kind: pipeline
-type: docker
 name: arm64_build
 
 platform:
@@ -88,7 +66,6 @@ steps:
 
 depends_on:
 - amd64_build
-- arm_build
 - arm64_build
 
 ---
@@ -115,7 +92,6 @@ steps:
 
 depends_on:
 - amd64_build
-- arm_build
 - arm64_build
 
 ---
