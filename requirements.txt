@@ -1,7 +1,7 @@
 certifi==2022.12.7
 chardet==5.0.0
 codecov==2.1.12
-configobj==5.0.6
+configobj==5.0.7
 coverage==6.5.0
 dpath==2.1.0
 idna==3.4
