@@ -2,7 +2,7 @@
 
 A python library for parsing multiple types of config files, envvars and command line arguments that takes the headache out of setting app configurations.
 
-Github actions CI unit tests & auto PyPi push status: [![push CI CD](https://github.com/naorlivne/parse_it/actions/workflows/full_ci_cd_workflow.yml/badge.svg)](https://github.com/naorlivne/parse_it/actions/workflows/full_ci_cd_workflow.yml)
+Github actions CI unit tests & auto PyPi push status: [![CI/CD](https://github.com/naorlivne/parse_it/actions/workflows/full_ci_cd_workflow.yml/badge.svg)](https://github.com/naorlivne/parse_it/actions/workflows/full_ci_cd_workflow.yml)
 
 Code coverage: [![codecov](https://codecov.io/gh/naorlivne/parse_it/branch/master/graph/badge.svg)](https://codecov.io/gh/naorlivne/parse_it)
 
