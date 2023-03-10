@@ -2,7 +2,7 @@
 
 A python library for parsing multiple types of config files, envvars and command line arguments that takes the headache out of setting app configurations.
 
-Drone.io CI unit tests & auto PyPi push status: [![Build Status](https://cloud.drone.io/api/badges/naorlivne/parse_it/status.svg)](https://cloud.drone.io/naorlivne/parse_it)
+Drone.io CI unit tests & auto PyPi push status: ![example workflow](https://github.com/naorlivne/parse_it/workflows/full_ci_cd_workflow.yml/badge.svg)
 
 Code coverage: [![codecov](https://codecov.io/gh/naorlivne/parse_it/branch/master/graph/badge.svg)](https://codecov.io/gh/naorlivne/parse_it)
 
