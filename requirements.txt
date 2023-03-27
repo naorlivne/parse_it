@@ -3,7 +3,7 @@ chardet==5.1.0
 codecov==2.1.12
 configobj==5.0.8
 coverage==7.2.2
-dpath==2.1.4
+dpath==2.1.5
 idna==3.4
 ply==3.11
 pyhcl==0.4.4
