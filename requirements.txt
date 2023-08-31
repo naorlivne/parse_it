@@ -1,5 +1,5 @@
 certifi==2023.7.22
-chardet==5.1.0
+chardet==5.2.0
 configobj==5.0.8
 coverage==7.3.0
 dpath==2.1.6
