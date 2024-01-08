@@ -3,7 +3,7 @@ chardet==5.2.0
 configobj==5.0.8
 coverage==7.4.0
 dpath==2.1.6
-idna==3.4
+idna==3.6
 ply==3.11
 pyhcl==0.4.5
 python-dotenv==1.0.0
