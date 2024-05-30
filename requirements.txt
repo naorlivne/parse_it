@@ -8,7 +8,7 @@ ply==3.11
 pyhcl==0.4.5
 python-dotenv==1.0.1
 PyYAML==6.0.1
-requests==2.32.2
+requests==2.32.3
 six==1.16.0
 toml==0.10.2
 urllib3==2.2.1
