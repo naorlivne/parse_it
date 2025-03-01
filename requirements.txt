@@ -9,7 +9,7 @@ pyhcl==0.4.5
 python-dotenv==1.0.1
 PyYAML==6.0.2
 requests==2.32.3
-six==1.16.0
+six==1.17.0
 toml==0.10.2
 urllib3==2.3.0
 xmltodict==0.14.2
