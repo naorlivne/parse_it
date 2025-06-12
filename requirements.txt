@@ -1,7 +1,7 @@
 certifi==2025.1.31
 chardet==5.2.0
 configobj==5.0.9
-coverage==7.6.12
+coverage==7.9.0
 dpath==2.2.0
 idna==3.10
 ply==3.11
