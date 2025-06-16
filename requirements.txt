@@ -1,4 +1,4 @@
-certifi==2025.1.31
+certifi==2025.6.15
 chardet==5.2.0
 configobj==5.0.9
 coverage==7.6.12
